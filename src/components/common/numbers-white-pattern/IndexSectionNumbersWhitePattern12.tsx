@@ -6,20 +6,20 @@ interface Statistic {
 export default function IndexSectionNumbersWhitePattern12() {
     const statistics: Statistic[] = [
         {
-            value: "235.000",
-            label: "Tamamlanan Proje"
+            value: "500+",
+            label: "Aktif Üye"
         },
         {
-            value: "₺10M",
-            label: "Yıllık Gelir"
+            value: "100+",
+            label: "Yıllık Etkinlik"
         },
         {
-            value: "+50.000",
-            label: "Yıllık Tasarruf Edilen Saat"
+            value: "10.000+",
+            label: "Topluluk Saatleri"
         },
         {
-            value: "3.500",
-            label: "Tekil Kullanıcı"
+            value: "15",
+            label: "Desteklenen Üniversite"
         }
     ]
 
@@ -38,10 +38,10 @@ export default function IndexSectionNumbersWhitePattern12() {
                         İstatistikler
                     </span>
                     <h3 className="mb-4 text-4xl md:text-5xl text-coolGray-900 font-bold tracking-tighter">
-                        Verinin Gücüne İnanıyoruz
+                        Birlikte Güçleniyoruz
                     </h3>
                     <p className="mb-16 xl:mb-24 mx-auto text-lg md:text-xl text-coolGray-500 font-medium max-w-4xl">
-                        Flex, işletmenizi tüm dijital kanallarda sorunsuz bir şekilde tek bir platformda yönetmenizi sağlayan tek iş platformudur.
+                        Milano Türk Öğrenci Birliği olarak, üyelerimizin eğitimine ve topluluk gelişimine katkı sağlıyoruz.
                     </p>
 
                     {/* İstatistik Kartları */}
@@ -64,4 +64,4 @@ export default function IndexSectionNumbersWhitePattern12() {
             </div>
         </section>
     )
-} 
+}

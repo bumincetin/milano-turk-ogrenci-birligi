@@ -11,33 +11,33 @@ export default function IndexSectionHowItWorksWhitePattern4() {
     const steps: Step[] = [
         {
             number: 1,
-            title: "Performansınızı Ölçün",
-            description: "Ekibinizle bağlantıda kalın ve nerede olursanız olun hızlı kararlar alın."
+            title: "Dayanışma ve Destek",
+            description: "Milano'daki Türk öğrenciler arasında güçlü bir destek ağı oluşturarak ihtiyaç anında yardım almanızı sağlıyoruz."
         },
         {
             number: 2,
-            title: "Özel Analizler",
-            description: "Bulutta eksiksiz bir satış paneli edinin. Aktivite, gelir ve sosyal metrikleri tek bir yerden görün."
+            title: "Eğitim ve Gelişim",
+            description: "Topluluğumuz, yeni beceriler edinmeniz için çeşitli eğitimler ve seminerler düzenlemektedir."
         },
         {
             number: 3,
-            title: "Ekip Yönetimi",
-            description: "Takvimimiz, müşteriler ve projelerle ilgili neler olduğunu bilmenizi sağlar."
+            title: "Etkinlik Organizasyonu",
+            description: "Milano'da Türk kültürünü tanıtmak ve öğrenciler arasında sosyal bağları güçlendirmek için etkinlikler organize ediyoruz."
         },
         {
             number: 4,
-            title: "Web Sitenizi Oluşturun",
-            description: "Web tasarımı veya programlama hakkında hiçbir şey bilmeseniz bile hayal ettiğiniz web sitesini oluşturmanızı sağlayan bir araç."
+            title: "Kariyer Destek Programları",
+            description: "Kariyer hedeflerinize ulaşmanız için staj ve iş bulma konularında rehberlik sağlıyoruz."
         },
         {
             number: 5,
-            title: "Çoklu Uygulama Bağlantısı",
-            description: "Tüm ürünlerinizi tek bir yerden bir araya getiren ilk iş platformu."
+            title: "Kültürel Paylaşım",
+            description: "Türk kültürünü Milano'da tanıtarak farklı kültürlerle iletişimi güçlendiriyoruz."
         },
         {
             number: 6,
-            title: "Kolay Kurulum",
-            description: "Uçtan Uca İş Platformu, Satış Yönetimi, Pazarlama Otomasyonu, Yardım Masası"
+            title: "Ağ Kurma Fırsatları",
+            description: "Milano'da ve uluslararası düzeyde profesyonel bağlantılar kurmanızı destekliyoruz."
         }
     ]
 
@@ -57,10 +57,10 @@ export default function IndexSectionHowItWorksWhitePattern4() {
                             Nasıl Çalışır
                         </span>
                         <h2 className="mb-6 text-4xl md:text-5xl leading-tight font-bold tracking-tighter">
-                            İnsanların nasıl kullandığı hakkında daha fazla bilgi edinin
+                            MTÖB'ün sizlere nasıl katkı sağladığını keşfedin
                         </h2>
                         <p className="text-lg md:text-xl text-coolGray-500 font-medium">
-                            Entegre CRM, proje yönetimi, işbirliği ve faturalama özelliklerimizle işletmenizi tek bir güvenli platformda yönetebilirsiniz.
+                            Dayanışma, gelişim ve kariyer desteği odaklı faaliyetlerimizle Milano’daki Türk öğrencileri bir araya getiriyoruz.
                         </p>
                     </div>
 
@@ -108,4 +108,4 @@ export default function IndexSectionHowItWorksWhitePattern4() {
             </div>
         </section>
     )
-} 
+}

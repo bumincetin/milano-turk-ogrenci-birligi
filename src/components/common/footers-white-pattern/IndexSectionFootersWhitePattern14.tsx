@@ -14,22 +14,22 @@ interface FooterSection {
 export default function IndexSectionFootersWhitePattern14() {
     const footerSections: FooterSection[] = [
         {
-            title: "Ürünler",
+            title: "Topluluk",
             links: [
-                { text: "Özellikler", href: "/ozellikler" },
-                { text: "Çözümler", href: "/cozumler" },
-                { text: "Fiyatlandırma", href: "/fiyatlandirma" },
-                { text: "Eğitimler", href: "/egitimler" },
-                { text: "Güncellemeler", href: "/guncellemeler" }
+                { text: "Hakkımızda", href: "/hakkimizda" },
+                { text: "Etkinlikler", href: "/etkinlikler" },
+                { text: "Üyelik", href: "/uyelik" },
+                { text: "İletişim", href: "/iletisim" },
+                { text: "Sıkça Sorulan Sorular", href: "/sss" }
             ]
         },
         {
             title: "Kaynaklar",
             links: [
                 { text: "Blog", href: "/blog" },
-                { text: "Bülten", href: "/bulten" },
+                { text: "Duyurular", href: "/duyurular" },
                 { text: "Yardım Merkezi", href: "/yardim" },
-                { text: "Kariyer", href: "/kariyer" },
+                { text: "Gönüllü Olun", href: "/gonullu" },
                 { text: "Destek", href: "/destek" }
             ]
         }
@@ -49,15 +49,15 @@ export default function IndexSectionFootersWhitePattern14() {
                     <div className="w-full md:w-1/2 lg:w-4/12 px-4 mb-16 lg:mb-0">
                         <Link href="/" className="inline-block mb-4">
                             <Image 
-                                className="h-8"
-                                src="/flex-ui-assets/logos/flex-ui-green-light.svg"
-                                alt="Logo"
-                                width={120}
-                                height={32}
+                                className="h-16"
+                                src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo.png"
+                                alt="MTÖB Logo"
+                                width={60}
+                                height={60}
                             />
                         </Link>
                         <p className="text-base md:text-lg text-coolGray-500 font-medium lg:w-64">
-                            Flex Solutions ile kendi Yazılım Hizmeti uygulamanızı başlatın.
+                            Milano Türk Öğrenci Birliği, Milano'da öğrenim gören Türk öğrencilerin dayanışmasını ve kültürel paylaşımlarını artırmayı amaçlamaktadır.
                         </p>
                     </div>
 
@@ -107,8 +107,8 @@ export default function IndexSectionFootersWhitePattern14() {
             {/* Alt Çizgi ve Telif Hakkı */}
             <div className="border-b border-coolGray-100" />
             <p className="py-10 md:pb-16 text-sm text-coolGray-400 font-medium text-center">
-                © 2024 Flex. Tüm hakları saklıdır.
+                © 2024 Milano Türk Öğrenci Birliği. Tüm hakları saklıdır.
             </p>
         </section>
     )
-} 
+}

@@ -41,13 +41,13 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
                 {/* Başlık Bölümü */}
                 <div className="mb-8 text-center">
                     <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-9xl">
-                        İş Ortaklarımız
+                        İş Birliklerimiz
                     </span>
                     <h3 className="mb-4 text-4xl md:text-5xl text-coolGray-900 font-bold tracking-tighter">
-                        Sektörün önde gelen şirketleri tarafından tercih ediliyoruz
+                        Güçlü iş ortaklarımızla hedeflerimize ulaşmayı destekliyoruz
                     </h3>
                     <p className="text-lg md:text-xl text-coolGray-500 font-medium">
-                        CRM, pazarlama otomasyonu ve e-ticareti tek çatı altında birleştiren tek SaaS iş platformu.
+                        Milano'da öğrenim gören Türk öğrenciler olarak eğitim ve kültürel alanlarda destek alıyoruz.
                     </p>
                 </div>
 

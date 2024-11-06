@@ -12,12 +12,14 @@ import IndexSectionNumbersWhitePattern12 from '@/components/common/numbers-white
 import IndexSectionCookiesWhite13 from '@/components/common/cookies-white/IndexSectionCookiesWhite13'
 import IndexSectionNewsletterWhitePattern11 from '@/components/common/newsletter-white-pattern/IndexSectionNewsletterWhitePattern11'
 import IndexSectionFootersWhitePattern14 from '@/components/common/footers-white-pattern/IndexSectionFootersWhitePattern14'
+import HeroSection from '@/components/common/hero-section/HeroSection'
 
 export default function Home() {
   return (
     <>
       <IndexSectionNavigationsWhite1 />
       <IndexSectionHeadersWhitePattern2 />
+      <HeroSection />
       <IndexSectionFeaturesWhitePattern3 />
       <IndexSectionHowItWorksWhitePattern4 />
       <IndexSectionLogoCloudsWhitePattern6 />
