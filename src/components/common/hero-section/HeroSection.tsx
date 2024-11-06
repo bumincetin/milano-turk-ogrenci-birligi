@@ -15,7 +15,6 @@ export default function HeroSection() {
                             Milano Türk Öğrenci Birliğine Hoşgeldiniz!
                         </h1>
                         <p className="mb-8 text-lg md:text-xl text-coolGray-500 font-medium">
-                            Unione degli Studenti Turchi di Milano
                             Milano'da öğrenim gören tüm Türk öğrencilerin dayanışmasını sağlamak amacıyla kurulmuş bir topluluktur.
                         </p>
                         <div className="flex flex-wrap">
