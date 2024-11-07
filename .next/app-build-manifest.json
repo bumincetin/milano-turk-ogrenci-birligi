@@ -76,6 +76,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/destek/page.js"
     ],
+    "/gizlilik-politikasi/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/gizlilik-politikasi/page.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

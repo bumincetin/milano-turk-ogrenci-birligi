@@ -100,8 +100,8 @@ export default function IndexSectionTeamWhitePattern9() {
                                         className="inline-block mr-6 hover:opacity-80"
                                     >
                                         <Image 
-                                            src="/flex-ui-assets/brands/facebook.svg"
-                                            alt="Facebook"
+                                            src="/flex-ui-assets/brands/instagram.svg"
+                                            alt="Instagram"
                                             width={24}
                                             height={24}
                                         />
@@ -111,8 +111,8 @@ export default function IndexSectionTeamWhitePattern9() {
                                         className="inline-block hover:opacity-80"
                                     >
                                         <Image 
-                                            src="/flex-ui-assets/brands/twitter.svg"
-                                            alt="Twitter"
+                                            src="/flex-ui-assets/brands/linkedin.svg"
+                                            alt="LinkedIn"
                                             width={24}
                                             height={24}
                                         />
