@@ -7,34 +7,34 @@ interface Testimonial {
 export default function IndexSectionTestimonialsWhitePattern5() {
     const testimonials: Testimonial[] = [
         {
-            quote: "Esnek bir programda çalışmak isteyen ancak tam zamanlı gelir elde etmek isteyenler için en iyi çözüm.",
-            name: "Ahmet Yılmaz",
-            title: "CEO & Kurucu"
+            quote: "Milano'da öğrenci olarak dayanışma içinde olmak benim için çok değerli. MTÖB sayesinde birçok yeni arkadaş edindim.",
+            name: "Ali Can",
+            title: "Mühendislik Öğrencisi"
         },
         {
-            quote: "Flex'e doyamıyorum. Herkese gösterebilmek için üzerinde Flex yazan bir tişört istiyorum. Tüm meslektaşlarıma tavsiye edeceğim.",
-            name: "Mehmet Demir",
-            title: "CTO"
+            quote: "MTÖB sayesinde yalnız hissetmiyorum. Etkinlikler ve buluşmalar harika bir ortam sağlıyor.",
+            name: "Emine Yıldız",
+            title: "İşletme Öğrencisi"
         },
         {
-            quote: "Pişman olmayacaksınız. Şimdiden harika sonuçlar görmeye başladık. Teşekkürler ekip, harika iş çıkarıyorsunuz!",
-            name: "Ayşe Kaya",
-            title: "CPO"
+            quote: "MTÖB'nin sunduğu destekle, Milano'da hem kültürel hem de akademik olarak gelişme fırsatı buldum.",
+            name: "Deniz Kaya",
+            title: "Sanat Tarihi Öğrencisi"
         },
         {
-            quote: "Flex beni birçok açıdan etkiledi. Flex'i sık sık kullanıyorum. Flex olmadan kaybolurdum. Flex gerçekten harika!",
-            name: "Zeynep Aydın",
-            title: "Müşteri Başarısı Yöneticisi"
+            quote: "MTÖB'nin sağladığı sosyal etkinlikler sayesinde yeni bir şehirde kendimi daha rahat hissetmeye başladım.",
+            name: "Ayşe Öztürk",
+            title: "Hukuk Öğrencisi"
         },
         {
-            quote: "Flex şirketimiz için çok değerli oldu. Bundan daha iyisini isteyemezdim.",
-            name: "Elif Yıldız",
-            title: "Backend Geliştirici"
+            quote: "Milano'daki Türk öğrencilerle bir araya gelmek, kültürel bağlarımızı güçlendirmek adına çok önemliydi.",
+            name: "Murat Akın",
+            title: "Mimarlık Öğrencisi"
         },
         {
-            quote: "Harika hizmet için teşekkürler. Flex tam olarak söylediğiniz gibi çalışıyor. Tam da aradığım şeydi.",
-            name: "Selin Öztürk",
-            title: "Ürün Tasarımcısı"
+            quote: "MTÖB sayesinde kendime bir destek ağı kurdum. Bu topluluk sayesinde akademik hedeflerime odaklanabiliyorum.",
+            name: "Selin Demir",
+            title: "Ekonomi Öğrencisi"
         }
     ]
 
@@ -53,10 +53,10 @@ export default function IndexSectionTestimonialsWhitePattern5() {
                         Referanslar
                     </span>
                     <h2 className="mb-4 text-4xl md:text-5xl leading-tight font-semibold tracking-tighter">
-                        Flex kullanıcılarından yorumlar
+                        MTÖB Üyelerinden Yorumlar
                     </h2>
                     <p className="text-xl font-medium text-coolGray-500">
-                        Flex ile kod yazmadan web siteleri oluşturabilirsiniz.
+                        Milano Türk Öğrenci Birliği, üyelerimiz için güçlü bir destek ve dayanışma platformu sunmaktadır.
                     </p>
                 </div>
 
@@ -84,4 +84,4 @@ export default function IndexSectionTestimonialsWhitePattern5() {
             </div>
         </section>
     )
-} 
+}

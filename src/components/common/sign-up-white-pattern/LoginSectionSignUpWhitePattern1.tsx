@@ -33,22 +33,22 @@ export default function LoginSectionSignUpWhitePattern1() {
             <div className="container px-4 mx-auto mb-16">
                 <div className="w-full md:w-3/5 lg:w-1/2">
                     <div className="max-w-sm mx-auto">
-                        {/* Logo ve Başlık */}
-                        <div className="mb-6 text-center">
+                         {/* Logo ve Başlık */}
+                         <div className="mb-6 text-center">
                             <Link href="/" className="inline-block mb-6">
                                 <Image 
                                     className="h-16"
-                                    src="/flex-ui-assets/logos/flex-circle-green.svg"
-                                    alt="Logo"
+                                    src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo.png"
+                                    alt="MTÖB Logo"
                                     width={64}
                                     height={64}
                                 />
                             </Link>
                             <h3 className="mb-4 text-2xl md:text-3xl font-bold">
-                                Hesabınıza Giriş Yapın
+                                MTÖB Hesabınıza Giriş Yapın
                             </h3>
                             <p className="text-lg text-coolGray-500 font-medium">
-                                Demo sürümünü başlatın
+                                Topluluğumuzun etkinliklerine katılmak için giriş yapın
                             </p>
                         </div>
 
@@ -135,7 +135,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                             {/* Kayıt Ol Linki */}
                             <p className="text-center">
                                 <span className="text-xs font-medium">
-                                    Hesabınız yok mu?
+                                    MTÖB'ye yeni misiniz?
                                 </span>
                                 <Link 
                                     href="/kayit"

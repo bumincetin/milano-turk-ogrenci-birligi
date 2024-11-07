@@ -11,24 +11,24 @@ export default function IndexSectionFaqsWhitePattern8() {
 
     const faqs: FAQ[] = [
         {
-            question: "Siparişimin kargoya verilmesi ne kadar sürer?",
-            answer: "Siparişler genellikle verildikten sonra 1-2 iş günü içinde kargoya verilir."
+            question: "MTÖB'ye nasıl üye olabilirim?",
+            answer: "MTÖB üyeliği için web sitemizden başvuru formunu doldurarak kayıt olabilirsiniz."
         },
         {
-            question: "Hangi ödeme yöntemlerini kabul ediyorsunuz?",
-            answer: "Kredi kartı, banka kartı, havale/EFT ve kapıda ödeme seçeneklerini sunuyoruz."
+            question: "MTÖB hangi tür etkinlikler düzenliyor?",
+            answer: "Akademik seminerler, kültürel geziler, sosyal buluşmalar ve kariyer etkinlikleri düzenlenmektedir."
         },
         {
-            question: "Hangi kargo seçenekleriniz var?",
-            answer: "Standart teslimat ve express teslimat seçeneklerimiz mevcuttur."
+            question: "Etkinliklere katılmak için üye olmam gerekiyor mu?",
+            answer: "Etkinliklere öncelikle üyelerimiz katılabilmekte, yer durumuna göre misafir katılımcılar da kabul edilmektedir."
         },
         {
-            question: "Mevcut siparişimde nasıl değişiklik yapabilirim?",
-            answer: "Siparişiniz kargoya verilmeden önce müşteri hizmetlerimizle iletişime geçerek değişiklik yapabilirsiniz."
+            question: "Milano'ya yeni gelen öğrencilere destek sağlıyor musunuz?",
+            answer: "Evet, yeni gelen öğrencilerimize konaklama, ulaşım ve yaşamla ilgili rehberlik sağlıyoruz."
         },
         {
-            question: "Siparişim ne zaman elime ulaşır?",
-            answer: "Teslimat süresi seçtiğiniz kargo seçeneğine ve konumunuza göre 1-3 iş günü arasında değişmektedir."
+            question: "MTÖB üyelik ücreti var mı?",
+            answer: "MTÖB üyeliği ücretsizdir ve tüm Türk öğrencilerimize açıktır."
         }
     ]
 
@@ -56,7 +56,7 @@ export default function IndexSectionFaqsWhitePattern8() {
                                 Sıkça Sorulan Sorular
                             </h2>
                             <p className="text-lg md:text-xl text-coolGray-500 font-medium">
-                                Flex, işletmenizi tüm dijital kanallarda sorunsuz bir şekilde tek bir platformda yönetmenizi sağlayan tek SaaS iş platformudur.
+                                Milano Türk Öğrenci Birliği hakkında merak ettiklerinizi buradan öğrenebilirsiniz.
                             </p>
                         </div>
                     </div>
@@ -89,4 +89,4 @@ export default function IndexSectionFaqsWhitePattern8() {
             </div>
         </section>
     )
-} 
+}

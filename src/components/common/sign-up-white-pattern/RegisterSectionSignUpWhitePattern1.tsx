@@ -26,9 +26,9 @@ export default function RegisterSectionSignUpWhitePattern1() {
     })
 
     const testimonial: Testimonial = {
-        quote: "Hizmetin basitliğini ve hızlı müşteri desteğini seviyoruz. Artık bu olmadan çalışamayız.",
+        quote: "Milano'da Türk öğrencilerle bir araya gelerek sosyal, kültürel ve akademik açıdan kendimi geliştirdim. MTÖB sayesinde harika dostluklar kurdum!",
         author: "Ahmet Yılmaz",
-        title: "CEO & Kurucu",
+        title: "MTÖB Üyesi",
         avatar: "/flex-ui-assets/images/sign-up/avatar-men-sign-up.png"
     }
 
@@ -55,17 +55,17 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             <Link href="/" className="inline-block mb-6">
                                 <Image 
                                     className="h-16"
-                                    src="/flex-ui-assets/logos/flex-circle-green.svg"
-                                    alt="Logo"
+                                    src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo.png"
+                                    alt="MTÖB Logo"
                                     width={64}
                                     height={64}
                                 />
                             </Link>
                             <h3 className="mb-4 text-2xl md:text-3xl font-bold">
-                                Topluluğumuza Katılın
+                                MTÖB Topluluğuna Katılın
                             </h3>
                             <p className="text-lg text-coolGray-500 font-medium">
-                                Ürünümüzle yolculuğunuza başlayın
+                                Milano'daki Türk öğrencilere katılarak bir arada güçlenin
                             </p>
                         </div>
 
@@ -119,7 +119,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                 />
                             </div>
 
-                            {/* Beni Hatırla ve Şifremi Unuttum */}
+                            {/* Beni Hatırla */}
                             <div className="flex flex-wrap items-center justify-between mb-6">
                                 <div className="w-full md:w-1/2">
                                     <label className="relative inline-flex items-center">
@@ -140,14 +140,6 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             Beni hatırla
                                         </span>
                                     </label>
-                                </div>
-                                <div className="w-full md:w-auto mt-1">
-                                    <Link 
-                                        href="/sifremi-unuttum"
-                                        className="inline-block text-xs font-medium text-green-500 hover:text-green-600"
-                                    >
-                                        Şifrenizi mi unuttunuz?
-                                    </Link>
                                 </div>
                             </div>
 
@@ -171,13 +163,13 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                     width={20}
                                     height={20}
                                 />
-                                <span>Google ile Giriş Yap</span>
+                                <span>Google ile Kayıt Ol</span>
                             </button>
 
                             {/* Giriş Yap Linki */}
                             <p className="text-center">
                                 <span className="text-xs font-medium">
-                                    Zaten hesabınız var mı?
+                                    Zaten üye misiniz?
                                 </span>
                                 <Link 
                                     href="/giris"
@@ -242,4 +234,4 @@ export default function RegisterSectionSignUpWhitePattern1() {
             </div>
         </section>
     )
-} 
+}

@@ -1,0 +1,67 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/app/_not-found/page-9882f1a4fab83572.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/css/8b236acb804b2d40.css",
+      "static/chunks/app/layout-539e0d4bbc5aa5e5.js"
+    ],
+    "/cerez-politikasi/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/974-4fd8b2186c5e83a7.js",
+      "static/chunks/app/cerez-politikasi/page-9e33c5753426f024.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/974-4fd8b2186c5e83a7.js",
+      "static/chunks/app/page-a11da067d292f78e.js"
+    ],
+    "/dashboard/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/974-4fd8b2186c5e83a7.js",
+      "static/chunks/app/dashboard/page-d47645ec57022b1e.js"
+    ],
+    "/iletisim/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/974-4fd8b2186c5e83a7.js",
+      "static/chunks/app/iletisim/page-da266d887d6c1d08.js"
+    ],
+    "/giris/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/974-4fd8b2186c5e83a7.js",
+      "static/chunks/app/giris/page-d66510dddec9b816.js"
+    ],
+    "/kayit/page": [
+      "static/chunks/webpack-0ac308d23d6e776c.js",
+      "static/chunks/4bd1b696-0729a2edcda3c0b2.js",
+      "static/chunks/215-884899f53f3b3602.js",
+      "static/chunks/main-app-7fffffd1030f9813.js",
+      "static/chunks/974-4fd8b2186c5e83a7.js",
+      "static/chunks/app/kayit/page-5ba332a1f3e619d8.js"
+    ]
+  }
+}

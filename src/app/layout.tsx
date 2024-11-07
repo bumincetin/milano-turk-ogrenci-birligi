@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Uygulaması",
-  description: "Modern web uygulaması",
+  title: "Milano Türk Öğrenci Birliği",
+  description: "Milano'da öğrenim gören tüm Türk öğrencilerin dayanışmasını sağlamak amacıyla kurulmuş bir topluluktur.",
 };
 
 export default function RootLayout({

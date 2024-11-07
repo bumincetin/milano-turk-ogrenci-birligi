@@ -12,38 +12,38 @@ export default function IndexSectionTeamWhitePattern9() {
     const teamMembers: TeamMember[] = [
         {
             name: "Ahmet Yılmaz",
-            title: "CEO & Kurucu",
-            quote: "Başarı, her gün küçük adımlar atmaktır.",
+            title: "Başkan",
+            quote: "Dayanışma, Milano'daki tüm Türk öğrencilerin en büyük gücüdür.",
             avatar: "/flex-ui-assets/images/teams/avatar1.png"
         },
         {
             name: "Mehmet Demir",
-            title: "CTO",
-            quote: "İstediğiniz her şey, korkularınızın diğer tarafındadır.",
+            title: "Etkinlik Koordinatörü",
+            quote: "Birlikte güzel anılar biriktirmek için buradayız.",
             avatar: "/flex-ui-assets/images/teams/avatar2.png"
         },
         {
             name: "Ayşe Kaya",
-            title: "CPO",
-            quote: "Harika işler yapmanın tek yolu, yaptığınız işi sevmektir.",
+            title: "İletişim Sorumlusu",
+            quote: "MTÖB olarak, her zaman yanınızdayız.",
             avatar: "/flex-ui-assets/images/teams/avatar3.png"
         },
         {
             name: "Zeynep Aydın",
-            title: "Müşteri Başarısı",
-            quote: "Ekstra mil boyunca trafik sıkışıklığı yoktur.",
+            title: "Akademik Danışman",
+            quote: "Akademik başarı, dayanışmayla daha anlamlı hale gelir.",
             avatar: "/flex-ui-assets/images/teams/avatar4.png"
         },
         {
             name: "Elif Yıldız",
-            title: "Backend Geliştirici",
-            quote: "Zihin her şeydir. Ne düşünürseniz o olursunuz.",
+            title: "Kariyer Danışmanı",
+            quote: "Geleceğinizi şekillendirirken yanınızdayız.",
             avatar: "/flex-ui-assets/images/teams/avatar5.png"
         },
         {
             name: "Selin Öztürk",
-            title: "iOS Geliştirici",
-            quote: "Yapabileceğinizi veya yapamayacağınızı düşünün, her iki durumda da haklısınız.",
+            title: "Sosyal Medya Uzmanı",
+            quote: "MTÖB'nin sesini her platformda duyurmak için buradayız.",
             avatar: "/flex-ui-assets/images/teams/avatar6.png"
         }
     ]
@@ -63,29 +63,11 @@ export default function IndexSectionTeamWhitePattern9() {
                         Ekibimiz
                     </span>
                     <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-coolGray-900 font-bold tracking-tighter">
-                        Sektörün en iyi ekibiyle tanışın
+                        MTÖB Yönetim Ekibi ile Tanışın
                     </h3>
                     <p className="mb-8 text-lg md:text-xl text-coolGray-500 font-medium">
-                        İşletmenizi tüm dijital kanallarda yönetebilecek profesyonel ve yetenekli bir ekip.
+                        Milano'da öğrenim gören Türk öğrenciler için çalışan gönüllü ve tutkulu bir ekip.
                     </p>
-                    <div className="flex flex-wrap justify-center">
-                        <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
-                            <Link 
-                                href="/kariyer"
-                                className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-green-50 font-medium text-center bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-green-500 rounded-md shadow-sm"
-                            >
-                                Açık Pozisyonlar
-                            </Link>
-                        </div>
-                        <div className="w-full md:w-auto py-1 md:py-0">
-                            <Link 
-                                href="/hakkimizda"
-                                className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-coolGray-800 font-medium text-center bg-white hover:bg-coolGray-100 focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
-                            >
-                                Hakkımızda
-                            </Link>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Ekip Üyeleri */}
@@ -143,4 +125,4 @@ export default function IndexSectionTeamWhitePattern9() {
             </div>
         </section>
     )
-} 
+}
