@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mtob-dev": "next start -p 9911",
-    "mtob-start": "next dev -p 9911"
+    "mtob-dev": "next dev -p 9911",
+    "mtob-start": "next start -p 9911"
   },
   "dependencies": {
     "next": "15.0.2",
