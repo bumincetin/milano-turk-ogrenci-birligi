@@ -38,13 +38,15 @@ export default function IndexSectionFaqsWhitePattern8() {
 
     return (
         <section 
-            className="py-24 bg-white" 
+            className="min-h-screen bg-white"
             style={{
                 backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', 
-                backgroundPosition: 'center'
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'repeat'
             }}
         >
-            <div className="container px-4 mx-auto">
+            <div className="container px-4 mx-auto py-24">
                 <div className="flex flex-wrap -mx-4">
                     {/* Sol Taraf - Başlık */}
                     <div className="w-full md:w-1/2 px-4 mb-20 md:mb-0">
@@ -63,7 +65,7 @@ export default function IndexSectionFaqsWhitePattern8() {
 
                     {/* Sağ Taraf - FAQ Listesi */}
                     <div className="w-full md:w-1/2 px-4">
-                        {faqs.map((faq, index) => (
+                        {faqs.map((faq: FAQ, index: number) => (
                             <div 
                                 key={index}
                                 className="flex flex-wrap w-full mb-10 text-left cursor-pointer"

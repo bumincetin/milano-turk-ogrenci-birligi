@@ -11,6 +11,31 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/giris/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/giris/page.js"
+    ],
+    "/kayit/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/kayit/page.js"
+    ],
+    "/iletisim/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/iletisim/page.js"
+    ],
+    "/sss/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/sss/page.js"
+    ],
+    "/etkinlikler/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/etkinlikler/page.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
