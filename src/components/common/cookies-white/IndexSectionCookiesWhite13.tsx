@@ -1,9 +1,31 @@
 'use client'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function IndexSectionCookiesWhite13() {
+    const [isVisible, setIsVisible] = useState(true)
+    const [isClosing, setIsClosing] = useState(false)
+
+    const handleClose = (accept: boolean) => {
+        setIsClosing(true)
+        // Önce animasyonun tamamlanmasını bekle
+        setTimeout(() => {
+            setIsVisible(false)
+        }, 500) // Bu süre, transition-duration ile aynı olmalı
+
+        if (accept) {
+            // Çerezleri kabul et
+        } else {
+            // Çerezleri reddet
+        }
+    }
+
+    if (!isVisible) return null
+
     return (
-        <div className="fixed bottom-0 z-50 w-full">
+        <div className={`fixed bottom-0 z-50 w-full transition-all duration-500 ease-out transform ${
+            isClosing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+        }`}>
             <div className="p-10 md:px-20 lg:px-36 bg-white border border-coolGray-100 shadow-md">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap items-center -mx-4">
@@ -34,7 +56,7 @@ export default function IndexSectionCookiesWhite13() {
                             <div className="flex flex-wrap justify-end">
                                 <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
                                     <button 
-                                        onClick={() => {/* Çerezleri reddet */}}
+                                        onClick={() => handleClose(false)}
                                         className="inline-block py-3 px-5 w-full leading-5 text-coolGray-800 bg-white hover:bg-coolGray-100 font-medium text-center focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
                                     >
                                         Kabul Etme
@@ -42,7 +64,7 @@ export default function IndexSectionCookiesWhite13() {
                                 </div>
                                 <div className="w-full md:w-auto py-1 md:py-0">
                                     <button 
-                                        onClick={() => {/* Çerezleri kabul et */}}
+                                        onClick={() => handleClose(true)}
                                         className="inline-block py-3 px-5 w-full leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm"
                                     >
                                         İzin Ver

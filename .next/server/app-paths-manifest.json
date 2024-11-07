@@ -1,7 +1,9 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/etkinlikler/page": "app/etkinlikler/page.js",
-  "/sss/page": "app/sss/page.js",
   "/page": "app/page.js",
-  "/iletisim/page": "app/iletisim/page.js"
+  "/etkinlikler/page": "app/etkinlikler/page.js",
+  "/iletisim/page": "app/iletisim/page.js",
+  "/giris/page": "app/giris/page.js",
+  "/gonullu/page": "app/gonullu/page.js",
+  "/destek/page": "app/destek/page.js"
 }

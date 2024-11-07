@@ -18,7 +18,7 @@ export default function IndexSectionFootersWhitePattern14() {
             links: [
                 { text: "Hakkımızda", href: "/hakkimizda" },
                 { text: "Etkinlikler", href: "/etkinlikler" },
-                { text: "Üyelik", href: "/uyelik" },
+                { text: "Üyelik", href: "/kayit" },
                 { text: "İletişim", href: "/iletisim" },
                 { text: "Sıkça Sorulan Sorular", href: "/sss" }
             ]
