@@ -20,7 +20,7 @@ export default function HeroSection() {
                         <div className="flex flex-wrap">
                             <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
                                 <Link 
-                                    href="/whatsapp"
+                                    href="https://chat.whatsapp.com/GABp3SSF9QH6KWMWVJ5Jgp"
                                     className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-green-50 font-medium text-center bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-green-500 rounded-md shadow-sm"
                                 >
                                     WhatsApp
@@ -28,7 +28,7 @@ export default function HeroSection() {
                             </div>
                             <div className="w-full md:w-auto py-1 md:py-0">
                                 <Link 
-                                    href="/instagram"
+                                    href="https://www.instagram.com/milanoturkogrencibirligi/"
                                     className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-coolGray-800 font-medium text-center bg-white hover:bg-coolGray-100 focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
                                 >
                                     Instagram

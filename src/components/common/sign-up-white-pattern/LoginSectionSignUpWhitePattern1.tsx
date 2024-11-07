@@ -95,28 +95,21 @@ export default function LoginSectionSignUpWhitePattern1() {
                             {/* Beni Hatırla ve Şifremi Unuttum */}
                             <div className="flex flex-wrap items-center justify-between mb-6">
                                 <div className="w-full md:w-1/2">
-                                    <label className="relative inline-flex items-center">
+                                    <label className="relative inline-flex items-center cursor-pointer">
                                         <input 
                                             type="checkbox"
                                             checked={formData.rememberMe}
                                             onChange={(e) => setFormData({...formData, rememberMe: e.target.checked})}
-                                            className="form-checkbox appearance-none"
+                                            className="form-checkbox w-4 h-4 text-green-500 border border-gray-100 rounded focus:ring-green-400 focus:ring-opacity-50"
                                         />
-                                        <Image 
-                                            className="absolute top-1/2 transform -translate-y-1/2 left-0"
-                                            src="/flex-ui-assets/elements/sign-up/checkbox-icon.svg"
-                                            alt="Checkbox"
-                                            width={16}
-                                            height={16}
-                                        />
-                                        <span className="ml-7 text-xs text-coolGray-800 font-medium">
+                                        <span className="ml-2 text-sm text-coolGray-800 font-medium">
                                             Beni hatırla
                                         </span>
                                     </label>
                                 </div>
                                 <div className="w-full md:w-auto mt-1">
                                     <Link 
-                                        href="/sifremi-unuttum"
+                                        href="/giris/sifremi-unuttum"
                                         className="inline-block text-xs font-medium text-green-500 hover:text-green-600"
                                     >
                                         Şifrenizi mi unuttunuz?
