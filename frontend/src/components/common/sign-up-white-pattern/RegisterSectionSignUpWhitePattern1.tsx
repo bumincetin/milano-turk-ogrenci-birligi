@@ -32,11 +32,42 @@ export default function RegisterSectionSignUpWhitePattern1() {
         avatar: "/flex-ui-assets/images/sign-up/avatar-men-sign-up.png"
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        // Kayıt işlemleri burada yapılacak
-        console.log('Form gönderimi:', formData)
-    }
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError(null);
+        setIsLoading(true);
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    username: formData.name.toLowerCase().replace(/\s+/g, '-'),
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error?.message || 'Kayıt sırasında bir hata oluştu');
+            }
+
+            window.location.href = '/giris';
+        } catch (error) {
+            console.error('Kayıt hatası:', error);
+            setError(error instanceof Error ? error.message : 'Beklenmeyen bir hata oluştu');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <section 
@@ -71,6 +102,13 @@ export default function RegisterSectionSignUpWhitePattern1() {
 
                         {/* Kayıt Formu */}
                         <form onSubmit={handleSubmit}>
+                            {/* Hata Mesajı */}
+                            {error && (
+                                <div className="mb-6 p-4 text-red-700 bg-red-100 rounded-lg">
+                                    {error}
+                                </div>
+                            )}
+
                             {/* İsim */}
                             <div className="mb-6">
                                 <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="name">
@@ -146,9 +184,10 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             {/* Kayıt Ol Butonu */}
                             <button 
                                 type="submit"
-                                className="inline-block py-3 px-7 mb-4 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+                                disabled={isLoading}
+                                className="inline-block py-3 px-7 mb-4 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50"
                             >
-                                Kayıt Ol
+                                {isLoading ? 'Kaydediliyor...' : 'Kayıt Ol'}
                             </button>
 
                             {/* Google ile Giriş */}
