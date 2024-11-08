@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchases",
+  "info": {
+    "singularName": "purchase",
+    "pluralName": "purchases",
+    "displayName": "Purchase",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "purchases"
+    },
+    "user_baskets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-basket.user-basket",
+      "mappedBy": "purchase"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "admin_check": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "tickets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ticket.ticket",
+      "mappedBy": "purchase"
+    },
+    "code": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "paid",
+        "unpaid",
+        "canceled"
+      ]
+    },
+    "for_personal_invoice": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "billing_information": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::billing-information.billing-information"
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": [
+        "credit-card",
+        "bank-transfer"
+      ]
+    },
+    "iyzico_init_res": {
+      "type": "json"
+    },
+    "payment_progress": {
+      "type": "enumeration",
+      "enum": [
+        "in-progress",
+        "on-hold",
+        "done",
+        "canceled"
+      ]
+    },
+    "iyzico_x_iyzi_rnd": {
+      "type": "string"
+    },
+    "iyzico_authorization": {
+      "type": "string"
+    },
+    "ticket_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ticket-history.ticket-history",
+      "mappedBy": "purchase"
+    }
+  }
+}
