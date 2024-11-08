@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tickets",
+  "info": {
+    "singularName": "ticket",
+    "pluralName": "tickets",
+    "displayName": "Ticket",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "purchase": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::purchase.purchase",
+      "inversedBy": "tickets"
+    },
+    "code": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "ticket_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::ticket-type.ticket-type"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "redemption_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "ticket"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "done",
+        "waiting",
+        "error"
+      ]
+    }
+  }
+}

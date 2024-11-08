@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_coupons",
+  "info": {
+    "singularName": "user-coupon",
+    "pluralName": "user-coupons",
+    "displayName": "User Coupon",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "coupon": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coupon.coupon"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

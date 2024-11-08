@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sponsors",
+  "info": {
+    "singularName": "sponsor",
+    "pluralName": "sponsors",
+    "displayName": "Sponsor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "year": {
+      "type": "enumeration",
+      "enum": [
+        "y2023",
+        "y2024",
+        "y2025"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

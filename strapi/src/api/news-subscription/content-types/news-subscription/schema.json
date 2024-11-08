@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_subscriptions",
+  "info": {
+    "singularName": "news-subscription",
+    "pluralName": "news-subscriptions",
+    "displayName": "News Subscription"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}

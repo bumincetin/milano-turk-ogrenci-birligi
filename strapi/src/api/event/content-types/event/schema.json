@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "start_time": {
+      "type": "time"
+    },
+    "end_time": {
+      "type": "time"
+    },
+    "description": {
+      "type": "text"
+    },
+    "speakers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::speaker.speaker",
+      "mappedBy": "events"
+    },
+    "order": {
+      "type": "decimal"
+    },
+    "break": {
+      "type": "boolean",
+      "default": false
+    },
+    "hall": {
+      "type": "enumeration",
+      "enum": [
+        "Green Hall",
+        "Blue Hall"
+      ]
+    }
+  }
+}
