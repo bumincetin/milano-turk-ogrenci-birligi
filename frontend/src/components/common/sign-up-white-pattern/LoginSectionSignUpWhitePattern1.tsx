@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { login } from '@/utils/auth'
 
 interface FormData {
     email: string
@@ -15,11 +16,35 @@ export default function LoginSectionSignUpWhitePattern1() {
         password: '',
         rememberMe: false
     })
+    const [error, setError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState(false)
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        // Giriş işlemleri burada yapılacak
-        console.log('Form gönderimi:', formData)
+        setError(null)
+        setIsLoading(true)
+
+        try {
+            const response = await login({
+                email: formData.email,
+                password: formData.password
+            })
+
+            // Token'ı localStorage'a kaydet
+            if (formData.rememberMe) {
+                localStorage.setItem('token', response.jwt)
+            } else {
+                sessionStorage.setItem('token', response.jwt)
+            }
+
+            // Ana sayfaya yönlendir
+            window.location.href = '/'
+        } catch (error) {
+            console.error('Giriş hatası:', error)
+            setError('E-posta veya şifre hatalı')
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -54,6 +79,12 @@ export default function LoginSectionSignUpWhitePattern1() {
 
                         {/* Giriş Formu */}
                         <form onSubmit={handleSubmit}>
+                            {error && (
+                                <div className="mb-6 p-4 text-red-700 bg-red-100 rounded-lg">
+                                    {error}
+                                </div>
+                            )}
+
                             {/* E-posta */}
                             <div className="mb-6">
                                 <label 
@@ -120,9 +151,10 @@ export default function LoginSectionSignUpWhitePattern1() {
                             {/* Giriş Butonu */}
                             <button 
                                 type="submit"
-                                className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+                                disabled={isLoading}
+                                className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50"
                             >
-                                Giriş Yap
+                                {isLoading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
                             </button>
 
                             {/* Kayıt Ol Linki */}
