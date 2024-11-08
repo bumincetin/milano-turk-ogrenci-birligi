@@ -1,1 +1,0 @@
-# milano-turk-ogrenci-toplulugu
