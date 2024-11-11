@@ -17,13 +17,14 @@ export default function ContactSectionContactsWhitePattern3() {
                 </div>
                 
                 <div className="relative mx-auto h-72 md:h-[500px] -mb-32 md:-mb-80">
-                    <Image 
-                        src="/flex-ui-assets/images/contact/contact-map.png"
-                        alt="Contact map"
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        quality={100}
-                    />
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11583.123456789012!2d9.1899823!3d45.4642035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDI3JzUxLjIiTiA5wrAxMSc0Ni4wIkU!5e0!3m2!1str!2str!4v1611234567890!5m2!1str!2str"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen={true}
+                        loading="lazy"
+                    ></iframe>
                 </div>
             </div>
             
