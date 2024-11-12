@@ -43,6 +43,9 @@ export default function RegisterSectionSignUpWhitePattern1() {
         setIsLoading(true);
 
         try {
+            const randomNum = Math.floor(Math.random() * 10000);
+            const uniqueUsername = `${formData.name.toLowerCase().replace(/\s+/g, '-')}-${randomNum}`;
+
             const registerResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`, {
                 method: 'POST',
                 headers: {
@@ -50,7 +53,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                 },
                 body: JSON.stringify({
                     name: formData.name,
-                    username: formData.name.toLowerCase().replace(/\s+/g, '-'),
+                    username: uniqueUsername,
                     email: formData.email,
                     password: formData.password,
                 }),

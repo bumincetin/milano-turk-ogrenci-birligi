@@ -28,25 +28,27 @@ export default function IndexSectionHeadersWhitePattern2() {
         if (user) {
             return (
                 <div className="flex items-center space-x-4">
-                    <div className="h-10 w-10 rounded-full overflow-hidden">
-                        <Image 
-                            src={user.profileImage || "/flex-ui-assets/images/profile/profile-pic.png"}
-                            alt="Profil Fotoğrafı"
-                            width={40}
-                            height={40}
-                            className="h-full w-full object-cover"
-                        />
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-coolGray-500 font-medium">{user.name}</span>
-                        <span className="text-coolGray-400 text-sm">{user.email}</span>
-                    </div>
+                    <Link href="/profil" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+                        <div className="h-10 w-10 rounded-full overflow-hidden">
+                            <Image 
+                                src={user.profileImage || "/flex-ui-assets/images/profile/avatar.jpg"}
+                                alt="Profil Fotoğrafı"
+                                width={40}
+                                height={40}
+                                className="h-full w-full object-cover"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-gray700 font-medium">{user.name}</span>
+                            <span className="text-gray700 text-sm">{user.email}</span>
+                        </div>
+                    </Link>
                     <button 
                         onClick={() => {
                             logout()
                             window.location.href = '/'
                         }}
-                        className="text-coolGray-500 hover:text-coolGray-900 font-medium"
+                        className="text-white bg-red-500 hover:bg-red-600 py-2 px-4 rounded-md font-medium transition duration-300"
                     >
                         Çıkış Yap
                     </button>
@@ -58,7 +60,7 @@ export default function IndexSectionHeadersWhitePattern2() {
             <>
                 <Link 
                     href="/giris" 
-                    className="inline-block py-2 px-4 mr-2 leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium rounded-md"
+                    className="inline-block py-2 px-4 mr-2 leading-5 text-gray700-500 hover:text-gray700-900 bg-transparent font-medium rounded-md"
                 >
                     Giriş Yap
                 </Link>
@@ -103,7 +105,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                 <li key={index} className={index !== navLinks.length - 1 ? "mr-12" : ""}>
                                     <Link 
                                         href={link.href}
-                                        className="text-coolGray-500 hover:text-coolGray-900 font-medium"
+                                        className="text-gray700 hover:text-gray700-900 font-medium"
                                     >
                                         {link.text}
                                     </Link>
@@ -126,8 +128,8 @@ export default function IndexSectionHeadersWhitePattern2() {
                     onClick={() => setIsMenuOpen(true)}
                 >
                     <svg width={35} height={35} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect className="text-coolGray-50" width={32} height={32} rx={6} fill="currentColor" />
-                        <path className="text-coolGray-500" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12Z" fill="currentColor" />
+                        <rect className="text-gray700-50" width={32} height={32} rx={6} fill="currentColor" />
+                        <path className="text-gray700-500" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12Z" fill="currentColor" />
                     </svg>
                 </button>
             </nav>
@@ -152,7 +154,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                         <li key={index}>
                                             <Link 
                                                 href={link.href}
-                                                className="block py-3 px-4 text-coolGray-500 hover:text-coolGray-900 font-medium hover:bg-coolGray-50 rounded-md"
+                                                className="block py-3 px-4 text-gray700-500 hover:text-gray700-900 font-medium hover:bg-gray700-50 rounded-md"
                                             >
                                                 {link.text}
                                             </Link>
@@ -162,23 +164,25 @@ export default function IndexSectionHeadersWhitePattern2() {
                                 <div className="flex flex-wrap">
                                     {user ? (
                                         <div className="w-full flex items-center space-x-4 px-4">
-                                            <span className="text-coolGray-500 font-medium">{user.name}</span>
-                                            <div className="h-10 w-10 rounded-full overflow-hidden">
-                                                <Image 
-                                                    src={user.profileImage || "/default-avatar.png"}
-                                                    alt="Profil Fotoğrafı"
-                                                    width={40}
-                                                    height={40}
-                                                    className="h-full w-full object-cover"
-                                                />
-                                            </div>
+                                            <Link href="/profil" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+                                                <span className="text-gray700-500 font-medium">{user.name}</span>
+                                                <div className="h-10 w-10 rounded-full overflow-hidden">
+                                                    <Image 
+                                                        src={user.profileImage || "/default-avatar.png"}
+                                                        alt="Profil Fotoğrafı"
+                                                        width={40}
+                                                        height={40}
+                                                        className="h-full w-full object-cover"
+                                                    />
+                                                </div>
+                                            </Link>
                                         </div>
                                     ) : (
                                         <>
                                             <div className="w-full mb-2">
                                                 <Link 
                                                     href="/giris"
-                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium text-center rounded-md"
+                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-gray700-500 hover:text-gray700-900 bg-transparent font-medium text-center rounded-md"
                                                 >
                                                     Giriş Yap
                                                 </Link>
