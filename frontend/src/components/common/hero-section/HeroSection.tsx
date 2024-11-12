@@ -9,7 +9,7 @@ export default function HeroSection() {
                 <div className="flex flex-wrap xl:items-center -mx-4">
                     <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
                         <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl">
-                            Header
+                            YENİ SİTEMİZE HOŞGELDİNİZ
                         </span>
                         <h1 className="mb-6 text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight">
                             Milano Türk Öğrenci Birliğine Hoşgeldiniz!
@@ -57,14 +57,14 @@ export default function HeroSection() {
                             
                             <div className="relative overflow-hidden rounded-7xl">
                                 <Image 
-                                    src="/flex-ui-assets/images/headers/placeholder-video.png"
+                                    src="/mtob-images/milano-turk-ogrenci-birligi-kahvalti.jpg"
                                     alt="Video önizleme"
                                     width={600}
                                     height={400}
                                 />
                                 <video 
-                                    className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 min-h-full min-w-full max-w-none" 
-                                    poster="/flex-ui-assets/images/testimonials/video-frame.jpeg" 
+                                    className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" 
+                                    poster="/mtob-images/milano-turk-ogrenci-birligi-kahvalti.jpg" 
                                     muted
                                 >
                                     <source src="/video-placeholder.mp4" type="video/mp4" />

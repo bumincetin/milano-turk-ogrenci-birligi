@@ -138,7 +138,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             {/* İsim */}
                             <div className="mb-6">
                                 <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="name">
-                                    İsim*
+                                    İsim - Soyisim*
                                 </label>
                                 <input 
                                     id="name"
@@ -146,7 +146,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                     value={formData.name}
                                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                                     className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    placeholder="Adınız"
+                                    placeholder="İsim Soyisim"
                                     required
                                 />
                             </div>
@@ -162,7 +162,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                     value={formData.email}
                                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                                     className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    placeholder="ornek@mail.com"
+                                    placeholder="ornek@gmail.com"
                                     required
                                 />
                             </div>
@@ -184,7 +184,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             </div>
 
                             {/* Beni Hatırla */}
-                            <div className="flex flex-wrap items-center justify-between mb-6">
+                            {/* <div className="flex flex-wrap items-center justify-between mb-6">
                                 <div className="w-full md:w-1/2">
                                     <label className="relative inline-flex items-center">
                                         <input 
@@ -205,7 +205,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                         </span>
                                     </label>
                                 </div>
-                            </div>
+                            </div> */}
 
                             {/* Kayıt Ol Butonu */}
                             <button 
@@ -217,7 +217,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             </button>
 
                             {/* Google ile Giriş */}
-                            <button 
+                            {/* <button 
                                 type="button"
                                 className="inline-flex items-center justify-center py-3 px-7 mb-6 w-full text-base text-coolGray-500 font-medium text-center leading-6 bg-white border border-coolGray-100 hover:border-coolGray-200 rounded-md shadow-sm"
                             >
@@ -229,7 +229,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                     height={20}
                                 />
                                 <span>Google ile Kayıt Ol</span>
-                            </button>
+                            </button> */}
 
                             {/* Giriş Yap Linki */}
                             <p className="text-center">
