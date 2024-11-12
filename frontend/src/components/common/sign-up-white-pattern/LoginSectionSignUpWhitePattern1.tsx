@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { login } from '@/utils/auth'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface FormData {
     email: string
@@ -11,6 +11,7 @@ interface FormData {
 }
 
 export default function LoginSectionSignUpWhitePattern1() {
+    const { login } = useAuth()
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: '',
@@ -25,19 +26,27 @@ export default function LoginSectionSignUpWhitePattern1() {
         setIsLoading(true)
 
         try {
-            const response = await login({
-                email: formData.email,
-                password: formData.password
+            const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    identifier: formData.email,
+                    password: formData.password,
+                }),
             })
 
-            // Token'ı localStorage'a kaydet
-            if (formData.rememberMe) {
-                localStorage.setItem('token', response.jwt)
-            } else {
-                sessionStorage.setItem('token', response.jwt)
+            const data = await response.json()
+            console.log('Giriş yanıtı:', data)
+
+            if (!response.ok) {
+                throw new Error(data.error?.message || 'Giriş sırasında bir hata oluştu')
             }
 
-            // Ana sayfaya yönlendir
+            await login(data.jwt)
+            console.log('JWT token:', data.jwt)
+
             window.location.href = '/'
         } catch (error) {
             console.error('Giriş hatası:', error)

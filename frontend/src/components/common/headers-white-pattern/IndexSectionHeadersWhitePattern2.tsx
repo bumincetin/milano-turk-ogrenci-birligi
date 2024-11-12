@@ -1,7 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface NavLink {
     text: string
@@ -10,6 +11,11 @@ interface NavLink {
 
 export default function IndexSectionHeadersWhitePattern2() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { user, logout } = useAuth()
+
+    useEffect(() => {
+        console.log('Current user:', user)
+    }, [user])
 
     const navLinks: NavLink[] = [
         { text: "Anasayfa", href: "/" },
@@ -17,6 +23,54 @@ export default function IndexSectionHeadersWhitePattern2() {
         { text: "SSS", href: "/sss" },
         { text: "İletişim", href: "/iletisim" }
     ]
+
+    const renderAuthSection = () => {
+        if (user) {
+            return (
+                <div className="flex items-center space-x-4">
+                    <div className="h-10 w-10 rounded-full overflow-hidden">
+                        <Image 
+                            src={user.profileImage || "/flex-ui-assets/images/profile/profile-pic.png"}
+                            alt="Profil Fotoğrafı"
+                            width={40}
+                            height={40}
+                            className="h-full w-full object-cover"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-coolGray-500 font-medium">{user.name}</span>
+                        <span className="text-coolGray-400 text-sm">{user.email}</span>
+                    </div>
+                    <button 
+                        onClick={() => {
+                            logout()
+                            window.location.href = '/'
+                        }}
+                        className="text-coolGray-500 hover:text-coolGray-900 font-medium"
+                    >
+                        Çıkış Yap
+                    </button>
+                </div>
+            )
+        }
+
+        return (
+            <>
+                <Link 
+                    href="/giris" 
+                    className="inline-block py-2 px-4 mr-2 leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium rounded-md"
+                >
+                    Giriş Yap
+                </Link>
+                <Link 
+                    href="/kayit" 
+                    className="inline-block py-2 px-4 text-sm leading-5 text-green-50 bg-green-500 hover:bg-green-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                >
+                    Kayıt Ol
+                </Link>
+            </>
+        )
+    }
 
     return (
         <section 
@@ -61,18 +115,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                     {/* Auth Buttons */}
                     <div className="w-1/2 xl:w-1/3">
                         <div className="hidden xl:flex items-center justify-end">
-                            <Link 
-                                href="/giris" 
-                                className="inline-block py-2 px-4 mr-2 leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium rounded-md"
-                            >
-                                Giriş Yap
-                            </Link>
-                            <Link 
-                                href="/kayit" 
-                                className="inline-block py-2 px-4 text-sm leading-5 text-green-50 bg-green-500 hover:bg-green-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
-                            >
-                                Kayıt Ol
-                            </Link>
+                            {renderAuthSection()}
                         </div>
                     </div>
                 </div>
@@ -117,22 +160,39 @@ export default function IndexSectionHeadersWhitePattern2() {
                                     ))}
                                 </ul>
                                 <div className="flex flex-wrap">
-                                    <div className="w-full mb-2">
-                                        <Link 
-                                            href="/giris"
-                                            className="inline-block py-2 px-4 w-full text-sm leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium text-center rounded-md"
-                                        >
-                                            Giriş Yap
-                                        </Link>
-                                    </div>
-                                    <div className="w-full">
-                                        <Link 
-                                            href="/kayit"
-                                            className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
-                                        >
-                                            Kayıt Ol
-                                        </Link>
-                                    </div>
+                                    {user ? (
+                                        <div className="w-full flex items-center space-x-4 px-4">
+                                            <span className="text-coolGray-500 font-medium">{user.name}</span>
+                                            <div className="h-10 w-10 rounded-full overflow-hidden">
+                                                <Image 
+                                                    src={user.profileImage || "/default-avatar.png"}
+                                                    alt="Profil Fotoğrafı"
+                                                    width={40}
+                                                    height={40}
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <div className="w-full mb-2">
+                                                <Link 
+                                                    href="/giris"
+                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium text-center rounded-md"
+                                                >
+                                                    Giriş Yap
+                                                </Link>
+                                            </div>
+                                            <div className="w-full">
+                                                <Link 
+                                                    href="/kayit"
+                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                                                >
+                                                    Kayıt Ol
+                                                </Link>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </nav>

@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface FormData {
     name: string
@@ -34,6 +35,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
 
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const { login } = useAuth()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -41,7 +43,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`, {
+            const registerResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,15 +56,36 @@ export default function RegisterSectionSignUpWhitePattern1() {
                 }),
             });
 
-            const data = await response.json();
+            const registerData = await registerResponse.json();
+            console.log('Kayıt yanıtı:', registerData);
 
-            if (!response.ok) {
-                throw new Error(data.error?.message || 'Kayıt sırasında bir hata oluştu');
+            if (!registerResponse.ok) {
+                throw new Error(registerData.error?.message || 'Kayıt sırasında bir hata oluştu');
             }
 
-            window.location.href = '/giris';
+            const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    identifier: formData.email,
+                    password: formData.password,
+                }),
+            });
+
+            const loginData = await loginResponse.json();
+            console.log('Giriş yanıtı:', loginData);
+
+            if (!loginResponse.ok) {
+                throw new Error(loginData.error?.message || 'Giriş sırasında bir hata oluştu');
+            }
+
+            await login(loginData.jwt);
+            console.log('JWT token kaydedildi:', loginData.jwt);
+            window.location.href = '/';
         } catch (error) {
-            console.error('Kayıt hatası:', error);
+            console.error('Kayıt veya giriş hatası:', error);
             setError(error instanceof Error ? error.message : 'Beklenmeyen bir hata oluştu');
         } finally {
             setIsLoading(false);
