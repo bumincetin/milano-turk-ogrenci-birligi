@@ -9,6 +9,10 @@ interface FormData {
     email: string
     password: string
     rememberMe: boolean
+    telephone: string
+    universityName: string
+    department: string
+    year: string
 }
 
 interface Testimonial {
@@ -23,7 +27,11 @@ export default function RegisterSectionSignUpWhitePattern1() {
         name: '',
         email: '',
         password: '',
-        rememberMe: false
+        rememberMe: false,
+        telephone: '',
+        universityName: '',
+        department: '',
+        year: ''
     })
 
     const testimonial: Testimonial = {
@@ -45,6 +53,9 @@ export default function RegisterSectionSignUpWhitePattern1() {
         try {
             const randomNum = Math.floor(Math.random() * 10000);
             const uniqueUsername = `${formData.name.toLowerCase().replace(/\s+/g, '-')}-${randomNum}`;
+            const nameParts = formData.name.trim().split(' ');
+            const lastname = nameParts.pop() || ''; // Son kelimeyi soyisim olarak al
+            const firstname = nameParts.join(' '); // Geri kalan tüm kelimeleri isim olarak birleştir
 
             const registerResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`, {
                 method: 'POST',
@@ -52,10 +63,15 @@ export default function RegisterSectionSignUpWhitePattern1() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    name: formData.name,
+                    name: firstname,
+                    lastname: lastname,
                     username: uniqueUsername,
                     email: formData.email,
                     password: formData.password,
+                    telephone: formData.telephone,
+                    UniversityName: formData.universityName,
+                    UniversityDepartment: formData.department,
+                    UniversityClass: formData.year
                 }),
             });
 
@@ -105,8 +121,8 @@ export default function RegisterSectionSignUpWhitePattern1() {
         >
             {/* Sol Taraf - Kayıt Formu */}
             <div className="container px-4 mx-auto mb-16 md:mb-0">
-                <div className="w-full md:w-1/2 md:pr-4">
-                    <div className="max-w-sm mx-auto">
+                <div className="w-full md:w-7/12 md:pr-4">
+                    <div className="max-w-xl mx-auto">
                         {/* Logo ve Başlık */}
                         <div className="mb-6 text-center">
                             <Link href="/" className="inline-block mb-6">
@@ -135,79 +151,133 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                 </div>
                             )}
 
-                            {/* İsim */}
-                            <div className="mb-6">
-                                <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="name">
-                                    İsim - Soyisim*
-                                </label>
-                                <input 
-                                    id="name"
-                                    type="text"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    placeholder="İsim Soyisim"
-                                    required
-                                />
-                            </div>
-
-                            {/* E-posta */}
-                            <div className="mb-6">
-                                <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="email">
-                                    E-posta*
-                                </label>
-                                <input 
-                                    id="email"
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    placeholder="ornek@gmail.com"
-                                    required
-                                />
-                            </div>
-
-                            {/* Şifre */}
-                            <div className="mb-4">
-                                <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="password">
-                                    Şifre*
-                                </label>
-                                <input 
-                                    id="password"
-                                    type="password"
-                                    value={formData.password}
-                                    onChange={(e) => setFormData({...formData, password: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                                    placeholder="••••••••"
-                                    required
-                                />
-                            </div>
-
-                            {/* Beni Hatırla */}
-                            {/* <div className="flex flex-wrap items-center justify-between mb-6">
-                                <div className="w-full md:w-1/2">
-                                    <label className="relative inline-flex items-center">
+                            {/* İki sütunlu grid yapısı */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Sol Sütun */}
+                                <div>
+                                    {/* İsim */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="name">
+                                            İsim - Soyisim*
+                                        </label>
                                         <input 
-                                            type="checkbox"
-                                            checked={formData.rememberMe}
-                                            onChange={(e) => setFormData({...formData, rememberMe: e.target.checked})}
-                                            className="form-checkbox appearance-none"
+                                            id="name"
+                                            type="text"
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            placeholder="İsim Soyisim"
+                                            required
                                         />
-                                        <Image 
-                                            className="absolute top-1/2 transform -translate-y-1/2 left-0"
-                                            src="/flex-ui-assets/elements/sign-up/checkbox-icon.svg"
-                                            alt="Checkbox"
-                                            width={16}
-                                            height={16}
-                                        />
-                                        <span className="ml-7 text-xs text-coolGray-800 font-medium">
-                                            Beni hatırla
-                                        </span>
-                                    </label>
-                                </div>
-                            </div> */}
+                                    </div>
 
-                            {/* Kayıt Ol Butonu */}
+                                    {/* Şifre */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="password">
+                                            Şifre*
+                                        </label>
+                                        <input 
+                                            id="password"
+                                            type="password"
+                                            value={formData.password}
+                                            onChange={(e) => setFormData({...formData, password: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            placeholder="••••••••"
+                                            required
+                                        />
+                                    </div>
+
+                                    {/* Üniversite */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="university">
+                                            Üniversite*
+                                        </label>
+                                        <input 
+                                            id="university"
+                                            type="text"
+                                            value={formData.universityName}
+                                            onChange={(e) => setFormData({...formData, universityName: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            placeholder="Universite Adı"
+                                        />
+                                    </div>
+
+                                    {/* Sınıf */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="year">
+                                            Sınıf*
+                                        </label>
+                                        <select 
+                                            id="year"
+                                            value={formData.year}
+                                            onChange={(e) => setFormData({...formData, year: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                        >
+                                            <option value="hazırlık">Hazırlık</option>
+                                            <option value="1.sınıf">1. Sınıf</option>
+                                            <option value="2.sınıf">2. Sınıf</option>
+                                            <option value="3.sınıf">3. Sınıf</option>
+                                            <option value="4.sınıf">4. Sınıf</option>
+                                            <option value="Yüksek Lisans">Yüksek Lisans</option>
+                                            <option value="Doktora">Doktora</option>
+                                            <option value="Diğer">Diğer</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {/* Sağ Sütun */}
+                                <div>
+                                    
+
+                                    {/* E-posta */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="email">
+                                            E-posta*
+                                        </label>
+                                        <input 
+                                            id="email"
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            placeholder="ornek@gmail.com"
+                                            required
+                                        />
+                                    </div>
+
+                                     {/* Telefon */}
+                                     <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="phone">
+                                            Telefon
+                                        </label>
+                                        <input 
+                                            id="phone"
+                                            type="tel"
+                                            value={formData.telephone}
+                                            onChange={(e) => setFormData({...formData, telephone: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            placeholder="0535 123 23 34"
+                                        />
+                                    </div>
+
+                                    {/* Bölüm */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-coolGray-800 font-medium" htmlFor="department">
+                                            Bölüm*
+                                        </label>
+                                        <input 
+                                            id="department"
+                                            type="text"
+                                            value={formData.department}
+                                            onChange={(e) => setFormData({...formData, department: e.target.value})}
+                                            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            placeholder="Bölüm Adı"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Kayıt Ol Butonu - Grid dışında */}
                             <button 
                                 type="submit"
                                 disabled={isLoading}

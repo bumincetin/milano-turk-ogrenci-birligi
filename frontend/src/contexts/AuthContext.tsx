@@ -5,9 +5,14 @@ import Cookies from 'js-cookie'
 interface User {
     id: number
     name: string
+    lastname: string
     email: string
     profileImage?: string
     username: string
+    telephone: string
+    universityName: string
+    universityDepartment: string
+    universityYear: string
 }
 
 interface AuthContextType {
@@ -40,9 +45,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setUser({
                 id: userData.id,
                 name: userData.name,
+                lastname: userData.lastname,
                 email: userData.email,
                 username: userData.username,
-                profileImage: userData.profileImage
+                profileImage: userData.profileImage,
+                telephone: userData.telephone,
+                universityName: userData.universityName,
+                universityDepartment: userData.universityDepartment,
+                universityYear: userData.universityYear
             });
         } catch (error) {
             console.error('Kullanıcı bilgileri alma hatası:', error);
@@ -95,9 +105,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setUser({
                 id: userData.id,
                 name: userData.name,
+                lastname: userData.lastname,
                 email: userData.email,
                 username: userData.username,
-                profileImage: userData.profileImage
+                profileImage: userData.profileImage,
+                telephone: userData.telephone,
+                universityName: userData.universityName,
+                universityDepartment: userData.universityDepartment,
+                universityYear: userData.universityYear
             })
             
             console.log('User state güncellendi')

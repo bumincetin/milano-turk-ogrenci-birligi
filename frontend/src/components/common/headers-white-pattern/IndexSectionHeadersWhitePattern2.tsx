@@ -39,7 +39,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-gray700 font-medium">{user.name}</span>
+                            <span className="text-gray700 font-medium">{user.name} {user.lastname}</span>
                             <span className="text-gray700 text-sm">{user.email}</span>
                         </div>
                     </Link>
