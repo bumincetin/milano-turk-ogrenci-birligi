@@ -28,7 +28,7 @@ export default function IndexSectionHeadersWhitePattern2() {
         if (user) {
             return (
                 <div className="flex items-center space-x-4">
-                    <Link href="/profil" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+                    <Link href="/dashboard/profile" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
                         <div className="h-10 w-10 rounded-full overflow-hidden">
                             <Image 
                                 src={user.profileImage || "/flex-ui-assets/images/profile/avatar.jpg"}

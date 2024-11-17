@@ -1,22 +1,46 @@
 'use client'
 import { FC, useState, useEffect } from 'react';
 import { toast } from 'sonner';
-
+import { useSession } from 'next-auth/react';
 import { userService } from '@/services/userService';
-import { useSession } from 'next-auth/react'; // Oturum bilgisi için
+import Cookies from 'js-cookie'
+import {jwtDecode} from 'jwt-decode';
+const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
+
+interface UserData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string;
+  birthDate: string;
+  description: string;
+  avatar: File | string;
+  linkedin: string;
+  university: string;
+  department: string;
+  year: string;
+  bio: string;
+  twitter?: string;
+  phone?: string;
+  website?: string;
+  position?: string;
+  companyEmail?: string;
+  username?: string;
+}
 
 const ProfilePage: FC = () => {
   const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [userData, setUserData] = useState({
+  const [avatarPreview, setAvatarPreview] = useState<string>(''); // Avatar önizleme URL'i
+  const [userData, setUserData] = useState<UserData>({
     firstName: '',
     lastName: '',
     email: '',
     role: '',
     birthDate: '',
     description: '',
-    avatar: '',
+    avatar: '', // Başlangıçta boş string
     linkedin: '',
     university: '',
     department: '',
@@ -24,13 +48,36 @@ const ProfilePage: FC = () => {
     bio: ''
   });
 
-  // Sayfa yüklendiğinde profil bilgilerini getir
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        if (session?.user?.id) {
-          const data = await userService.getProfile(session.user.id);
-          setUserData(data);
+        let token :string = Cookies.get(COOKIE_NAME) as string;
+        let user : any = jwtDecode(token as string);
+        if (user?.id) {
+            console.log("GET USER DATAS")
+          const data = await userService.getProfile(user.id,token);
+          console.log("DATA : ",data);
+          setUserData({
+            firstName: data.firstName || '',
+            lastName: data.lastName || '',
+            email: data.email || '',
+            role: data.role || '',
+            birthDate: data.birthday || '',
+            description: data.description || '',
+            avatar: data.avatar || '',
+            linkedin: data.linkedin || '',
+            university: data.university || '',
+            department: data.department || '',
+            year: data.year || '',
+            bio: data.description || '', // description'ı bio olarak kullanıyoruz
+            twitter: data.twitter || '',
+            phone: data.phone || '',
+            website: data.website || '',
+            position: data.position || '',
+            companyEmail: data.companyEmail || '',
+            username: data.username || ''
+          });
+          setAvatarPreview(data.avatar?.url || ''); // Önizleme için URL'i sakla
         }
       } catch (error) {
         toast.error('Profil bilgileri yüklenirken bir hata oluştu');
@@ -81,6 +128,7 @@ const ProfilePage: FC = () => {
         return;
       }
 
+      // Dosyayı userData'da sakla
       setUserData({
         ...userData,
         avatar: file
@@ -88,9 +136,18 @@ const ProfilePage: FC = () => {
 
       // Önizleme için URL oluştur
       const imageUrl = URL.createObjectURL(file);
-      e.target.closest('.avatar-upload')?.querySelector('img')?.setAttribute('src', imageUrl);
+      setAvatarPreview(imageUrl);
     }
   };
+
+  // Avatar görüntüleme komponenti
+  const AvatarDisplay = () => (
+    <img 
+      src={avatarPreview || '/flex-ui-assets/images/dashboard/navigations/avatar.png'} // Önizleme URL'i veya varsayılan avatar
+      alt="Profil" 
+      className="w-20 h-20 rounded-full object-cover"
+    />
+  );
 
   return (
     <section className="bg-coolGray-50 py-4">
@@ -199,11 +256,7 @@ const ProfilePage: FC = () => {
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   <div className="flex items-center gap-4">
-                    <img 
-                      src={userData.avatar} 
-                      alt="Profil" 
-                      className="w-20 h-20 rounded-full object-cover"
-                    />
+                    <AvatarDisplay />
                     {isEditing && (
                       <div className="relative flex flex-col items-center justify-center p-6 h-44 text-center text-green-500 focus-within:border-green-500 border border-dashed border-coolGray-200 rounded-lg flex-1">
                         <svg
@@ -224,7 +277,7 @@ const ProfilePage: FC = () => {
                         </p>
                         <p className="text-xs text-coolGray-500 font-medium">PNG, JPG, GIF veya en fazla 10MB</p>
                         <input 
-                          className="absolute top-0 left-0 w-full h-full opacity-0" 
+                          className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" 
                           type="file"
                           accept="image/*"
                           onChange={handleAvatarChange}
@@ -300,7 +353,7 @@ const ProfilePage: FC = () => {
                     <div className="space-y-1">
                       <p className="text-base text-coolGray-900">{userData.university}</p>
                       <p className="text-base text-coolGray-900">{userData.department}</p>
-                      <p className="text-base text-coolGray-900">{userData.year}. Sınıf</p>
+                      <p className="text-base text-coolGray-900">{userData.year}</p>
                     </div>
                   )}
                 </div>

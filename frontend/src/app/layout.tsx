@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { AuthProvider } from '@/contexts/AuthContext'
+import Providers from '@/providers/Providers'
 import { Toaster } from 'sonner';
 
 const geistSans = localFont({
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
-        <AuthProvider>
+        <Providers>
           {children}
           <Toaster 
             position="top-right"
@@ -36,7 +36,7 @@ export default function RootLayout({
             richColors
             closeButton
           />
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   )

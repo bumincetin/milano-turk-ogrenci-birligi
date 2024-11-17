@@ -3,11 +3,11 @@ import { FC, ReactNode } from 'react';
 import DashHeader from '@/components/common/dashboard/DashHeader';
 import DashboardSidebar from '@/components/common/dashboard/DashboardSidebar';
 
-interface DashboardLayoutProps {
-  children: ReactNode;
-}
-
-const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <div className="flex">
       <DashboardSidebar />
@@ -20,5 +20,3 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
     </div>
   );
 };
-
-export default DashboardLayout; 

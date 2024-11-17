@@ -1,10 +1,38 @@
-import React, { useState } from "react";
+'use client'
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from 'next-auth/react'
+import { userService } from '@/services/userService'
+import Cookies from 'js-cookie'
+import {jwtDecode} from 'jwt-decode';
+import { useAuth } from '@/contexts/AuthContext'
+
+const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
 
 const Sidebar: React.FC = () => {
+  const { data: session } = useSession()
+  const [userData, setUserData] = useState<any>(null)
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isPagesOpen, setIsPagesOpen] = useState(false);
+  const { logout } = useAuth()
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (session?.user?.id) {
+        try {
+          let token :string = Cookies.get(COOKIE_NAME) as string;
+          let user : any = jwtDecode(token as string);
+          const data = await userService.getProfile(user.id,token)
+          console.log('Gelen kullanıcı verileri:', data)
+          setUserData(data)
+        } catch (error) {
+          console.error('Kullanıcı bilgileri yüklenirken hata:', error)
+        }
+      }
+    }
+
+    fetchUserData()
+  }, [session])
 
   return (
     <div className="fixed left-0 top-0 h-screen w-64 bg-gray-900">
@@ -187,18 +215,28 @@ const Sidebar: React.FC = () => {
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gray-900 border-t border-gray-800">
         <div className="flex items-center">
           <Image
-            src="/flex-ui-assets/images/dashboard/navigations/avatar.png"
+            src={userData?.avatar?.url || "/flex-ui-assets/images/dashboard/navigations/avatar.png"}
             alt="Profile"
             width={40}
             height={40}
             className="rounded-full"
           />
           <div className="ml-3">
-            <p className="text-sm font-semibold text-white">John Doe</p>
-            <p className="text-xs text-gray-500">johndoe@flex.co</p>
+            <p className="text-sm font-semibold text-white">
+              {userData ? `${userData.firstName} ${userData.lastName}` : 'Yükleniyor...'}
+            </p>
+            <p className="text-xs text-gray-500">
+              {userData?.university ? `${userData.university} - ${userData.year}` : userData?.email}
+            </p>
           </div>
           <button className="ml-auto text-gray-600 hover:text-gray-400">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            {/* Logout Button */}
+            <svg 
+              onClick={() => {
+                logout()
+                window.location.href = '/'
+              }}
+              className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
           </button>
