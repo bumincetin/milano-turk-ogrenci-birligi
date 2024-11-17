@@ -92,21 +92,58 @@ const ProfilePage: FC = () => {
     try {
       setIsLoading(true);
       
-      if (!session?.user?.id) {
+      let token :string = Cookies.get(COOKIE_NAME) as string;
+      let user : any = jwtDecode(token as string);
+      
+      if (!user?.id) {
         throw new Error('Kullanıcı kimliği bulunamadı');
       }
 
-      await userService.updateProfile(session.user.id, userData);
+      // Strapi'ye gönderilecek verileri hazırla
+      const updateData = {
+        UniversityName: userData.university || null,
+        UniversityDepartment: userData.department || null,
+        UniversityClass: userData.year || null,
+        linkedin: userData.linkedin || null,
+        twitter: userData.twitter || null,
+        telephone: userData.phone || null,
+        description: userData.description || null,
+        website: userData.website || null,
+        position: userData.position || null,
+        company_email: userData.companyEmail || null,
+        birthday: userData.birthDate || null,
+        username: userData.username || null
+      };
+
+      console.log('Gönderilecek veriler:', updateData);
+
+      await userService.updateProfile(user.id, updateData, token);
       
       toast.success('Profil başarıyla güncellendi', {
         duration: 3000,
       });
       
+      // Profili yeniden yükle
+      const updatedProfile = await userService.getProfile(user.id, token);
+      setUserData(prevData => ({
+        ...prevData,
+        university: updatedProfile.university,
+        department: updatedProfile.department,
+        year: updatedProfile.year,
+        linkedin: updatedProfile.linkedin,
+        twitter: updatedProfile.twitter,
+        phone: updatedProfile.phone,
+        description: updatedProfile.description,
+        website: updatedProfile.website,
+        position: updatedProfile.position,
+        companyEmail: updatedProfile.companyEmail,
+        birthDate: updatedProfile.birthday,
+        username: updatedProfile.username
+      }));
+      
       setIsEditing(false);
     } catch (error) {
-      toast.error('Profil güncellenirken bir hata oluştu', {
-        duration: 3000,
-      });
+      toast.error('Profil güncellenirken bir hata oluştu');
       console.error('Güncelleme hatası:', error);
     } finally {
       setIsLoading(false);
@@ -204,22 +241,7 @@ const ProfilePage: FC = () => {
                   <p className="text-sm text-coolGray-800 font-semibold">Ad Soyad</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
-                  {isEditing ? (
-                    <div className="flex gap-2">
-                      <input
-                        className="w-1/2 px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
-                        value={userData.firstName}
-                        onChange={(e) => setUserData({...userData, firstName: e.target.value})}
-                      />
-                      <input
-                        className="w-1/2 px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
-                        value={userData.lastName}
-                        onChange={(e) => setUserData({...userData, lastName: e.target.value})}
-                      />
-                    </div>
-                  ) : (
-                    <p className="text-base text-coolGray-900">{userData.firstName} {userData.lastName}</p>
-                  )}
+                  <p className="text-base text-coolGray-900">{userData.firstName} {userData.lastName}</p>
                 </div>
               </div>
             </div>
@@ -233,15 +255,7 @@ const ProfilePage: FC = () => {
                   <p className="text-sm text-coolGray-800 font-semibold">Email</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
-                  {isEditing ? (
-                    <input
-                      className="w-full px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
-                      value={userData.email}
-                      onChange={(e) => setUserData({...userData, email: e.target.value})}
-                    />
-                  ) : (
-                    <p className="text-base text-coolGray-900">{userData.email}</p>
-                  )}
+                  <p className="text-base text-coolGray-900">{userData.email}</p>
                 </div>
               </div>
             </div>

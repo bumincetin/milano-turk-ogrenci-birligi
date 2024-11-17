@@ -1,54 +1,36 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 export const userService = {
-  async updateProfile(userId: string, userData: any) {
+  async updateProfile(userId: string, userData: any, token: string) {
     try {
-      const formData = new FormData();
+      console.log('Token:', token);
+      console.log('Strapi\'ye gönderilen veriler:', userData);
       
-      // Eğer yeni bir avatar yüklendiyse
-      if (userData.avatar instanceof File) {
-        formData.append('files.avatar', userData.avatar);
-      }
-
-      // Diğer kullanıcı bilgileri
-      formData.append('data', JSON.stringify({
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        email: userData.email,
-        role: userData.role,
-        birthDate: userData.birthDate,
-        description: userData.description,
-        linkedin: userData.linkedin,
-        university: userData.university,
-        department: userData.department,
-        year: userData.year,
-        bio: userData.bio
-      }));
-
       const response = await axios.put(
         `${API_URL}/api/users/${userId}`, 
-        formData,
+        userData,
         {
           headers: {
-            'Authorization': `Bearer ${API_TOKEN}`,
-            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
           }
         }
       );
 
+      console.log('Strapi yanıtı:', response.data);
       return response.data;
-    } catch (error) {
+      
+    } catch (error: any) {
+      console.error('Güncelleme hatası detayı:', error.response?.data || error);
       throw error;
     }
   },
 
-  async getProfile(userId: string,token: string) {
+  async getProfile(userId: string, token: string) {
     try {
-      console.log("token: ",token)
-
       const response = await axios.get(
         `${API_URL}/api/users/${userId}?populate=*`,
         {
@@ -57,10 +39,8 @@ export const userService = {
           }
         }
       );
-
       
       const userData = response.data;
-      console.log('Strapi response:', userData); // Debug için
       
       return {
         firstName: userData.name || '',
