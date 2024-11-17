@@ -139,6 +139,12 @@
     "UniversityClass": {
       "type": "string",
       "required": true
+    },
+    "blog_posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-post.blog-post",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
