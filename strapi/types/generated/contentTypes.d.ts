@@ -775,7 +775,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     description: Attribute.Text;
     birthday: Attribute.Date;
     avatar: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    company: Attribute.String;
     company_email: Attribute.Email;
     position: Attribute.String;
     twitter: Attribute.Text;
@@ -796,6 +795,13 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::ticket.ticket'
     >;
+    telephone: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 14;
+      }>;
+    UniversityName: Attribute.String & Attribute.Required;
+    UniversityDepartment: Attribute.String & Attribute.Required;
+    UniversityClass: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
