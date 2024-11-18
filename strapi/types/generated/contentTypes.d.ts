@@ -1013,19 +1013,31 @@ export interface ApiEventEvent extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.String;
     title: Attribute.String;
-    start_time: Attribute.Time;
-    end_time: Attribute.Time;
-    description: Attribute.Text;
-    speakers: Attribute.Relation<
-      'api::event.event',
-      'manyToMany',
-      'api::speaker.speaker'
+    event_time: Attribute.DateTime;
+    last_enroll_time: Attribute.DateTime;
+    summary: Attribute.Text;
+    details: Attribute.Blocks;
+    blocked: Attribute.Boolean;
+    person_limit: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    current_person_count: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    cover: Attribute.Media<'images'>;
+    category: Attribute.Enumeration<
+      ['City Tour', 'Workshop', 'Cultural', 'Food', 'Sport', 'Meeting']
     >;
-    order: Attribute.Decimal;
-    break: Attribute.Boolean & Attribute.DefaultTo<false>;
-    hall: Attribute.Enumeration<['Green Hall', 'Blue Hall']>;
+    location: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1037,6 +1049,37 @@ export interface ApiEventEvent extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHakkimizdaHakkimizda extends Schema.SingleType {
+  collectionName: 'hakkimizdas';
+  info: {
+    singularName: 'hakkimizda';
+    pluralName: 'hakkimizdas';
+    displayName: 'Hakk\u0131m\u0131zda';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    hakkimizda: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hakkimizda.hakkimizda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hakkimizda.hakkimizda',
       'oneToOne',
       'admin::user'
     > &
@@ -1168,11 +1211,6 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
     profession: Attribute.String;
     description: Attribute.Text;
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    events: Attribute.Relation<
-      'api::speaker.speaker',
-      'manyToMany',
-      'api::event.event'
-    >;
     company: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1726,6 +1764,7 @@ declare module '@strapi/types' {
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::coupon.coupon': ApiCouponCoupon;
       'api::event.event': ApiEventEvent;
+      'api::hakkimizda.hakkimizda': ApiHakkimizdaHakkimizda;
       'api::news-subscription.news-subscription': ApiNewsSubscriptionNewsSubscription;
       'api::purchase.purchase': ApiPurchasePurchase;
       'api::speaker.speaker': ApiSpeakerSpeaker;
