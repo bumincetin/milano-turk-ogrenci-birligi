@@ -226,7 +226,7 @@ const Sidebar: React.FC = () => {
               {userData ? `${userData.firstName} ${userData.lastName}` : 'Yükleniyor...'}
             </p>
             <p className="text-xs text-gray-500">
-              {userData?.university ? `${userData.university} - ${userData.year}` : userData?.email}
+              {userData?.email}
             </p>
           </div>
           <button className="ml-auto text-gray-600 hover:text-gray-400">
