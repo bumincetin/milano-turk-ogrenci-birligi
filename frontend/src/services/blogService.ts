@@ -33,5 +33,40 @@ export const blogService = {
       console.error('Blog verileri alınırken hata detayı:', error.response?.data || error);
       throw error;
     }
+  },
+
+  async getBlogBySlug(slug: string) {
+    try {
+      const queryParams = {
+        'filters[slug][$eq]': slug,
+        'populate': '*'
+      };
+
+      const response = await axios.get(
+        `${API_URL}/api/blog-posts`,
+        {
+          params: queryParams,
+          headers: {
+            'Authorization': `Bearer ${API_TOKEN}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      console.log('Blog içeriği:', response.data.data[0]?.attributes);
+
+      if (!response.data.data || response.data.data.length === 0) {
+        throw new Error('Blog yazısı bulunamadı');
+      }
+
+      return {
+        data: response.data.data,
+        meta: response.data.meta
+      };
+      
+    } catch (error: any) {
+      console.error('Blog detayı alınırken hata:', error.response?.data || error);
+      throw error;
+    }
   }
 }; 
