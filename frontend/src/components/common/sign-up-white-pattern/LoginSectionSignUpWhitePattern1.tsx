@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
+import { toast } from 'sonner'
 
 interface FormData {
     email: string
@@ -26,31 +27,15 @@ export default function LoginSectionSignUpWhitePattern1() {
         setIsLoading(true)
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    identifier: formData.email,
-                    password: formData.password,
-                }),
-            })
-
-            const data = await response.json()
-            console.log('Giriş yanıtı:', data)
-
-            if (!response.ok) {
-                throw new Error(data.error?.message || 'Giriş sırasında bir hata oluştu')
-            }
-
-            await login(data.jwt)
-            console.log('JWT token:', data.jwt)
+            const data = await login({ identifier: formData.email, password: formData.password })
+            
+            console.log('Login successful:', data)
 
             window.location.href = '/'
-        } catch (error) {
+        } catch (error: any) {
             console.error('Giriş hatası:', error)
             setError('E-posta veya şifre hatalı')
+            toast.error('E-posta veya şifre hatalı')
         } finally {
             setIsLoading(false)
         }
