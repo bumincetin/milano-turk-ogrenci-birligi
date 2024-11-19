@@ -145,6 +145,12 @@
       "relation": "oneToMany",
       "target": "api::blog-post.blog-post",
       "mappedBy": "users_permissions_user"
+    },
+    "events": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::event.event",
+      "mappedBy": "users"
     }
   }
 }
