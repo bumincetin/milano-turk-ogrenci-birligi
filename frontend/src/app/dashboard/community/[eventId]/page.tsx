@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { EventsAPI } from '@/services/eventService';
 import { toast } from 'sonner';
 import Cookies from 'js-cookie';
-
+import { useAuth } from '@/contexts/AuthContext';
 const COOKIE_NAME = 'jwt';
 
 // Event interface'i ekleyelim
@@ -37,6 +37,7 @@ const EventDetailPage: FC = () => {
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [enrollingEventId, setEnrollingEventId] = useState<number | null>(null);
+  const { user, logout } = useAuth()
 
   useEffect(() => {
     fetchEvent();
@@ -54,28 +55,42 @@ const EventDetailPage: FC = () => {
   };
 
   const handleEnroll = async () => {
-    if (!event) return;
-
-    const token = Cookies.get(COOKIE_NAME);
-    
-    if (!token) {
-      toast.error('Kayıt olmak için giriş yapmalısınız.');
-      return;
-    }
-
     try {
-      setEnrollingEventId(event.id);
-      await EventsAPI.enrollEvent(event.id, token);
+      // Önce oturum kontrolü yap
+      const isAuthenticated = user !== null;
       
-      // Kayıt başarılı olduktan sonra etkinlik bilgilerini güncelle
-      await fetchEvent();
+      if (!isAuthenticated) {
+        toast.error('Kayıt olmak için giriş yapmanız gerekmektedir.');
+        return;
+      }
+
+      // Cookie token kontrolü
+      const token = Cookies.get('jwt');
+      if (!token) {
+        toast.error('Oturum bilgileriniz bulunamadı. Lütfen tekrar giriş yapın.');
+        logout();
+        return;
+      }
+
+      // Etkinliğe kayıt ol
+      await EventsAPI.enrollEvent(Number(params.eventId));
       
       toast.success('Etkinliğe başarıyla kayıt oldunuz!');
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Bir hata oluştu');
-    } finally {
-      setEnrollingEventId(null);
+      // Etkinlik detaylarını güncelle
+      fetchEvent();
+      
+    } catch (error: any) {
+      toast.error(error.message || 'Kayıt işlemi sırasında bir hata oluştu');
+      
+      if (error.message.includes('Oturum süreniz dolmuş')) {
+        logout();
+      }
     }
+  };
+
+  // Son kayıt tarihi kontrolü için yardımcı fonksiyon
+  const isEnrollmentClosed = (lastEnrollTime: string) => {
+    return new Date(lastEnrollTime) < new Date();
   };
 
   if (!event) {
@@ -171,11 +186,14 @@ const EventDetailPage: FC = () => {
               onClick={handleEnroll}
               disabled={
                 event.attributes.current_person_count === event.attributes.person_limit ||
-                enrollingEventId === event.id
+                enrollingEventId === event.id ||
+                isEnrollmentClosed(event.attributes.last_enroll_time)
               }
               className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${
                 event.attributes.current_person_count === event.attributes.person_limit 
                   ? 'bg-gray-400 cursor-not-allowed' 
+                  : isEnrollmentClosed(event.attributes.last_enroll_time)
+                  ? 'bg-gray-400 cursor-not-allowed'
                   : enrollingEventId === event.id
                   ? 'bg-green-400 cursor-wait'
                   : 'bg-green-500 hover:bg-green-600'
@@ -183,10 +201,17 @@ const EventDetailPage: FC = () => {
             >
               {event.attributes.current_person_count === event.attributes.person_limit 
                 ? 'Kontenjan Doldu' 
+                : isEnrollmentClosed(event.attributes.last_enroll_time)
+                ? 'Kayıt Süresi Doldu'
                 : enrollingEventId === event.id
                 ? 'Kaydediliyor...'
                 : 'Kayıt Ol'}
             </button>
+
+            {/* Son kayıt tarihi bilgisi */}
+            <p className="text-sm text-gray-500 text-center mt-2">
+              Son Kayıt Tarihi: {new Date(event.attributes.last_enroll_time).toLocaleDateString('tr-TR')}
+            </p>
           </div>
         </div>
       </div>

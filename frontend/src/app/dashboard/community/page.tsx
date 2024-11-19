@@ -3,6 +3,10 @@ import { FC, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EventsAPI } from '@/services/eventService';
+import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
+import Cookies from 'js-cookie';
+import { useAuth } from '@/contexts/AuthContext'
 
 // Event tipi tanımı
 interface Event {
@@ -37,12 +41,18 @@ const categories = [
   "Meeting"
 ];
 
+const COOKIE_NAME = 'jwt'; // Strapi'nin default cookie ismi
+
 const CommunityPage: FC = () => {
+  const { user, logout } = useAuth()
+
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("Tümü");
   const [sortBy, setSortBy] = useState("newest");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { data: session } = useSession();
+  const [enrollingEventId, setEnrollingEventId] = useState<number | null>(null);
 
   useEffect(() => {
     fetchEvents();
@@ -81,6 +91,45 @@ const CommunityPage: FC = () => {
                new Date(b.attributes.event_time).getTime();
       }
     });
+  };
+
+  const handleEnroll = async (eventId: number) => {
+    try {
+      // if (!session?.user) {
+      //   toast.error('Kayıt olmak için giriş yapmalısınız.');
+      //   return;
+      // }
+
+      const token = Cookies.get(COOKIE_NAME);
+
+      console.log("TOKEN ON KAYIT OL :", token);
+      console.log("USER ON KAYIT OL :", user);
+      // if (!token) {
+      //   toast.error('Oturum bilginiz bulunamadı. Lütfen sayfayı yenileyip tekrar deneyin.');
+      //   return;
+      // }
+
+      setEnrollingEventId(eventId);
+      await EventsAPI.enrollEvent(eventId);
+      await fetchEvents(); // Etkinlik listesini güncelle
+      toast.success('Etkinliğe başarıyla kayıt oldunuz!');
+    } catch (error: any) {
+      console.error('Kayıt Hatası:', error);
+      
+      // Hata mesajını daha anlaşılır hale getir
+      if (error.message.includes('401')) {
+        toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
+      } else {
+        toast.error(error.message || 'Kayıt işlemi sırasında bir hata oluştu');
+      }
+    } finally {
+      setEnrollingEventId(null);
+    }
+  };
+
+  // Son kayıt tarihi kontrolü için yardımcı fonksiyon
+  const isEnrollmentClosed = (lastEnrollTime: string) => {
+    return new Date(lastEnrollTime) < new Date();
   };
 
   if (loading) {
@@ -191,14 +240,29 @@ const CommunityPage: FC = () => {
                     Detayları Gör
                   </Link>
                   <button 
+                    onClick={() => handleEnroll(event.id)}
+                    disabled={
+                      event.attributes.current_person_count === event.attributes.person_limit ||
+                      enrollingEventId === event.id ||
+                      isEnrollmentClosed(event.attributes.last_enroll_time)
+                    }
                     className={`px-4 py-2 rounded-md text-sm ml-auto ${
                       event.attributes.current_person_count === event.attributes.person_limit 
                         ? 'bg-gray-400 cursor-not-allowed' 
+                        : isEnrollmentClosed(event.attributes.last_enroll_time)
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : enrollingEventId === event.id
+                        ? 'bg-green-400 cursor-wait'
                         : 'bg-green-500 hover:bg-green-600 text-white'
                     }`}
-                    disabled={event.attributes.current_person_count === event.attributes.person_limit}
                   >
-                    {event.attributes.current_person_count === event.attributes.person_limit ? 'Kontenjan Doldu' : 'Kayıt Ol'}
+                    {event.attributes.current_person_count === event.attributes.person_limit 
+                      ? 'Kontenjan Doldu' 
+                      : isEnrollmentClosed(event.attributes.last_enroll_time)
+                      ? 'Kayıt Süresi Doldu'
+                      : enrollingEventId === event.id
+                      ? 'Kaydediliyor...'
+                      : 'Kayıt Ol'}
                   </button>
                 </div>
               </div>

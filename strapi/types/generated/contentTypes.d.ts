@@ -807,6 +807,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::blog-post.blog-post'
     >;
+    events: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::event.event'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1038,6 +1043,11 @@ export interface ApiEventEvent extends Schema.CollectionType {
       ['City Tour', 'Workshop', 'Cultural', 'Food', 'Sport', 'Meeting']
     >;
     location: Attribute.String;
+    users: Attribute.Relation<
+      'api::event.event',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
