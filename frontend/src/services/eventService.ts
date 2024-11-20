@@ -147,5 +147,64 @@ export const EventsAPI = {
       console.error('Kayıt Hatası:', error);
       throw error;
     }
+  },
+
+  cancelEnrollment: async (eventId: number) => {
+    try {
+      if (!API_URL) {
+        throw new Error('API URL tanımlanmamış');
+      }
+
+      const token = Cookies.get('jwt');
+      if (!token) {
+        throw new Error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
+      }
+
+      const response = await fetch(`${API_URL}/api/events/${eventId}/cancel-enrollment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || 'Kayıt silme işlemi sırasında bir hata oluştu');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Kayıt silme hatası:', error);
+      throw error;
+    }
+  },
+
+  checkEnrollmentStatus: async (eventId: number) => {
+    try {
+      if (!API_URL) {
+        throw new Error('API URL tanımlanmamış');
+      }
+
+      const token = Cookies.get('jwt');
+      if (!token) {
+        throw new Error('Oturum süreniz dolmuş');
+      }
+
+      const response = await fetch(`${API_URL}/api/events/${eventId}/check-enrollment`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Kayıt durumu kontrol edilemedi');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Kayıt durumu kontrol hatası:', error);
+      throw error;
+    }
   }
 }; 
