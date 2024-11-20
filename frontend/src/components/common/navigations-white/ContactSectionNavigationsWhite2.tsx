@@ -43,7 +43,7 @@ export default function ContactSectionNavigationsWhite2() {
                                 <li key={index} className={index !== navLinks.length - 1 ? "mr-12" : ""}>
                                     <Link 
                                         href={link.href}
-                                        className="text-coolGray-500 hover:text-coolGray-900 font-medium"
+                                        className="text-gray-500 hover:text-black-900 font-medium"
                                     >
                                         {link.text}
                                     </Link>
@@ -57,13 +57,13 @@ export default function ContactSectionNavigationsWhite2() {
                         <div className="flex items-center justify-end">
                             <Link 
                                 href="/giris"
-                                className="inline-block py-2 px-4 mr-2 leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium rounded-md"
+                                className="inline-block py-2 px-4 mr-2 leading-5 text-gray-500 hover:text-black-900 bg-transparent font-medium rounded-md"
                             >
                                 Giriş Yap
                             </Link>
                             <Link 
                                 href="/kayit"
-                                className="inline-block py-2 px-4 text-sm leading-5 text-green-50 bg-green-500 hover:bg-green-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                                className="inline-block py-2 px-4 text-sm leading-5 text-primary-50 bg-primary-500 hover:bg-primary-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
                             >
                                 Kayıt Ol
                             </Link>
@@ -77,8 +77,8 @@ export default function ContactSectionNavigationsWhite2() {
                     onClick={() => setIsMenuOpen(true)}
                 >
                     <svg width={35} height={35} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect className="text-coolGray-50" width={32} height={32} rx={6} fill="currentColor" />
-                        <path className="text-coolGray-500" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12Z" fill="currentColor" />
+                        <rect className="text-black-50" width={32} height={32} rx={6} fill="currentColor" />
+                        <path className="text-gray-500" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12Z" fill="currentColor" />
                     </svg>
                 </button>
             </nav>
@@ -104,7 +104,7 @@ export default function ContactSectionNavigationsWhite2() {
                                         <li key={index}>
                                             <Link 
                                                 href={link.href}
-                                                className="block py-3 px-4 text-coolGray-500 hover:text-coolGray-900 font-medium hover:bg-coolGray-50 rounded-md"
+                                                className="block py-3 px-4 text-gray-500 hover:text-black-900 font-medium hover:bg-coolGray-50 rounded-md"
                                             >
                                                 {link.text}
                                             </Link>
@@ -116,7 +116,7 @@ export default function ContactSectionNavigationsWhite2() {
                                     <div className="w-full mb-2">
                                         <Link 
                                             href="/giris"
-                                            className="inline-block py-2 px-4 w-full text-sm leading-5 text-coolGray-500 hover:text-coolGray-900 bg-transparent font-medium text-center rounded-md"
+                                            className="inline-block py-2 px-4 w-full text-sm leading-5 text-gray-500 hover:text-black-900 bg-transparent font-medium text-center rounded-md"
                                         >
                                             Giriş Yap
                                         </Link>
@@ -124,7 +124,7 @@ export default function ContactSectionNavigationsWhite2() {
                                     <div className="w-full">
                                         <Link 
                                             href="/kayit"
-                                            className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                                            className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-primary-500 hover:bg-primary-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
                                         >
                                             Kayıt Ol
                                         </Link>

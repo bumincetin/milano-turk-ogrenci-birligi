@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
+import { toast } from 'sonner'
 
 interface FormData {
     email: string
@@ -26,31 +27,15 @@ export default function LoginSectionSignUpWhitePattern1() {
         setIsLoading(true)
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    identifier: formData.email,
-                    password: formData.password,
-                }),
-            })
-
-            const data = await response.json()
-            console.log('Giriş yanıtı:', data)
-
-            if (!response.ok) {
-                throw new Error(data.error?.message || 'Giriş sırasında bir hata oluştu')
-            }
-
-            await login(data.jwt)
-            console.log('JWT token:', data.jwt)
+            const data = await login({ identifier: formData.email, password: formData.password })
+            
+            console.log('Login successful:', data)
 
             window.location.href = '/'
-        } catch (error) {
+        } catch (error: any) {
             console.error('Giriş hatası:', error)
             setError('E-posta veya şifre hatalı')
+            toast.error('E-posta veya şifre hatalı')
         } finally {
             setIsLoading(false)
         }
@@ -81,7 +66,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                             <h3 className="mb-4 text-2xl md:text-3xl font-bold">
                                 MTÖB Hesabınıza Giriş Yapın
                             </h3>
-                            <p className="text-lg text-coolGray-500 font-medium">
+                            <p className="text-lg text-gray-500 font-medium">
                                 Topluluğumuzun etkinliklerine katılmak için giriş yapın
                             </p>
                         </div>
@@ -97,7 +82,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                             {/* E-posta */}
                             <div className="mb-6">
                                 <label 
-                                    className="block mb-2 text-coolGray-800 font-medium" 
+                                    className="block mb-2 text-black-800 font-medium" 
                                     htmlFor="email"
                                 >
                                     E-posta
@@ -108,7 +93,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                                     placeholder="ornek@mail.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                    className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                     required
                                 />
                             </div>
@@ -116,7 +101,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                             {/* Şifre */}
                             <div className="mb-4">
                                 <label 
-                                    className="block mb-2 text-coolGray-800 font-medium" 
+                                    className="block mb-2 text-black-800 font-medium" 
                                     htmlFor="password"
                                 >
                                     Şifre
@@ -127,7 +112,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                                     placeholder="••••••••"
                                     value={formData.password}
                                     onChange={(e) => setFormData({...formData, password: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                    className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                     required
                                 />
                             </div>
@@ -140,9 +125,9 @@ export default function LoginSectionSignUpWhitePattern1() {
                                             type="checkbox"
                                             checked={formData.rememberMe}
                                             onChange={(e) => setFormData({...formData, rememberMe: e.target.checked})}
-                                            className="form-checkbox w-4 h-4 text-green-500 border border-gray-100 rounded focus:ring-green-400 focus:ring-opacity-50"
+                                            className="form-checkbox w-4 h-4 text-primary-500 border border-gray-100 rounded focus:ring-green-400 focus:ring-opacity-50"
                                         />
-                                        <span className="ml-2 text-sm text-coolGray-800 font-medium">
+                                        <span className="ml-2 text-sm text-black-800 font-medium">
                                             Beni hatırla
                                         </span>
                                     </label>
@@ -150,7 +135,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                                 <div className="w-full md:w-auto mt-1">
                                     <Link 
                                         href="/giris/sifremi-unuttum"
-                                        className="inline-block text-xs font-medium text-green-500 hover:text-green-600"
+                                        className="inline-block text-xs font-medium text-primary-500 hover:text-primary-600"
                                     >
                                         Şifrenizi mi unuttunuz?
                                     </Link>
@@ -161,7 +146,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                             <button 
                                 type="submit"
                                 disabled={isLoading}
-                                className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50"
+                                className="inline-block py-3 px-7 mb-6 w-full text-base text-primary-50 font-medium text-center leading-6 bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50"
                             >
                                 {isLoading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
                             </button>
@@ -173,7 +158,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                                 </span>
                                 <Link 
                                     href="/kayit"
-                                    className="inline-block ml-1 text-xs font-medium text-green-500 hover:text-green-600 hover:underline"
+                                    className="inline-block ml-1 text-xs font-medium text-primary-500 hover:text-primary-600 hover:underline"
                                 >
                                     Kayıt olun
                                 </Link>

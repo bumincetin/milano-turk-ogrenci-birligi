@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "hakkimizdas",
+  "info": {
+    "singularName": "hakkimizda",
+    "pluralName": "hakkimizdas",
+    "displayName": "Hakkımızda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hakkimizda": {
+      "type": "blocks"
+    }
+  }
+}

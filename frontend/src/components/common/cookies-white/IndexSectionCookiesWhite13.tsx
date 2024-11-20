@@ -30,12 +30,12 @@ export default function IndexSectionCookiesWhite13() {
                 <div className="container mx-auto">
                     <div className="flex flex-wrap items-center -mx-4">
                         <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
-                            <p className="mb-2 text-coolGray-500 font-medium">
+                            <p className="mb-2 text-gray-500 font-medium">
                                 Deneyiminizi kişiselleştirmek için üçüncü taraf çerezleri kullanıyoruz.
                             </p>
                             <Link 
                                 href="/cerez-politikasi" 
-                                className="flex items-center font-medium text-green-500 hover:text-green-600"
+                                className="flex items-center font-medium text-primary-500 hover:text-primary-600"
                             >
                                 <span className="mr-2">Çerez politikamızı okuyun</span>
                                 <svg 
@@ -57,7 +57,7 @@ export default function IndexSectionCookiesWhite13() {
                                 <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
                                     <button 
                                         onClick={() => handleClose(false)}
-                                        className="inline-block py-3 px-5 w-full leading-5 text-coolGray-800 bg-white hover:bg-coolGray-100 font-medium text-center focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
+                                        className="inline-block py-3 px-5 w-full leading-5 text-black-800 bg-white hover:bg-coolGray-100 font-medium text-center focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
                                     >
                                         Kabul Etme
                                     </button>
@@ -65,7 +65,7 @@ export default function IndexSectionCookiesWhite13() {
                                 <div className="w-full md:w-auto py-1 md:py-0">
                                     <button 
                                         onClick={() => handleClose(true)}
-                                        className="inline-block py-3 px-5 w-full leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm"
+                                        className="inline-block py-3 px-5 w-full leading-5 text-white bg-primary-500 hover:bg-primary-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm"
                                     >
                                         İzin Ver
                                     </button>

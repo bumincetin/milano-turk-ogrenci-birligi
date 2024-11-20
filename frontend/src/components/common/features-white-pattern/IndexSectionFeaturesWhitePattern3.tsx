@@ -39,13 +39,13 @@ export default function IndexSectionFeaturesWhitePattern3() {
             <div className="container px-4 mx-auto">
                 {/* Başlık Bölümü */}
                 <div className="xl:max-w-4xl mb-12 mx-auto text-center">
-                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-full shadow-sm">
+                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">
                         Değerlerimiz
                     </span>
                     <h1 className="mb-4 text-3xl md:text-4xl leading-tight font-bold tracking-tighter">
                         Milano Türk Öğrenci Birliği'nin Sağladığı Fırsatlar
                     </h1>
-                    <p className="text-lg md:text-xl text-coolGray-500 font-medium">
+                    <p className="text-lg md:text-xl text-gray-500 font-medium">
                         Milano’da öğrenim gören Türk öğrenciler olarak, birbirimize destek olma, yeni arkadaşlıklar kurma ve ortak hedeflere ulaşma yolunda birlikte ilerliyoruz.
                     </p>
                 </div>
@@ -84,13 +84,13 @@ export default function IndexSectionFeaturesWhitePattern3() {
 function FeatureCard({ icon, title, description }: Feature) {
     return (
         <div className="p-8 lg:mb-6 text-center hover:bg-white rounded-md hover:shadow-xl transition duration-200">
-            <div className="inline-flex h-16 w-16 mb-6 mx-auto items-center justify-center text-white bg-green-500 rounded-lg">
+            <div className="inline-flex h-16 w-16 mb-6 mx-auto items-center justify-center text-white bg-primary-500 rounded-lg">
                 {icon}
             </div>
             <h3 className="mb-4 text-xl md:text-2xl leading-tight font-bold">
                 {title}
             </h3>
-            <p className="text-coolGray-500 font-medium">
+            <p className="text-gray-500 font-medium">
                 {description}
             </p>
         </div>

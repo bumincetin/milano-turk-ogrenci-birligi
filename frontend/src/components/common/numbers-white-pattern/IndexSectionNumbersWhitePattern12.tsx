@@ -34,13 +34,13 @@ export default function IndexSectionNumbersWhitePattern12() {
             <div className="container px-4 mx-auto">
                 <div className="text-center">
                     {/* Başlık Bölümü */}
-                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-9xl">
+                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         İstatistikler
                     </span>
-                    <h3 className="mb-4 text-4xl md:text-5xl text-coolGray-900 font-bold tracking-tighter">
+                    <h3 className="mb-4 text-4xl md:text-5xl text-black-900 font-bold tracking-tighter">
                         Birlikte Güçleniyoruz
                     </h3>
-                    <p className="mb-16 xl:mb-24 mx-auto text-lg md:text-xl text-coolGray-500 font-medium max-w-4xl">
+                    <p className="mb-16 xl:mb-24 mx-auto text-lg md:text-xl text-gray-500 font-medium max-w-4xl">
                         Milano Türk Öğrenci Birliği olarak, üyelerimizin eğitimine ve topluluk gelişimine katkı sağlıyoruz.
                     </p>
 
@@ -51,10 +51,10 @@ export default function IndexSectionNumbersWhitePattern12() {
                                 key={index} 
                                 className="w-full md:w-1/3 lg:w-1/4 px-4 mb-8 lg:mb-0"
                             >
-                                <h2 className="mb-2 text-4xl md:text-5xl text-green-600 font-bold tracking-tighter">
+                                <h2 className="mb-2 text-4xl md:text-5xl text-primary-600 font-bold tracking-tighter">
                                     {stat.value}
                                 </h2>
-                                <p className="text-lg md:text-xl text-coolGray-500 font-medium">
+                                <p className="text-lg md:text-xl text-gray-500 font-medium">
                                     {stat.label}
                                 </p>
                             </div>
