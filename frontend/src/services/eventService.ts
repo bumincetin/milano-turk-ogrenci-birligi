@@ -51,6 +51,11 @@ export const EventsAPI = {
         throw new Error('API URL tanımlanmamış');
       }
 
+      const token = Cookies.get(COOKIE_NAME);
+      if (!token) {
+        throw new Error('Oturum bilgisi bulunamadı');
+      }
+
       const queryParams = new URLSearchParams({
         'populate': '*',
         'publicationState': 'live'
@@ -60,6 +65,7 @@ export const EventsAPI = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       });
 
@@ -81,6 +87,11 @@ export const EventsAPI = {
         throw new Error('API URL tanımlanmamış');
       }
 
+      const token = Cookies.get(COOKIE_NAME);
+      if (!token) {
+        throw new Error('Oturum bilgisi bulunamadı. Lütfen tekrar giriş yapın.');
+      }
+
       // Önce etkinlik detaylarını kontrol et
       const event = await EventsAPI.getById(eventId);
       
@@ -95,9 +106,6 @@ export const EventsAPI = {
       if (new Date(event.data.attributes.last_enroll_time) < new Date()) {
         throw new Error('Etkinlik kayıt süresi dolmuştur.');
       }
-
-      // Cookie'den token'ı al
-      const token = Cookies.get(COOKIE_NAME);
 
       // Debug için
       console.log('JWT Token:', token);
