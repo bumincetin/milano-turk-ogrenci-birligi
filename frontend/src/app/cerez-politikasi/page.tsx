@@ -1,11 +1,8 @@
 'use client'
 import { FC } from 'react';
-import DashboardHeader from '@/components/common/dashboard/DashboardHeader';
-import DashboardNavbar from '@/components/common/dashboard/DashboardNavbar';
 import Link from 'next/link';
 import IndexSectionNavigationsWhite1 from '@/components/common/navigations-white/IndexSectionNavigationsWhite1';
 import IndexSectionHeadersWhitePattern2 from '@/components/common/headers-white-pattern/IndexSectionHeadersWhitePattern2';
-import HeroSection from '@/components/common/hero-section/HeroSection';
 
 const CookiePolicy: FC = () => {
   return (
