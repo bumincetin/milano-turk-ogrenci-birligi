@@ -70,12 +70,7 @@
       "required": true
     },
     "lastname": {
-<<<<<<< HEAD
-      "type": "string",
-      "unique": false
-=======
       "type": "string"
->>>>>>> f4cfc74f9f9bf20c8823449412e489b6fc959b0f
     },
     "description": {
       "type": "text"
