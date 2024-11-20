@@ -57,7 +57,7 @@ export default function ContactSectionNewsletterWhitePattern4() {
                         <h3 className="mb-4 text-3xl md:text-4xl leading-tight font-bold tracking-tighter">
                             Yeni Gelişmelerden İlk Siz Haberdar Olun
                         </h3>
-                        <p className="mb-8 text-lg md:text-xl text-coolGray-500 font-medium">
+                        <p className="mb-8 text-lg md:text-xl text-gray-500 font-medium">
                             Tüm güncellemeler ve haberler için bültenimize abone olun.
                         </p>
 
@@ -67,7 +67,7 @@ export default function ContactSectionNewsletterWhitePattern4() {
                                 <div className="flex flex-wrap mb-1">
                                     <div className="w-full md:flex-1 mb-3 md:mb-0 md:mr-6">
                                         <input 
-                                            className="w-full py-3 px-4 text-coolGray-500 leading-tight placeholder-coolGray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-coolGray-200 rounded-lg shadow-xsm" 
+                                            className="w-full py-3 px-4 text-gray-500 leading-tight placeholder-coolGray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-coolGray-200 rounded-lg shadow-xsm" 
                                             type="email" 
                                             placeholder="E-posta adresiniz"
                                             value={email}
@@ -78,7 +78,7 @@ export default function ContactSectionNewsletterWhitePattern4() {
                                     <div className="w-full md:w-auto">
                                         <button 
                                             type="submit"
-                                            className="inline-block py-3 px-5 w-full leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm"
+                                            className="inline-block py-3 px-5 w-full leading-5 text-white bg-primary-500 hover:bg-primary-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm"
                                         >
                                             Abone Ol
                                         </button>
@@ -87,11 +87,11 @@ export default function ContactSectionNewsletterWhitePattern4() {
                             </form>
 
                             {/* Gizlilik Politikası Linki */}
-                            <span className="text-xs text-coolGray-500 font-medium">
+                            <span className="text-xs text-gray-500 font-medium">
                                 <span>Verilerinizi nasıl kullandığımızı öğrenmek için </span>
                                 <Link 
                                     href="/gizlilik-politikasi" 
-                                    className="text-green-500 hover:text-green-600"
+                                    className="text-primary-500 hover:text-primary-600"
                                 >
                                     gizlilik politikamızı
                                 </Link>

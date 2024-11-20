@@ -43,7 +43,7 @@ export default function IndexSectionNavigationsWhite1() {
                                         <li key={index}>
                                             <Link 
                                                 href={link.href}
-                                                className="block py-3 px-4 text-coolGray-500 hover:text-coolGray-900 font-medium hover:bg-coolGray-50 rounded-md"
+                                                className="block py-3 px-4 text-gray-500 hover:text-black-900 font-medium hover:bg-coolGray-50 rounded-md"
                                             >
                                                 {link.text}
                                             </Link>
@@ -55,7 +55,7 @@ export default function IndexSectionNavigationsWhite1() {
                             {/* İletişim Butonu */}
                             <Link 
                                 href="/iletisim"
-                                className="inline-block py-2 px-4 w-full text-sm leading-5 text-green-50 bg-coolGray-500 hover:bg-coolGray-600 font-medium text-center focus:ring-2 focus:ring-coolGray-500 focus:ring-opacity-50 rounded-md"
+                                className="inline-block py-2 px-4 w-full text-sm leading-5 text-primary-50 bg-coolGray-500 hover:bg-coolGray-600 font-medium text-center focus:ring-2 focus:ring-coolGray-500 focus:ring-opacity-50 rounded-md"
                             >
                                 Bize Ulaşın
                             </Link>

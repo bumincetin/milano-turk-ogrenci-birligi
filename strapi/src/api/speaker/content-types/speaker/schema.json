@@ -44,12 +44,6 @@
         "audios"
       ]
     },
-    "events": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::event.event",
-      "inversedBy": "speakers"
-    },
     "company": {
       "type": "string"
     }

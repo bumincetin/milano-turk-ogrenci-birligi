@@ -775,7 +775,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     description: Attribute.Text;
     birthday: Attribute.Date;
     avatar: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    company: Attribute.String;
     company_email: Attribute.Email;
     position: Attribute.String;
     twitter: Attribute.Text;
@@ -795,6 +794,23 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'oneToOne',
       'api::ticket.ticket'
+    >;
+    telephone: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 14;
+      }>;
+    UniversityName: Attribute.String & Attribute.Required;
+    UniversityDepartment: Attribute.String & Attribute.Required;
+    UniversityClass: Attribute.String & Attribute.Required;
+    blog_posts: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::blog-post.blog-post'
+    >;
+    events: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::event.event'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -859,6 +875,102 @@ export interface ApiBillingInformationBillingInformation
   };
 }
 
+export interface ApiBlogPostBlogPost extends Schema.CollectionType {
+  collectionName: 'blog_posts';
+  info: {
+    singularName: 'blog-post';
+    pluralName: 'blog-posts';
+    displayName: 'Blog Posts';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }> &
+      Attribute.DefaultTo<'Title'>;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 35;
+      }>;
+    summary: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    cover: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    users_permissions_user: Attribute.Relation<
+      'api::blog-post.blog-post',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    published: Attribute.DateTime &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    status: Attribute.Enumeration<['draft', 'published', 'deleted']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blog-post.blog-post',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blog-post.blog-post',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::blog-post.blog-post',
+      'oneToMany',
+      'api::blog-post.blog-post'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiCouponCoupon extends Schema.CollectionType {
   collectionName: 'coupons';
   info: {
@@ -906,19 +1018,36 @@ export interface ApiEventEvent extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.String;
     title: Attribute.String;
-    start_time: Attribute.Time;
-    end_time: Attribute.Time;
-    description: Attribute.Text;
-    speakers: Attribute.Relation<
+    event_time: Attribute.DateTime;
+    last_enroll_time: Attribute.DateTime;
+    summary: Attribute.Text;
+    details: Attribute.Blocks;
+    blocked: Attribute.Boolean;
+    person_limit: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    current_person_count: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    cover: Attribute.Media<'images'>;
+    category: Attribute.Enumeration<
+      ['City Tour', 'Workshop', 'Cultural', 'Food', 'Sport', 'Meeting']
+    >;
+    location: Attribute.String;
+    users: Attribute.Relation<
       'api::event.event',
       'manyToMany',
-      'api::speaker.speaker'
+      'plugin::users-permissions.user'
     >;
-    order: Attribute.Decimal;
-    break: Attribute.Boolean & Attribute.DefaultTo<false>;
-    hall: Attribute.Enumeration<['Green Hall', 'Blue Hall']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -930,6 +1059,37 @@ export interface ApiEventEvent extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHakkimizdaHakkimizda extends Schema.SingleType {
+  collectionName: 'hakkimizdas';
+  info: {
+    singularName: 'hakkimizda';
+    pluralName: 'hakkimizdas';
+    displayName: 'Hakk\u0131m\u0131zda';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    hakkimizda: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hakkimizda.hakkimizda',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hakkimizda.hakkimizda',
       'oneToOne',
       'admin::user'
     > &
@@ -1061,11 +1221,6 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
     profession: Attribute.String;
     description: Attribute.Text;
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    events: Attribute.Relation<
-      'api::speaker.speaker',
-      'manyToMany',
-      'api::event.event'
-    >;
     company: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1616,8 +1771,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::billing-information.billing-information': ApiBillingInformationBillingInformation;
+      'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::coupon.coupon': ApiCouponCoupon;
       'api::event.event': ApiEventEvent;
+      'api::hakkimizda.hakkimizda': ApiHakkimizdaHakkimizda;
       'api::news-subscription.news-subscription': ApiNewsSubscriptionNewsSubscription;
       'api::purchase.purchase': ApiPurchasePurchase;
       'api::speaker.speaker': ApiSpeakerSpeaker;

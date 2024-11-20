@@ -28,7 +28,7 @@ export default function IndexSectionHeadersWhitePattern2() {
         if (user) {
             return (
                 <div className="flex items-center space-x-4">
-                    <Link href="/profil" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+                    <Link href="/dashboard/profile" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
                         <div className="h-10 w-10 rounded-full overflow-hidden">
                             <Image 
                                 src={user.profileImage || "/flex-ui-assets/images/profile/avatar.jpg"}
@@ -39,7 +39,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-gray700 font-medium">{user.name}</span>
+                            <span className="text-gray700 font-medium">{user.name} {user.lastname}</span>
                             <span className="text-gray700 text-sm">{user.email}</span>
                         </div>
                     </Link>
@@ -48,7 +48,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                             logout()
                             window.location.href = '/'
                         }}
-                        className="text-white bg-red-500 hover:bg-red-600 py-2 px-4 rounded-md font-medium transition duration-300"
+                        className="text-white bg-red-700 hover:bg-red-800 py-2 px-4 rounded-md font-medium transition duration-300"
                     >
                         Çıkış Yap
                     </button>
@@ -66,7 +66,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                 </Link>
                 <Link 
                     href="/kayit" 
-                    className="inline-block py-2 px-4 text-sm leading-5 text-green-50 bg-green-500 hover:bg-green-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                    className="inline-block py-2 px-4 text-sm leading-5 text-primary-50 bg-primary-500 hover:bg-primary-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
                 >
                     Kayıt Ol
                 </Link>
@@ -190,7 +190,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                             <div className="w-full">
                                                 <Link 
                                                     href="/kayit"
-                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-green-500 hover:bg-green-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-primary-500 hover:bg-primary-600 font-medium text-center focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
                                                 >
                                                     Kayıt Ol
                                                 </Link>
