@@ -41,7 +41,7 @@ const categories = [
   "Meeting"
 ];
 
-const COOKIE_NAME = 'jwt'; // Strapi'nin default cookie ismi
+const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME as string || "mtob_user"; // Strapi'nin default cookie ismi
 
 const CommunityPage: FC = () => {
   const { user, logout } = useAuth()

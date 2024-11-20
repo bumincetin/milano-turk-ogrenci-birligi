@@ -55,6 +55,7 @@ const ProfilePage: FC = () => {
         let user : any = jwtDecode(token as string);
         if (user?.id) {
             console.log("GET USER DATAS")
+            
           const data : any = await userService.getProfile(user.id,token);
           console.log("DATA : ",data);
           setUserData({

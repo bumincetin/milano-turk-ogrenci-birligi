@@ -42,13 +42,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const data = await response.json();
 
             if (data.jwt) {
-                Cookies.set('jwt', data.jwt, { 
+                Cookies.set(COOKIE_NAME, data.jwt, { 
                     expires: 7,
                     path: '/',
                     sameSite: 'lax'
                 });
 
-                console.log('Login - JWT Token:', Cookies.get('jwt'));
+                console.log('Login - JWT Token:', Cookies.get(COOKIE_NAME));
                 setUser(data.user);
                 return data;
             } else {
@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const logout = () => {
-        Cookies.remove('jwt', { path: '/' });
+        Cookies.remove(COOKIE_NAME, { path: '/' });
         setUser(null);
     };
 
@@ -69,7 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const token = Cookies.get('jwt');
+                const token = Cookies.get(COOKIE_NAME);
                 
                 // Debug için
                 console.log('CheckAuth - JWT Token:', token);
@@ -86,13 +86,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                         setUser(userData);
                     } else {
                         // Token geçersizse veya süresi dolmuşsa
-                        Cookies.remove('jwt', { path: '/' });
+                        Cookies.remove(COOKIE_NAME, { path: '/' });
                         setUser(null);
                     }
                 }
             } catch (error) {
                 console.error('Auth check error:', error);
-                Cookies.remove('jwt', { path: '/' });
+                Cookies.remove(COOKIE_NAME, { path: '/' });
                 setUser(null);
             } finally {
                 setLoading(false);

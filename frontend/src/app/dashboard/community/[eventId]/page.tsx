@@ -7,7 +7,7 @@ import { EventsAPI } from '@/services/eventService';
 import { toast } from 'sonner';
 import Cookies from 'js-cookie';
 import { useAuth } from '@/contexts/AuthContext';
-const COOKIE_NAME = 'jwt';
+const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME as string || "mtob_user";
 
 // Event interface'i ekleyelim
 interface Event {
@@ -65,7 +65,7 @@ const EventDetailPage: FC = () => {
       }
 
       // Cookie token kontrolü
-      const token = Cookies.get('jwt');
+      const token = Cookies.get(COOKIE_NAME);
       if (!token) {
         toast.error('Oturum bilgileriniz bulunamadı. Lütfen tekrar giriş yapın.');
         logout();

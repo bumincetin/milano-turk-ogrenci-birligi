@@ -137,16 +137,16 @@ export default function IndexSectionHeadersWhitePattern2() {
             {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className="navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-coolGray-900 bg-opacity-50">
-                    <div className="fixed top-0 left-0 bottom-0 w-4/6 max-w-xs bg-white">
+                    <div className="fixed top-0 left-0 bottom-0 w-full bg-white">
                         <nav className="relative p-6 h-full overflow-y-auto">
                             <div className="flex flex-col justify-between h-full">
                                 <Link href="/" className="inline-block">
                                     <Image 
-                                        className="h-8"
-                                        src="/flex-ui-assets/logos/flex-ui-green-light.svg"
+                                        className="h-16"
+                                        src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo.png"
                                         alt="Logo"
-                                        width={32}
-                                        height={32}
+                                        width={64}
+                                        height={64}
                                     />
                                 </Link>
                                 <ul className="py-6">
@@ -164,7 +164,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                 <div className="flex flex-wrap">
                                     {user ? (
                                         <div className="w-full flex items-center space-x-4 px-4">
-                                            <Link href="/profil" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+                                            <Link href="/dashboard/profile" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
                                                 <span className="text-gray700-500 font-medium">{user.name}</span>
                                                 <div className="h-10 w-10 rounded-full overflow-hidden">
                                                     <Image 

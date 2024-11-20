@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-
+const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME as string || "mtob_user";
 export const EventsAPI = {
   getAll: async () => {
     try {
@@ -14,10 +14,13 @@ export const EventsAPI = {
         'filters[blocked][$eq]': 'false',
         'publicationState': 'live'
       }).toString();
-
+      
+      const token = Cookies.get(COOKIE_NAME);
+      
       const response = await fetch(`${API_URL}/api/events?${queryParams}`, {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       });
@@ -94,7 +97,7 @@ export const EventsAPI = {
       }
 
       // Cookie'den token'ı al
-      const token = Cookies.get('jwt');
+      const token = Cookies.get(COOKIE_NAME);
 
       // Debug için
       console.log('JWT Token:', token);
@@ -155,7 +158,7 @@ export const EventsAPI = {
         throw new Error('API URL tanımlanmamış');
       }
 
-      const token = Cookies.get('jwt');
+      const token = Cookies.get(COOKIE_NAME);
       if (!token) {
         throw new Error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
       }
@@ -186,7 +189,7 @@ export const EventsAPI = {
         throw new Error('API URL tanımlanmamış');
       }
 
-      const token = Cookies.get('jwt');
+      const token = Cookies.get(COOKIE_NAME);
       if (!token) {
         throw new Error('Oturum süreniz dolmuş');
       }

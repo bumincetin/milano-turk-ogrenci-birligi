@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 interface FormData {
     email: string
@@ -13,6 +14,7 @@ interface FormData {
 
 export default function LoginSectionSignUpWhitePattern1() {
     const { login } = useAuth()
+    const router = useRouter()
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: '',
@@ -31,7 +33,7 @@ export default function LoginSectionSignUpWhitePattern1() {
             
             console.log('Login successful:', data)
 
-            window.location.href = '/'
+            router.push('/dashboard/profile')
         } catch (error: any) {
             console.error('Giriş hatası:', error)
             setError('E-posta veya şifre hatalı')

@@ -31,6 +31,9 @@ export const userService = {
 
   async getProfile(userId: string, token: string) {
     try {
+
+      console.log("GET USER PROFILE",token)
+
       const response = await axios.get(
         `${API_URL}/api/users/${userId}?populate=*`,
         {
