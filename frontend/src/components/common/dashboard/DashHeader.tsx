@@ -7,7 +7,7 @@ const Header: React.FC = () => {
         <div className="w-full md:w-1/2 p-2">
           <ul className="flex flex-wrap items-center gap-x-3 mb-2">
             <li>
-              <a className="flex font-medium text-xs text-coolGray-500 hover:text-coolGray-700" href="#">
+              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
                 <svg
                   className="mr-2"
                   width="16"
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
               </svg>
             </li>
             <li>
-              <a className="flex font-medium text-xs text-coolGray-500 hover:text-coolGray-700" href="#">
+              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
                 Products
               </a>
             </li>
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
               </svg>
             </li>
             <li>
-              <a className="flex font-medium text-xs text-coolGray-500 hover:text-coolGray-700" href="#">
+              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
                 Lorem Ipsum
               </a>
             </li>
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
         <div className="w-full md:w-1/2 p-2">
           <div className="flex flex-wrap justify-end -m-2">
             <div className="w-full md:w-auto p-2">
-              <button className="flex flex-wrap items-center justify-center py-3 px-4 w-full text-base text-coolGray-500 font-medium bg-white border border-gray-200 hover:border-gray-300 rounded-md shadow-button">
+              <button className="flex flex-wrap items-center justify-center py-3 px-4 w-full text-base text-gray-500 font-medium bg-white border border-gray-200 hover:border-gray-300 rounded-md shadow-button">
                 <svg
                   className="mr-2"
                   width="20"
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
               </button>
             </div>
             <div className="w-full md:w-auto p-2">
-              <button className="flex flex-wrap items-center justify-center py-3 px-4 w-full text-base text-white font-medium bg-green-500 hover:bg-green-600 rounded-md shadow-button">
+              <button className="flex flex-wrap items-center justify-center py-3 px-4 w-full text-base text-white font-medium bg-primary-500 hover:bg-primary-600 rounded-md shadow-button">
                 <svg
                   className="mr-2"
                   width="20"

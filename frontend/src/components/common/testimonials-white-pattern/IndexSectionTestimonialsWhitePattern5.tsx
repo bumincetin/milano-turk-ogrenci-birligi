@@ -49,13 +49,13 @@ export default function IndexSectionTestimonialsWhitePattern5() {
             <div className="container px-4 mx-auto">
                 {/* Başlık Bölümü */}
                 <div className="mb-16">
-                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-9xl">
+                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         Referanslar
                     </span>
                     <h2 className="mb-4 text-4xl md:text-5xl leading-tight font-semibold tracking-tighter">
                         MTÖB Üyelerinden Yorumlar
                     </h2>
-                    <p className="text-xl font-medium text-coolGray-500">
+                    <p className="text-xl font-medium text-gray-500">
                         Milano Türk Öğrenci Birliği, üyelerimiz için güçlü bir destek ve dayanışma platformu sunmaktadır.
                     </p>
                 </div>
@@ -74,7 +74,7 @@ export default function IndexSectionTestimonialsWhitePattern5() {
                                 <h4 className="mb-1 text-lg font-semibold">
                                     {testimonial.name}
                                 </h4>
-                                <p className="text-lg text-coolGray-400">
+                                <p className="text-lg text-gray-500">
                                     {testimonial.title}
                                 </p>
                             </div>

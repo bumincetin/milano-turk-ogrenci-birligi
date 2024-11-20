@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
           <li>
             <button 
               onClick={() => setIsDashboardOpen(!isDashboardOpen)}
-              className="w-full p-3 py-4 flex items-center justify-between text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md"
+              className="w-full p-3 py-4 flex items-center justify-between text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md"
             >
               <div className="flex items-center">
                 <Image src="/flex-ui-assets/elements/dashboard/icons/dashboard-icon.svg" alt="Dashboard" width={24} height={24} />
@@ -68,13 +68,13 @@ const Sidebar: React.FC = () => {
             </button>
             {isDashboardOpen && (
               <ul className="ml-8 mt-2 space-y-2">
-                <li><Link href="/dashboard/overview" className="text-gray-400 hover:text-green-500 block py-2">Overview</Link></li>
-                <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-green-500 block py-2">Notifications</Link></li>
+                <li><Link href="/dashboard/overview" className="text-gray-400 hover:text-primary-500 block py-2">Overview</Link></li>
+                <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-primary-500 block py-2">Notifications</Link></li>
               </ul>
             )}
           </li>
           <li>
-            <Link href="/dashboard/projects" className="p-3 py-4 flex items-center text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/projects" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/layer-icon.svg" 
@@ -88,7 +88,7 @@ const Sidebar: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/tasks" className="p-3 py-4 flex items-center text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/tasks" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/check-box.svg" 
@@ -107,7 +107,7 @@ const Sidebar: React.FC = () => {
         <p className="px-8 mb-2 text-xs font-medium text-gray-500 uppercase">Çalışma Alanı</p>
         <ul className="px-4 pb-8">
           <li>
-            <Link href="/dashboard/community" className="p-3 py-4 flex items-center text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/community" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/community-icon.svg" 
@@ -121,7 +121,7 @@ const Sidebar: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/calendar" className="p-3 py-4 flex items-center text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/calendar" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/calendar-icon.svg" 
@@ -138,7 +138,7 @@ const Sidebar: React.FC = () => {
           <li>
             <button 
               onClick={() => setIsPagesOpen(!isPagesOpen)}
-              className="w-full p-3 py-4 flex items-center justify-between text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md"
+              className="w-full p-3 py-4 flex items-center justify-between text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md"
             >
               <div className="flex items-center">
                 <Image 
@@ -156,13 +156,13 @@ const Sidebar: React.FC = () => {
             </button>
             {isPagesOpen && (
               <ul className="ml-8 mt-2 space-y-2">
-                <li><Link href="/dashboard/pages/page1" className="text-gray-400 hover:text-green-500 block py-2">Page 1</Link></li>
-                <li><Link href="/dashboard/pages/page2" className="text-gray-400 hover:text-green-500 block py-2">Page 2</Link></li>
+                <li><Link href="/dashboard/pages/page1" className="text-gray-400 hover:text-primary-500 block py-2">Page 1</Link></li>
+                <li><Link href="/dashboard/pages/page2" className="text-gray-400 hover:text-primary-500 block py-2">Page 2</Link></li>
               </ul>
             )}
           </li>
           <li>
-            <Link href="/dashboard/analytics" className="p-3 py-4 flex items-center text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/analytics" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/analytics-icon.svg" 
@@ -181,7 +181,7 @@ const Sidebar: React.FC = () => {
         <p className="px-8 mb-2 text-xs font-medium text-gray-500 uppercase">Ayarlar</p>
         <ul className="px-4 pb-28">
           <li>
-            <Link href="/dashboard/profile" className="p-3 py-4 flex items-center justify-between text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/profile" className="p-3 py-4 flex items-center justify-between text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/account-icon.svg" 
@@ -195,7 +195,7 @@ const Sidebar: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/settings" className="p-3 py-4 flex items-center justify-between text-gray-600 hover:text-green-500 hover:bg-gray-800 rounded-md">
+            <Link href="/dashboard/settings" className="p-3 py-4 flex items-center justify-between text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
               <div className="flex items-center">
                 <Image 
                   src="/flex-ui-assets/elements/dashboard/icons/settings-icon.svg" 

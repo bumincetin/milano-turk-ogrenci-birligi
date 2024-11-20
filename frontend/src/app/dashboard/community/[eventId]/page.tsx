@@ -195,8 +195,8 @@ const EventDetailPage: FC = () => {
                   : isEnrollmentClosed(event.attributes.last_enroll_time)
                   ? 'bg-gray-400 cursor-not-allowed'
                   : enrollingEventId === event.id
-                  ? 'bg-green-400 cursor-wait'
-                  : 'bg-green-500 hover:bg-green-600'
+                  ? 'bg-primary-400 cursor-wait'
+                  : 'bg-primary-500 hover:bg-primary-600'
               }`}
             >
               {event.attributes.current_person_count === event.attributes.person_limit 

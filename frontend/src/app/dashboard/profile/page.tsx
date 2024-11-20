@@ -193,8 +193,8 @@ const ProfilePage: FC = () => {
           <div className="pb-6 border-b border-coolGray-100">
             <div className="flex flex-wrap items-center justify-between -m-2">
               <div className="w-full md:w-auto p-2">
-                <h2 className="text-coolGray-900 text-lg font-semibold">Profil Bilgileri</h2>
-                <p className="text-xs text-coolGray-500 font-medium">Hesap detaylarınız</p>
+                <h2 className="text-black-900 text-lg font-semibold">Profil Bilgileri</h2>
+                <p className="text-xs text-gray-500 font-medium">Hesap detaylarınız</p>
               </div>
               <div className="w-full md:w-auto p-2">
                 {isEditing ? (
@@ -202,14 +202,14 @@ const ProfilePage: FC = () => {
                     <button 
                       onClick={() => setIsEditing(false)}
                       disabled={isLoading}
-                      className="px-4 py-2 text-sm text-coolGray-500 hover:text-coolGray-600 border border-coolGray-200 hover:border-coolGray-300 rounded-md shadow-button"
+                      className="px-4 py-2 text-sm text-gray-500 hover:text-black-600 border border-coolGray-200 hover:border-coolGray-300 rounded-md shadow-button"
                     >
                       İptal
                     </button>
                     <button 
                       onClick={handleSubmit}
                       disabled={isLoading}
-                      className="px-4 py-2 text-sm text-white bg-green-500 hover:bg-green-600 rounded-md shadow-button flex items-center"
+                      className="px-4 py-2 text-sm text-white bg-primary-500 hover:bg-primary-600 rounded-md shadow-button flex items-center"
                     >
                       {isLoading ? (
                         <>
@@ -224,7 +224,7 @@ const ProfilePage: FC = () => {
                 ) : (
                   <button 
                     onClick={() => setIsEditing(true)}
-                    className="px-4 py-2 text-sm text-white bg-green-500 hover:bg-green-600 rounded-md shadow-button"
+                    className="px-4 py-2 text-sm text-white bg-primary-500 hover:bg-primary-600 rounded-md shadow-button"
                   >
                     Güncelle
                   </button>
@@ -238,10 +238,10 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Ad Soyad</p>
+                  <p className="text-sm text-black-800 font-semibold">Ad Soyad</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
-                  <p className="text-base text-coolGray-900">{userData.firstName} {userData.lastName}</p>
+                  <p className="text-base text-black-900">{userData.firstName} {userData.lastName}</p>
                 </div>
               </div>
             </div>
@@ -252,10 +252,10 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Email</p>
+                  <p className="text-sm text-black-800 font-semibold">Email</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
-                  <p className="text-base text-coolGray-900">{userData.email}</p>
+                  <p className="text-base text-black-900">{userData.email}</p>
                 </div>
               </div>
             </div>
@@ -266,13 +266,13 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Profil Fotoğrafı</p>
+                  <p className="text-sm text-black-800 font-semibold">Profil Fotoğrafı</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   <div className="flex items-center gap-4">
                     <AvatarDisplay />
                     {isEditing && (
-                      <div className="relative flex flex-col items-center justify-center p-6 h-44 text-center text-green-500 focus-within:border-green-500 border border-dashed border-coolGray-200 rounded-lg flex-1">
+                      <div className="relative flex flex-col items-center justify-center p-6 h-44 text-center text-primary-500 focus-within:border-primary-500 border border-dashed border-coolGray-200 rounded-lg flex-1">
                         <svg
                           className="mb-1.5"
                           width="24"
@@ -286,10 +286,10 @@ const ProfilePage: FC = () => {
                             fill="currentColor"
                           />
                         </svg>
-                        <p className="mb-1 text-sm text-coolGray-800 font-medium">
-                          <span className="text-green-500">Dosya yüklemek için tıklayın</span> veya sürükleyip bırakın
+                        <p className="mb-1 text-sm text-black-800 font-medium">
+                          <span className="text-primary-500">Dosya yüklemek için tıklayın</span> veya sürükleyip bırakın
                         </p>
-                        <p className="text-xs text-coolGray-500 font-medium">PNG, JPG, GIF veya en fazla 10MB</p>
+                        <p className="text-xs text-gray-500 font-medium">PNG, JPG, GIF veya en fazla 10MB</p>
                         <input 
                           className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" 
                           type="file"
@@ -309,18 +309,18 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Doğum Tarihi</p>
+                  <p className="text-sm text-black-800 font-semibold">Doğum Tarihi</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <input
                       type="date"
-                      className="w-full px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                       value={userData.birthDate}
                       onChange={(e) => setUserData({...userData, birthDate: e.target.value})}
                     />
                   ) : (
-                    <p className="text-base text-coolGray-900">
+                    <p className="text-base text-black-900">
                       {new Date(userData.birthDate).toLocaleDateString('tr-TR')}
                     </p>
                   )}
@@ -334,25 +334,25 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Üniversite Bilgileri</p>
+                  <p className="text-sm text-black-800 font-semibold">Üniversite Bilgileri</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <div className="space-y-3">
                       <input
-                        className="w-full px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                         value={userData.university}
                         placeholder="Üniversite"
                         onChange={(e) => setUserData({...userData, university: e.target.value})}
                       />
                       <input
-                        className="w-full px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                         value={userData.department}
                         placeholder="Bölüm"
                         onChange={(e) => setUserData({...userData, department: e.target.value})}
                       />
                       <select
-                        className="w-full px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                         value={userData.year}
                         onChange={(e) => setUserData({...userData, year: e.target.value})}
                       >
@@ -365,9 +365,9 @@ const ProfilePage: FC = () => {
                     </div>
                   ) : (
                     <div className="space-y-1">
-                      <p className="text-base text-coolGray-900">{userData.university}</p>
-                      <p className="text-base text-coolGray-900">{userData.department}</p>
-                      <p className="text-base text-coolGray-900">{userData.year}</p>
+                      <p className="text-base text-black-900">{userData.university}</p>
+                      <p className="text-base text-black-900">{userData.department}</p>
+                      <p className="text-base text-black-900">{userData.year}</p>
                     </div>
                   )}
                 </div>
@@ -380,12 +380,12 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">LinkedIn</p>
+                  <p className="text-sm text-black-800 font-semibold">LinkedIn</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <input
-                      className="w-full px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                       value={userData.linkedin}
                       onChange={(e) => setUserData({...userData, linkedin: e.target.value})}
                     />
@@ -409,18 +409,18 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Kendini Tanıt</p>
-                  <p className="text-xs text-coolGray-500">Kısa bir açıklama yazın</p>
+                  <p className="text-sm text-black-800 font-semibold">Kendini Tanıt</p>
+                  <p className="text-xs text-gray-500">Kısa bir açıklama yazın</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <textarea
-                      className="w-full h-32 px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full h-32 px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                       value={userData.description}
                       onChange={(e) => setUserData({...userData, description: e.target.value})}
                     />
                   ) : (
-                    <p className="text-base text-coolGray-900">{userData.description}</p>
+                    <p className="text-base text-black-900">{userData.description}</p>
                   )}
                 </div>
               </div>
@@ -432,17 +432,17 @@ const ProfilePage: FC = () => {
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
-                  <p className="text-sm text-coolGray-800 font-semibold">Hakkında</p>
+                  <p className="text-sm text-black-800 font-semibold">Hakkında</p>
                 </div>
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <textarea
-                      className="w-full h-32 px-4 py-2.5 text-base text-coolGray-900 font-normal outline-none focus:border-green-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full h-32 px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
                       value={userData.bio}
                       onChange={(e) => setUserData({...userData, bio: e.target.value})}
                     />
                   ) : (
-                    <p className="text-base text-coolGray-900">{userData.bio}</p>
+                    <p className="text-base text-black-900">{userData.bio}</p>
                   )}
                 </div>
               </div>

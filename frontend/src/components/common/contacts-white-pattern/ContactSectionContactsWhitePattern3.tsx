@@ -5,13 +5,13 @@ export default function ContactSectionContactsWhitePattern3() {
         <section className="pt-20 bg-white" style={{backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', backgroundPosition: 'center'}}>
             <div className="container px-4 mx-auto">
                 <div className="max-w-4xl mx-auto mb-16 text-center">
-                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-9xl">
+                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         İletişim
                     </span>
                     <h3 className="mb-4 text-4xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
                         Bağlantıda Kalalım
                     </h3>
-                    <p className="text-lg md:text-xl text-coolGray-500 font-medium">
+                    <p className="text-lg md:text-xl text-gray-500 font-medium">
                         Bizimle iletişime geçmek hiç bu kadar kolay olmamıştı. Bizi arayın, canlı sohbet özelliğimizi kullanın veya e-posta gönderin, en kısa sürede size geri döneceğiz!
                     </p>
                 </div>
@@ -28,7 +28,7 @@ export default function ContactSectionContactsWhitePattern3() {
                 </div>
             </div>
             
-            <div className="h-2 bg-green-500" />
+            <div className="h-2 bg-primary-500" />
             
             <div 
                 className="py-24 md:py-64 bg-coolGray-900" 

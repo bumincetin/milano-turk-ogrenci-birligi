@@ -59,13 +59,13 @@ export default function IndexSectionTeamWhitePattern9() {
             <div className="container px-4 mx-auto">
                 {/* Başlık Bölümü */}
                 <div className="mb-16 text-center">
-                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-9xl">
+                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         Ekibimiz
                     </span>
-                    <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-coolGray-900 font-bold tracking-tighter">
+                    <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-black-900 font-bold tracking-tighter">
                         MTÖB Yönetim Ekibi ile Tanışın
                     </h3>
-                    <p className="mb-8 text-lg md:text-xl text-coolGray-500 font-medium">
+                    <p className="mb-8 text-lg md:text-xl text-gray-500 font-medium">
                         Milano'da öğrenim gören Türk öğrenciler için çalışan gönüllü ve tutkulu bir ekip.
                     </p>
                 </div>
@@ -88,10 +88,10 @@ export default function IndexSectionTeamWhitePattern9() {
                                 <h3 className="mb-2 text-2xl md:text-3xl leading-tight font-semibold">
                                     {member.name}
                                 </h3>
-                                <span className="inline-block mb-6 text-lg font-medium text-green-500">
+                                <span className="inline-block mb-6 text-lg font-medium text-primary-500">
                                     {member.title}
                                 </span>
-                                <p className="mb-8 text-coolGray-500 font-medium">
+                                <p className="mb-8 text-gray-500 font-medium">
                                     {member.quote}
                                 </p>
                                 <div className="flex items-center justify-center">

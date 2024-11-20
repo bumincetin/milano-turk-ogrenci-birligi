@@ -40,13 +40,13 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
             <div className="container px-4 mx-auto">
                 {/* Başlık Bölümü */}
                 <div className="mb-8 text-center">
-                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-9xl">
+                    <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         İş Birliklerimiz
                     </span>
-                    <h3 className="mb-4 text-4xl md:text-5xl text-coolGray-900 font-bold tracking-tighter">
+                    <h3 className="mb-4 text-4xl md:text-5xl text-black-900 font-bold tracking-tighter">
                         Güçlü iş ortaklarımızla hedeflerimize ulaşmayı destekliyoruz
                     </h3>
-                    <p className="text-lg md:text-xl text-coolGray-500 font-medium">
+                    <p className="text-lg md:text-xl text-gray-500 font-medium">
                         Milano'da öğrenim gören Türk öğrenciler olarak eğitim ve kültürel alanlarda destek alıyoruz.
                     </p>
                 </div>

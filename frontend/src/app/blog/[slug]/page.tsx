@@ -101,7 +101,7 @@ function BlogContent({ slug }: { slug: string }) {
               href={block.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-500 hover:text-green-600 underline"
+              className="text-primary-500 hover:text-primary-600 underline"
             >
               {block.children[0].text}
             </a>
@@ -129,7 +129,7 @@ function BlogContent({ slug }: { slug: string }) {
           return (
             <blockquote 
               key={index}
-              className="border-l-4 border-green-500 pl-4 my-4 italic"
+              className="border-l-4 border-primary-500 pl-4 my-4 italic"
             >
               {block.children[0].text}
             </blockquote>
@@ -191,13 +191,13 @@ function BlogContent({ slug }: { slug: string }) {
   return (
     <article className="container mx-auto px-4 py-16 max-w-4xl bg-white">
       <div className="mb-8">
-        <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-full shadow-sm">
+        <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">
           Blog
         </span>
         <h1 className="mb-4 text-3xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
           {blog.attributes.title}
         </h1>
-        <div className="mb-6 text-coolGray-500">
+        <div className="mb-6 text-gray-500">
           <time>{formatDate(blog.attributes.publishedAt)}</time>
         </div>
       </div>
@@ -214,7 +214,7 @@ function BlogContent({ slug }: { slug: string }) {
         </div>
       )}
 
-      <div className="prose prose-lg max-w-none text-coolGray-500 bg-white">
+      <div className="prose prose-lg max-w-none text-gray-500 bg-white">
         {blog.attributes.content && renderContent(blog.attributes.content)}
       </div>
     </article>

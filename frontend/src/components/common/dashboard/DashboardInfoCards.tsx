@@ -9,7 +9,7 @@ const InfoCards: React.FC = () => {
             <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
-                  <h3 className="text-sm text-coolGray-500 font-medium">
+                  <h3 className="text-sm text-gray-500 font-medium">
                     Summary
                   </h3>
                 </div>
@@ -30,10 +30,10 @@ const InfoCards: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <h2 className="text-center font-medium text-5xl text-coolGray-900 tracking-tighter">
+              <h2 className="text-center font-medium text-5xl text-black-900 tracking-tighter">
                 21
               </h2>
-              <p className="text-center max-w-max mx-auto px-2 py-1 text-green-500 font-medium text-xs bg-green-100 rounded-full">
+              <p className="text-center max-w-max mx-auto px-2 py-1 text-primary-500 font-medium text-xs bg-primary-100 rounded-full">
                 Due Tasks
               </p>
             </div>
@@ -42,7 +42,7 @@ const InfoCards: React.FC = () => {
             <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
-                  <h3 className="text-sm text-coolGray-500 font-medium">
+                  <h3 className="text-sm text-gray-500 font-medium">
                     Overdue
                   </h3>
                 </div>
@@ -63,7 +63,7 @@ const InfoCards: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <h2 className="text-center font-medium text-5xl text-coolGray-900 tracking-tighter">
+              <h2 className="text-center font-medium text-5xl text-black-900 tracking-tighter">
                 17
               </h2>
               <p className="text-center max-w-max mx-auto px-2 py-1 text-red-500 font-medium text-xs bg-red-100 rounded-full">
@@ -75,7 +75,7 @@ const InfoCards: React.FC = () => {
             <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
-                  <h3 className="text-sm text-coolGray-500 font-medium">
+                  <h3 className="text-sm text-gray-500 font-medium">
                     Issues
                   </h3>
                 </div>
@@ -96,7 +96,7 @@ const InfoCards: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <h2 className="text-center font-medium text-5xl text-coolGray-900 tracking-tighter">
+              <h2 className="text-center font-medium text-5xl text-black-900 tracking-tighter">
                 21
               </h2>
               <p className="text-center max-w-max mx-auto px-2 py-1 text-yellow-500 font-medium text-xs bg-yellow-100 rounded-full">
@@ -108,7 +108,7 @@ const InfoCards: React.FC = () => {
             <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
-                  <h3 className="text-sm text-coolGray-500 font-medium">
+                  <h3 className="text-sm text-gray-500 font-medium">
                     Features
                   </h3>
                 </div>
@@ -129,10 +129,10 @@ const InfoCards: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <h2 className="text-center font-medium text-5xl text-coolGray-900 tracking-tighter">
+              <h2 className="text-center font-medium text-5xl text-black-900 tracking-tighter">
                 38
               </h2>
-              <p className="text-center max-w-max mx-auto px-2 py-1 text-green-500 font-medium text-xs bg-green-100 rounded-full">
+              <p className="text-center max-w-max mx-auto px-2 py-1 text-primary-500 font-medium text-xs bg-primary-100 rounded-full">
                 Proposals
               </p>
             </div>

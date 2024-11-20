@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
   return (
     <section className="bg-coolGray-50 py-4">
       <div className="container px-4 mx-auto">
-        <div className="relative py-11 px-16 bg-green-500 rounded-md overflow-hidden">
+        <div className="relative py-11 px-16 bg-primary-500 rounded-md overflow-hidden">
           <img
             className="absolute z-10 left-4 top-4"
             src="flex-ui-assets/elements/dashboard/banners/dots-red.svg"
@@ -25,12 +25,12 @@ const Footer: React.FC = () => {
               <h2 className="mb-6 text-4xl font-bold text-white tracking-tighter">
                 Ideal banner asset for your dashboard project
               </h2>
-              <p className="font-semibold text-coolGray-200">
+              <p className="font-semibold text-black-200">
                 Go global with our UI Resources and solutions
               </p>
             </div>
             <div className="w-full md:w-1/2 p-3">
-              <button className="block md:ml-auto px-7 py-4 font-medium text-lg text-coolGray-800 bg-white hover:bg-coolGray-50 rounded-md">
+              <button className="block md:ml-auto px-7 py-4 font-medium text-lg text-black-800 bg-white hover:bg-coolGray-50 rounded-md">
                 Get Started
               </button>
             </div>

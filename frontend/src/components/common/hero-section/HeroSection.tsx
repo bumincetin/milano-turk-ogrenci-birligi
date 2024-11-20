@@ -8,20 +8,20 @@ export default function HeroSection() {
             <div className="container px-4 mx-auto">
                 <div className="flex flex-wrap xl:items-center -mx-4">
                     <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-                        <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-green-500 uppercase rounded-9xl">
+                        <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-white bg-primary-500 uppercase rounded-9xl">
                             YENİ SİTEMİZE HOŞGELDİNİZ
                         </span>
                         <h1 className="mb-6 text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight">
                             Milano Türk Öğrenci Birliğine Hoşgeldiniz!
                         </h1>
-                        <p className="mb-8 text-lg md:text-xl text-coolGray-500 font-medium">
+                        <p className="mb-8 text-lg md:text-xl text-gray-500 font-medium">
                             Milano'da öğrenim gören tüm Türk öğrencilerin dayanışmasını sağlamak amacıyla kurulmuş bir topluluktur.
                         </p>
                         <div className="flex flex-wrap">
                             <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
                                 <Link 
                                     href="https://chat.whatsapp.com/GABp3SSF9QH6KWMWVJ5Jgp"
-                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-green-50 font-medium text-center bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-green-500 rounded-md shadow-sm"
+                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-primary-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-primary-500 rounded-md shadow-sm"
                                 >
                                     WhatsApp
                                 </Link>
@@ -29,7 +29,7 @@ export default function HeroSection() {
                             <div className="w-full md:w-auto py-1 md:py-0">
                                 <Link 
                                     href="https://www.instagram.com/milanoturkogrencibirligi/"
-                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-coolGray-800 font-medium text-center bg-white hover:bg-coolGray-100 focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
+                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-black-800 font-medium text-center bg-white hover:bg-coolGray-100 focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
                                 >
                                     Instagram
                                 </Link>
