@@ -10,14 +10,15 @@ interface User {
     profileImage?: string
     username: string
     telephone: string
-    UniversityName: string
-    UniversityDepartment: string
-    UniversityClass: string
+    universityName: string
+    universityDepartment: string
+    universityClass: string
 }
 
 interface AuthContextType {
     user: User | null
     login: (credentials: { identifier: string; password: string }) => Promise<any>
+    login_with_token: (token: string) => void
     logout: () => void
     loading?: boolean
 }
@@ -59,6 +60,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             throw error;
         }
     };
+
+    const login_with_token = async (token: string) => {
+        Cookies.set(COOKIE_NAME, token, { 
+            expires: 7,
+            path: '/',
+            sameSite: 'lax'
+        });
+    }
 
     const logout = () => {
         Cookies.remove(COOKIE_NAME, { path: '/' });
@@ -103,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, loading, login_with_token }}>
             {children}
         </AuthContext.Provider>
     );

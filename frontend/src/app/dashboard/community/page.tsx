@@ -222,12 +222,12 @@ const CommunityPage: FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-start">
           {getFilteredAndSortedEvents().map((event) => (
             <div key={event.id} className="border rounded-lg overflow-hidden shadow-lg">
-              <div className="relative h-48">
+              <div className="relative h-48 overflow-hidden">
                 {event.attributes.cover?.data?.attributes?.url ? (
-                  <Image
+                  <img
                     src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${event.attributes.cover.data.attributes.url}`}
                     alt={event.attributes.title}
-                    fill
+                    style={{ objectFit: 'cover' }}
                     className="object-cover"
                   />
                 ) : (

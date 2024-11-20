@@ -102,9 +102,9 @@ const ProfilePage: FC = () => {
 
       // Strapi'ye gönderilecek verileri hazırla
       const updateData = {
-        UniversityName: userData.university || null,
-        UniversityDepartment: userData.department || null,
-        UniversityClass: userData.year || null,
+        universityName: userData.university || null,
+        universityDepartment: userData.department || null,
+        universityClass: userData.year || null,
         linkedin: userData.linkedin || null,
         twitter: userData.twitter || null,
         telephone: userData.phone || null,
