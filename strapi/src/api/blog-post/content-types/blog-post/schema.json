@@ -52,7 +52,7 @@
       },
       "type": "blocks"
     },
-    "over": {
+    "cover": {
       "type": "media",
       "multiple": false,
       "required": false,

@@ -924,7 +924,7 @@ export interface ApiBlogPostBlogPost extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    over: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    cover: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
