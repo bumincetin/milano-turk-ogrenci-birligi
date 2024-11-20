@@ -771,7 +771,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.role'
     >;
     name: Attribute.String & Attribute.Required;
-    lastname: Attribute.String & Attribute.Unique;
+    lastname: Attribute.String;
     description: Attribute.Text;
     birthday: Attribute.Date;
     avatar: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
@@ -799,9 +799,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 14;
       }>;
-    UniversityName: Attribute.String & Attribute.Required;
-    UniversityDepartment: Attribute.String & Attribute.Required;
-    UniversityClass: Attribute.String & Attribute.Required;
+    universityName: Attribute.String & Attribute.Required;
+    universityDepartment: Attribute.String & Attribute.Required;
+    universityClass: Attribute.String & Attribute.Required;
     blog_posts: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',

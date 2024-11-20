@@ -70,8 +70,7 @@
       "required": true
     },
     "lastname": {
-      "type": "string",
-      "unique": true
+      "type": "string"
     },
     "description": {
       "type": "text"
@@ -128,15 +127,15 @@
       "regex": "^(\\+90|0)?\\s*(\\(\\d{3}\\)[\\s-]*\\d{3}[\\s-]*\\d{2}[\\s-]*\\d{2}|\\(\\d{3}\\)[\\s-]*\\d{3}[\\s-]*\\d{4}|\\(\\d{3}\\)[\\s-]*\\d{7}|\\d{3}[\\s-]*\\d{3}[\\s-]*\\d{4}|\\d{3}[\\s-]*\\d{3}[\\s-]*\\d{2}[\\s-]*\\d{2})$",
       "maxLength": 14
     },
-    "UniversityName": {
+    "universityName": {
       "type": "string",
       "required": true
     },
-    "UniversityDepartment": {
+    "universityDepartment": {
       "type": "string",
       "required": true
     },
-    "UniversityClass": {
+    "universityClass": {
       "type": "string",
       "required": true
     },

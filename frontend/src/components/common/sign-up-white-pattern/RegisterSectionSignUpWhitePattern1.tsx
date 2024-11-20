@@ -43,7 +43,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
 
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const { login } = useAuth()
+    const { login, login_with_token } = useAuth()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -54,55 +54,65 @@ export default function RegisterSectionSignUpWhitePattern1() {
             const randomNum = Math.floor(Math.random() * 10000);
             const uniqueUsername = `${formData.name.toLowerCase().replace(/\s+/g, '-')}-${randomNum}`;
             const nameParts = formData.name.trim().split(' ');
-            const lastname = nameParts.pop() || ''; // Son kelimeyi soyisim olarak al
-            const firstname = nameParts.join(' '); // Geri kalan tüm kelimeleri isim olarak birleştir
+            const lastname = nameParts.pop() || '';
+            const firstname = nameParts.join(' ');
 
+            const register_Data = {
+                username: uniqueUsername,
+                email: formData.email,
+                password: formData.password,
+                name: firstname,
+                lastname: lastname,
+                telephone: formData.telephone,
+                universityName: formData.universityName,
+                universityDepartment: formData.department,
+                universityClass: formData.year
+            };
+            console.log(register_Data);
             const registerResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    name: firstname,
-                    lastname: lastname,
-                    username: uniqueUsername,
-                    email: formData.email,
-                    password: formData.password,
-                    telephone: formData.telephone,
-                    UniversityName: formData.universityName,
-                    UniversityDepartment: formData.department,
-                    UniversityClass: formData.year
-                }),
+                body: JSON.stringify(register_Data)
+            })
+            .then(response => response.json())
+            .then(async (data) => {
+                console.log('Kayıt yanıtı:', data);
+
+                const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        identifier: formData.email,
+                        password: formData.password,
+                    }),
+                });
+    
+                const loginData = await loginResponse.json();
+                console.log('Giriş yanıtı:', loginData);
+    
+                if (!loginResponse.ok) {
+                    throw new Error(loginData.error?.message || 'Giriş sırasında bir hata oluştu');
+                }
+    
+                await login_with_token(loginData.jwt);
+                console.log('JWT token kaydedildi:', loginData.jwt);
+
+                window.location.href = '/dashboard/profile';
+            })
+            .catch(error => {
+                console.error('Kayıt hatası:', error);
             });
 
-            const registerData = await registerResponse.json();
-            console.log('Kayıt yanıtı:', registerData);
+            // const registerData = await registerResponse.json();
+            // console.log('Kayıt yanıtı:', registerData);
 
-            if (!registerResponse.ok) {
-                throw new Error(registerData.error?.message || 'Kayıt sırasında bir hata oluştu');
-            }
-
-            const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    identifier: formData.email,
-                    password: formData.password,
-                }),
-            });
-
-            const loginData = await loginResponse.json();
-            console.log('Giriş yanıtı:', loginData);
-
-            if (!loginResponse.ok) {
-                throw new Error(loginData.error?.message || 'Giriş sırasında bir hata oluştu');
-            }
-
-            await login(loginData.jwt);
-            console.log('JWT token kaydedildi:', loginData.jwt);
-            window.location.href = '/';
+            // if (!registerResponse.ok) {
+            //     throw new Error(registerData.error?.message || 'Kayıt sırasında bir hata oluştu');
+            // }
         } catch (error) {
             console.error('Kayıt veya giriş hatası:', error);
             setError(error instanceof Error ? error.message : 'Beklenmeyen bir hata oluştu');
