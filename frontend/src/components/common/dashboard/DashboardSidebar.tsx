@@ -67,7 +67,7 @@ const Sidebar: React.FC = () => {
         <div className="p-6">
           <Link href="/" className="block">
             <Image
-              src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo.png"
+              src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo-Arka.png"
               alt="Logo"
               width={120}
               height={40}
