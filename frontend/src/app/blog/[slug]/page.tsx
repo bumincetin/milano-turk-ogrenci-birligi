@@ -204,12 +204,11 @@ function BlogContent({ slug }: { slug: string }) {
 
       {blog.attributes.over?.data?.attributes?.url && (
         <div className="mb-8 rounded-lg overflow-hidden">
-          <Image
+          <img
             src={getImageUrl(blog.attributes.over)}
             alt={blog.attributes.title}
-            width={1200}
-            height={600}
-            className="w-full h-auto object-cover"
+            style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+            className="w-full object-cover"
           />
         </div>
       )}
