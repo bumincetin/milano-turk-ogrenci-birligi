@@ -22,6 +22,7 @@ function BlogContent({ slug }: { slug: string }) {
         if (!response.data || response.data.length === 0) {
           notFound();
         }
+        console.log('Blog verisi:', response.data[0]);
         setBlog(response.data[0]);
       } catch (error: any) {
         console.error('Blog detayı yüklenirken hata:', error);
@@ -202,17 +203,18 @@ function BlogContent({ slug }: { slug: string }) {
         </div>
       </div>
 
-      {blog.attributes.over?.data?.attributes?.url && (
+      {blog.attributes.cover?.data?.attributes?.url ? (
         <div className="mb-8 rounded-lg overflow-hidden">
-          <Image
-            src={getImageUrl(blog.attributes.over)}
+          <img
+            src={`${API_URL}${blog.attributes.cover.data.attributes.url}`}
             alt={blog.attributes.title}
+            style={{ objectFit: 'cover' }}
+            className="object-cover"
             width={1200}
             height={600}
-            className="w-full h-auto object-cover"
           />
         </div>
-      )}
+      ) : null}
 
       <div className="prose prose-lg max-w-none text-gray-500 bg-white">
         {blog.attributes.content && renderContent(blog.attributes.content)}
@@ -228,7 +230,7 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
     <div className="min-h-screen bg-white">
       <IndexSectionHeadersWhitePattern2 />
       <Suspense fallback={<div className="text-center py-8">Yükleniyor...</div>}>
-        <BlogContent slug={resolvedParams.slug} />
+        <BlogContent slug={resolvedParams.slug} />ü
       </Suspense>
       <IndexSectionFootersWhitePattern14 />
     </div>

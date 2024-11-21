@@ -71,12 +71,13 @@ export default function IndexSectionBlogWhitePattern7() {
               <div key={blog.id} className="flex flex-wrap items-center w-full xl:w-1/2 px-4 mb-8 md:-mx-4">
                 <div className="w-full md:w-auto md:px-4">
                   <Link href={`/blog/${blog.attributes.slug}`} className="inline-block mb-6 md:mb-0 overflow-hidden rounded-md">
-                    <Image 
-                      src={getImageUrl(blog.attributes.over)}
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${blog.attributes.cover.data.attributes.url}`}
                       alt={blog.attributes.title}
-                      width={300}
-                      height={200}
-                      quality={100}
+                      style={{ objectFit: 'cover' }}
+                      className="object-cover"
+                      width={256}
+                      height={256}
                     />
                   </Link>
                 </div>
