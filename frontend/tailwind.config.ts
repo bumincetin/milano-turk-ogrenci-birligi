@@ -12,17 +12,17 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'primary': {
-        50: '#f9f3f3',  // En açık ton
-        100: '#f3e7e7',
-        200: '#e6cfcf',
-        300: '#d9b7b7',
-        400: '#cc9f9f',
-        500: '#450E0A', // Ana renk
-        600: '#3e0c09', // Hover için biraz daha koyu
-        700: '#370b08',
-        800: '#300907',
-        900: '#290806', // En koyu ton
-      }
+          50: '#fef2f2',   // En açık ton
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#a50e0e',  // Yeni ana renk
+          600: '#940d0d',  // Hover için
+          700: '#830b0b',
+          800: '#720a0a',
+          900: '#610909',  // En koyu ton
+        }
       },
     },
   },
