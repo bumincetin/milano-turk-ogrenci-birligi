@@ -3,16 +3,20 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
+import { toast } from 'sonner'
+import ReactMarkdown from 'react-markdown';
 
 interface FormData {
     name: string
     email: string
     password: string
+    passwordConfirm: string
     rememberMe: boolean
     telephone: string
     universityName: string
     department: string
     year: string
+    privacyPolicy: boolean
 }
 
 interface Testimonial {
@@ -22,16 +26,30 @@ interface Testimonial {
     avatar: string
 }
 
+interface PrivacyPolicy {
+    data: {
+        id: number;
+        attributes: {
+            sozlesme: string;
+            createdAt: string;
+            updatedAt: string;
+            publishedAt: string;
+        };
+    };
+}
+
 export default function RegisterSectionSignUpWhitePattern1() {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
         password: '',
+        passwordConfirm: '',
         rememberMe: false,
         telephone: '',
         universityName: '',
         department: '',
-        year: ''
+        year: '',
+        privacyPolicy: false
     })
 
     const testimonial: Testimonial = {
@@ -44,10 +62,27 @@ export default function RegisterSectionSignUpWhitePattern1() {
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const { login, login_with_token } = useAuth()
+    const [passwordError, setPasswordError] = useState<string | null>(null);
+    const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+    const [privacyPolicyContent, setPrivacyPolicyContent] = useState<string>('');
+    const [isLoadingPolicy, setIsLoadingPolicy] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
+
+        if (!formData.privacyPolicy) {
+            setError('Gizlilik sözleşmesini kabul etmelisiniz');
+            toast.error('Gizlilik sözleşmesini kabul etmelisiniz');
+            return;
+        }
+
+        if (formData.password !== formData.passwordConfirm) {
+            setError('Şifreler eşleşmiyor');
+            toast.error('Şifreler eşleşmiyor');
+            return;
+        }
+
         setIsLoading(true);
 
         try {
@@ -121,6 +156,73 @@ export default function RegisterSectionSignUpWhitePattern1() {
         }
     };
 
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newPassword = e.target.value;
+        setFormData({ ...formData, password: newPassword });
+        
+        if (formData.passwordConfirm && newPassword !== formData.passwordConfirm) {
+            setPasswordError('Şifreler eşleşmiyor');
+        } else {
+            setPasswordError(null);
+        }
+    };
+
+    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const confirmPassword = e.target.value;
+        setFormData({ ...formData, passwordConfirm: confirmPassword });
+        
+        if (formData.password && confirmPassword && formData.password !== confirmPassword) {
+            setPasswordError('Şifreler eşleşmiyor');
+        } else {
+            setPasswordError(null);
+        }
+    };
+
+    const fetchPrivacyPolicy = async () => {
+        setIsLoadingPolicy(true);
+        try {
+            const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/gizlilik-sozlesmesi`;
+            console.log('API URL:', apiUrl);
+            
+            const response = await fetch(apiUrl, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const rawData = await response.json();
+            console.log('API yanıtı:', rawData);
+            
+            const data: PrivacyPolicy = rawData;
+            
+            if (!data?.data?.attributes?.sozlesme) {
+                throw new Error('Gizlilik sözleşmesi içeriği bulunamadı');
+            }
+
+            setPrivacyPolicyContent(data.data.attributes.sozlesme);
+        } catch (error) {
+            console.error('Gizlilik sözleşmesi çekilirken hata oluştu:', error);
+            
+            const errorMessage = error instanceof Error 
+                ? error.message 
+                : 'Gizlilik sözleşmesi yüklenirken bir hata oluştu';
+                
+            toast.error(errorMessage);
+            setPrivacyPolicyContent('Gizlilik sözleşmesi şu anda görüntülenemiyor. Lütfen daha sonra tekrar deneyiniz.');
+        } finally {
+            setIsLoadingPolicy(false);
+        }
+    };
+
+    const handleOpenPrivacyModal = () => {
+        setShowPrivacyModal(true);
+        fetchPrivacyPolicy();
+    };
+
     return (
         <section 
             className="relative pt-16 md:py-32 bg-white" 
@@ -190,14 +292,16 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             id="password"
                                             type="password"
                                             value={formData.password}
-                                            onChange={(e) => setFormData({...formData, password: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            onChange={handlePasswordChange}
+                                            className={`appearance-none block w-full p-3 leading-5 text-black-900 border ${
+                                                passwordError ? 'border-red-500' : 'border-coolGray-200'
+                                            } rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
                                             placeholder="••••••••"
                                             required
                                         />
                                     </div>
 
-                                    {/* Üniversite */}
+                                    {/* Üniversite ve Sınıf alanlarını sağ sütuna taşıyalım */}
                                     <div className="mb-6">
                                         <label className="block mb-2 text-black-800 font-medium" htmlFor="university">
                                             Üniversite*
@@ -255,6 +359,29 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                         />
                                     </div>
 
+                                    {/* Şifre Tekrar */}
+                                    <div className="mb-6">
+                                        <label className="block mb-2 text-black-800 font-medium" htmlFor="passwordConfirm">
+                                            Şifre Tekrar*
+                                        </label>
+                                        <input 
+                                            id="passwordConfirm"
+                                            type="password"
+                                            value={formData.passwordConfirm}
+                                            onChange={handleConfirmPasswordChange}
+                                            className={`appearance-none block w-full p-3 leading-5 text-black-900 border ${
+                                                passwordError ? 'border-red-500' : 'border-coolGray-200'
+                                            } rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
+                                            placeholder="••••••••"
+                                            required
+                                        />
+                                        {passwordError && (
+                                            <p className="mt-1 text-sm text-red-500">
+                                                {passwordError}
+                                            </p>
+                                        )}
+                                    </div>
+                                    
                                      {/* Telefon */}
                                      <div className="mb-6">
                                         <label className="block mb-2 text-black-800 font-medium" htmlFor="phone">
@@ -285,6 +412,29 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                         />
                                     </div>
                                 </div>
+                            </div>
+
+                            {/* Gizlilik Sözleşmesi Checkbox ve Modal */}
+                            <div className="mb-6">
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                    <input 
+                                        type="checkbox"
+                                        checked={formData.privacyPolicy}
+                                        onChange={(e) => setFormData({...formData, privacyPolicy: e.target.checked})}
+                                        className="form-checkbox w-4 h-4 text-primary-500 border border-gray-300 rounded focus:ring-primary-500"
+                                        required
+                                    />
+                                    <span className="ml-2 text-sm text-gray-600">
+                                        <button
+                                            type="button"
+                                            onClick={handleOpenPrivacyModal}
+                                            className="text-primary-500 hover:text-primary-600 hover:underline focus:outline-none"
+                                        >
+                                            Gizlilik Sözleşmesini
+                                        </button>
+                                        {' '}okudum ve kabul ediyorum
+                                    </span>
+                                </label>
                             </div>
 
                             {/* Kayıt Ol Butonu - Grid dışında */}
@@ -377,6 +527,60 @@ export default function RegisterSectionSignUpWhitePattern1() {
                     </div>
                 </div>
             </div>
+
+            {/* Gizlilik Sözleşmesi Modal */}
+            {showPrivacyModal && (
+                <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        {/* Arka plan overlay */}
+                        <div 
+                            className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                            onClick={() => setShowPrivacyModal(false)}
+                        ></div>
+
+                        {/* Modal içeriği */}
+                        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex sm:items-start">
+                                    <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                                        <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4" id="modal-title">
+                                            Gizlilik Sözleşmesi
+                                        </h3>
+                                        <div className="mt-2 max-h-96 overflow-y-auto">
+                                            {isLoadingPolicy ? (
+                                                <div className="flex justify-center items-center py-8">
+                                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+                                                </div>
+                                            ) : (
+                                                <div className="text-sm text-gray-500 prose max-w-none px-4">
+                                                    {privacyPolicyContent ? (
+                                                        <ReactMarkdown>
+                                                            {privacyPolicyContent}
+                                                        </ReactMarkdown>
+                                                    ) : (
+                                                        <p className="text-center text-red-500">
+                                                            Gizlilik sözleşmesi içeriği yüklenemedi.
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <button
+                                    type="button"
+                                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                    onClick={() => setShowPrivacyModal(false)}
+                                >
+                                    Kapat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     )
 }
