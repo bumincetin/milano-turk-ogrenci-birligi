@@ -195,7 +195,7 @@ function BlogContent({ slug }: { slug: string }) {
         <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">
           Blog
         </span>
-        <h1 className="mb-4 text-3xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
+        <h1 className="mb-4 text-3xl md:text-5xl leading-tight text-black-900 font-bold tracking-tighter">
           {blog.attributes.title}
         </h1>
         <div className="mb-6 text-gray-500">

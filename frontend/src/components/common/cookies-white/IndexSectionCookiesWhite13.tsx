@@ -26,7 +26,7 @@ export default function IndexSectionCookiesWhite13() {
         <div className={`fixed bottom-0 z-50 w-full transition-all duration-500 ease-out transform ${
             isClosing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
         }`}>
-            <div className="p-10 md:px-20 lg:px-36 bg-white border border-coolGray-100 shadow-md">
+            <div className="p-10 md:px-20 lg:px-36 bg-white border border-black-100 shadow-md">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap items-center -mx-4">
                         <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
@@ -57,7 +57,7 @@ export default function IndexSectionCookiesWhite13() {
                                 <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
                                     <button 
                                         onClick={() => handleClose(false)}
-                                        className="inline-block py-3 px-5 w-full leading-5 text-black-800 bg-white hover:bg-coolGray-100 font-medium text-center focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
+                                        className="inline-block py-3 px-5 w-full leading-5 text-black-800 bg-white hover:bg-black-100 font-medium text-center focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
                                     >
                                         Kabul Etme
                                     </button>

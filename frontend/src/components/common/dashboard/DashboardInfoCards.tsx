@@ -2,11 +2,11 @@ import React from "react";
 
 const InfoCards: React.FC = () => {
   return (
-    <section className="bg-coolGray-50 py-4">
+    <section className="bg-black-50 py-4">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -m-3">
           <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-            <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
+            <div className="p-6 pb-10 bg-white border border-black-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
                   <h3 className="text-sm text-gray-500 font-medium">
@@ -39,7 +39,7 @@ const InfoCards: React.FC = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-            <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
+            <div className="p-6 pb-10 bg-white border border-black-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
                   <h3 className="text-sm text-gray-500 font-medium">
@@ -72,7 +72,7 @@ const InfoCards: React.FC = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-            <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
+            <div className="p-6 pb-10 bg-white border border-black-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
                   <h3 className="text-sm text-gray-500 font-medium">
@@ -105,7 +105,7 @@ const InfoCards: React.FC = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-            <div className="p-6 pb-10 bg-white border border-coolGray-100 rounded-md shadow-dashboard">
+            <div className="p-6 pb-10 bg-white border border-black-100 rounded-md shadow-dashboard">
               <div className="flex flex-wrap items-end justify-between -m-2 mb-7">
                 <div className="w-auto p-2">
                   <h3 className="text-sm text-gray-500 font-medium">

@@ -40,8 +40,8 @@ export default function IndexSectionHeadersWhitePattern2() {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-gray700 font-medium">{user.name} {user.lastname}</span>
-                            <span className="text-gray700 text-sm">{user.email}</span>
+                            <span className="text-gray-700 font-medium">{user.name} {user.lastname}</span>
+                            <span className="text-gray-700 text-sm">{user.email}</span>
                         </div>
                     </Link>
                     <button 
@@ -61,7 +61,7 @@ export default function IndexSectionHeadersWhitePattern2() {
             <>
                 <Link 
                     href="/giris" 
-                    className="inline-block py-2 px-4 mr-2 leading-5 text-gray700-500 hover:text-gray700-900 bg-transparent font-medium rounded-md"
+                    className="inline-block py-2 px-4 mr-2 leading-5 text-gray-700 hover:text-gray-700 bg-transparent font-medium rounded-md"
                 >
                     Giriş Yap
                 </Link>
@@ -106,7 +106,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                 <li key={index} className={index !== navLinks.length - 1 ? "mr-12" : ""}>
                                     <Link 
                                         href={link.href}
-                                        className="text-gray700 hover:text-gray700-900 font-medium"
+                                        className="text-gray-700 hover:text-gray-700 font-medium"
                                     >
                                         {link.text}
                                     </Link>
@@ -129,15 +129,15 @@ export default function IndexSectionHeadersWhitePattern2() {
                     onClick={() => setIsMenuOpen(true)}
                 >
                     <svg width={35} height={35} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect className="text-gray700-50" width={32} height={32} rx={6} fill="currentColor" />
-                        <path className="text-gray700-500" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12Z" fill="currentColor" />
+                        <rect className="text-gray-700-50" width={32} height={32} rx={6} fill="currentColor" />
+                        <path className="text-gray-700" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12Z" fill="currentColor" />
                     </svg>
                 </button>
             </nav>
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-coolGray-900 bg-opacity-50">
+                <div className="navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-black-900 bg-opacity-50">
                     <div className="fixed top-0 left-0 bottom-0 w-full bg-white">
                         <nav className="relative p-6 h-full overflow-y-auto">
                             <div className="flex flex-col justify-between h-full">
@@ -155,7 +155,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                         <li key={index}>
                                             <Link 
                                                 href={link.href}
-                                                className="block py-3 px-4 text-gray700-500 hover:text-gray700-900 font-medium hover:bg-gray700-50 rounded-md"
+                                                className="block py-3 px-4 text-gray-700 hover:text-gray-700 font-medium hover:bg-gray700-50 rounded-md"
                                             >
                                                 {link.text}
                                             </Link>
@@ -166,7 +166,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                     {user ? (
                                         <div className="w-full flex items-center space-x-4 px-4">
                                             <Link href="/dashboard/profile" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
-                                                <span className="text-gray700-500 font-medium">{user.name}</span>
+                                                <span className="text-gray-700 font-medium">{user.name}</span>
                                                 <div className="h-10 w-10 rounded-full overflow-hidden">
                                                     <Image 
                                                         src={user.profileImage || "/default-avatar.png"}
@@ -183,7 +183,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                             <div className="w-full mb-2">
                                                 <Link 
                                                     href="/giris"
-                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-gray700-500 hover:text-gray700-900 bg-transparent font-medium text-center rounded-md"
+                                                    className="inline-block py-2 px-4 w-full text-sm leading-5 text-gray-700 hover:text-gray-700 bg-transparent font-medium text-center rounded-md"
                                                 >
                                                     Giriş Yap
                                                 </Link>

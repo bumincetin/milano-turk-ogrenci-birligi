@@ -67,7 +67,7 @@ export default function IndexSectionTestimonialsWhitePattern5() {
                             key={index} 
                             className="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 lg:mb-0"
                         >
-                            <div className="flex flex-col h-full p-8 bg-coolGray-50 shadow-md rounded-md">
+                            <div className="flex flex-col h-full p-8 bg-black-50 shadow-md rounded-md">
                                 <h3 className="pb-14 mb-auto text-xl md:text-2xl font-medium">
                                     {testimonial.quote}
                                 </h3>

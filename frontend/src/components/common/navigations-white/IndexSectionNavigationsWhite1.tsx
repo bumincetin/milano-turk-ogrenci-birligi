@@ -21,7 +21,7 @@ export default function IndexSectionNavigationsWhite1() {
     return (
         <section className="bg-white">
             {/* Mobil Menü */}
-            <div className={`navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-coolGray-900 bg-opacity-50 ${isMenuOpen ? 'block' : 'hidden'}`}>
+            <div className={`navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-black-900 bg-opacity-50 ${isMenuOpen ? 'block' : 'hidden'}`}>
                 <div className="fixed top-0 left-0 bottom-0 w-4/6 max-w-xs bg-white">
                     <nav className="relative p-6 h-full overflow-y-auto">
                         <div className="flex flex-col justify-between h-full">
@@ -43,7 +43,7 @@ export default function IndexSectionNavigationsWhite1() {
                                         <li key={index}>
                                             <Link 
                                                 href={link.href}
-                                                className="block py-3 px-4 text-gray-500 hover:text-black-900 font-medium hover:bg-coolGray-50 rounded-md"
+                                                className="block py-3 px-4 text-gray-500 hover:text-black-900 font-medium hover:bg-black-50 rounded-md"
                                             >
                                                 {link.text}
                                             </Link>
@@ -55,7 +55,7 @@ export default function IndexSectionNavigationsWhite1() {
                             {/* İletişim Butonu */}
                             <Link 
                                 href="/iletisim"
-                                className="inline-block py-2 px-4 w-full text-sm leading-5 text-primary-50 bg-coolGray-500 hover:bg-coolGray-600 font-medium text-center focus:ring-2 focus:ring-coolGray-500 focus:ring-opacity-50 rounded-md"
+                                className="inline-block py-2 px-4 w-full text-sm leading-5 text-primary-50 bg-black-500 hover:bg-black-600 font-medium text-center focus:ring-2 focus:ring-black-500 focus:ring-opacity-50 rounded-md"
                             >
                                 Bize Ulaşın
                             </Link>

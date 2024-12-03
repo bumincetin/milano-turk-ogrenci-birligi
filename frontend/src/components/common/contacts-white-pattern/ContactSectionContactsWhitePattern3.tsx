@@ -8,7 +8,7 @@ export default function ContactSectionContactsWhitePattern3() {
                     <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         İletişim
                     </span>
-                    <h3 className="mb-4 text-4xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
+                    <h3 className="mb-4 text-4xl md:text-5xl leading-tight text-black-900 font-bold tracking-tighter">
                         Bağlantıda Kalalım
                     </h3>
                     <p className="text-lg md:text-xl text-gray-500 font-medium">
@@ -31,7 +31,7 @@ export default function ContactSectionContactsWhitePattern3() {
             <div className="h-2 bg-primary-500" />
             
             <div 
-                className="py-24 md:py-64 bg-coolGray-900" 
+                className="py-24 md:py-64 bg-black-900" 
                 style={{
                     backgroundImage: 'url("/flex-ui-assets/elements/pattern-dark.svg")', 
                     backgroundPosition: 'center'

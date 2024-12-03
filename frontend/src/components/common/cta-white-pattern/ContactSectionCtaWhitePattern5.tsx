@@ -45,7 +45,7 @@ export default function ContactSectionCtaWhitePattern5() {
                             <div className="flex flex-wrap items-center">
                                 <Link 
                                     href="/etkinlikler" 
-                                    className="inline-flex items-center justify-center px-7 py-3 h-14 w-full md:w-auto mb-2 md:mb-0 md:mr-4 text-lg leading-7 text-black-800 bg-white hover:bg-coolGray-100 font-medium focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm"
+                                    className="inline-flex items-center justify-center px-7 py-3 h-14 w-full md:w-auto mb-2 md:mb-0 md:mr-4 text-lg leading-7 text-black-800 bg-white hover:bg-black-100 font-medium focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
                                 >
                                     Daha Fazla Bilgi
                                 </Link>

@@ -13,7 +13,7 @@ export default function DashboardLayout({
       <DashboardSidebar />
       <div className="w-full lg:ml-64">
         <DashHeader />
-        <main className="min-h-screen bg-coolGray-50 p-4">
+        <main className="min-h-screen bg-black-50 p-4">
           {children}
         </main>
       </div>

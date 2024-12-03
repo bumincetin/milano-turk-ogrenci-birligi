@@ -90,7 +90,7 @@ export default function IndexSectionFootersWhitePattern14() {
                         <div className="flex flex-wrap">
                             <div className="w-full lg:flex-1 py-1 lg:py-0 lg:mr-3">
                                 <input 
-                                    className="px-3 w-full h-12 text-black-900 outline-none placeholder-coolGray-500 border border-coolGray-200 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-xsm" 
+                                    className="px-3 w-full h-12 text-black-900 outline-none placeholder-black-500 border border-black-200 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-xsm" 
                                     placeholder="E-posta adresiniz"
                                 />
                             </div>
@@ -105,7 +105,7 @@ export default function IndexSectionFootersWhitePattern14() {
             </div>
 
             {/* Alt Çizgi ve Telif Hakkı */}
-            <div className="border-b border-coolGray-100" />
+            <div className="border-b border-black-100" />
             <p className="py-10 md:pb-16 text-sm text-gray-500 font-medium text-center">
                 © 2024 Milano Türk Öğrenci Birliği. Tüm hakları saklıdır.
             </p>

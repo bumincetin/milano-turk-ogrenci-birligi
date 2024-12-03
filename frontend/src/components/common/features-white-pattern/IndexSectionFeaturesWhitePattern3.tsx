@@ -42,7 +42,7 @@ export default function IndexSectionFeaturesWhitePattern3() {
                     <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">
                         Değerlerimiz
                     </span>
-                    <h1 className="mb-4 text-3xl md:text-4xl leading-tight font-bold tracking-tighter">
+                    <h1 className="mb-4 text-3xl text-gray-700 md:text-4xl leading-tight font-bold tracking-tighter">
                         Milano Türk Öğrenci Birliği'nin Sağladığı Fırsatlar
                     </h1>
                     <p className="text-lg md:text-xl text-gray-500 font-medium">

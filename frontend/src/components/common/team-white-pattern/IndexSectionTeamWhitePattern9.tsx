@@ -77,7 +77,7 @@ export default function IndexSectionTeamWhitePattern9() {
                             key={index} 
                             className="w-full md:w-1/2 lg:w-1/3 px-4 mb-10 lg:mb-0"
                         >
-                            <div className="h-full py-8 px-10 bg-coolGray-50 rounded-md text-center">
+                            <div className="h-full py-8 px-10 bg-black-50 rounded-md text-center">
                                 <Image 
                                     className="w-24 h-24 mx-auto mb-6 rounded-full"
                                     src={member.avatar}

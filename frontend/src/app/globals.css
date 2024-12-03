@@ -31,3 +31,25 @@ article h3{
 article h6{
   color: #555;
 }
+
+article h2 {
+  color: #222;
+}
+
+/* Ana sayfa ve diğer sayfalar için genel h3 stili */
+h3:not(article h3) {
+  color: #222;
+}
+
+/* Ana sayfa ve diğer sayfalar için genel h2 stili */
+h2:not(article h2) {
+  color: #222;
+}
+
+article h4 {
+  color: #222
+}
+
+h4:not(article h4) {
+  color: #222
+}

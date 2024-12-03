@@ -85,7 +85,7 @@ export default function ContactSectionNavigationsWhite2() {
 
             {/* Mobil Menü */}
             {isMenuOpen && (
-                <div className="navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-coolGray-900 bg-opacity-50">
+                <div className="navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-black-900 bg-opacity-50">
                     <div className="fixed top-0 left-0 bottom-0 w-4/6 max-w-xs bg-white">
                         <nav className="relative p-6 h-full overflow-y-auto">
                             <div className="flex flex-col justify-between h-full">
@@ -104,7 +104,7 @@ export default function ContactSectionNavigationsWhite2() {
                                         <li key={index}>
                                             <Link 
                                                 href={link.href}
-                                                className="block py-3 px-4 text-gray-500 hover:text-black-900 font-medium hover:bg-coolGray-50 rounded-md"
+                                                className="block py-3 px-4 text-gray-500 hover:text-black-900 font-medium hover:bg-black-50 rounded-md"
                                             >
                                                 {link.text}
                                             </Link>

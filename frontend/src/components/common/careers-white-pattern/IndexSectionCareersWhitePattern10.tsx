@@ -45,7 +45,7 @@ export default function IndexSectionCareersWhitePattern10() {
                     ].map((job, index) => (
                         <div key={index} className="w-full md:w-1/2 px-4 mb-8">
                             <Link href="#" className="group">
-                                <div className="bg-coolGray-50 group-hover:bg-coolGray-100 rounded-md shadow-md transition duration-200">
+                                <div className="bg-black-50 group-hover:bg-black-100 rounded-md shadow-md transition duration-200">
                                     <div className="flex flex-wrap items-start justify-between p-10 -mx-4">
                                         <div className="w-full lg:w-2/3 px-4 mb-6 lg:mb-0">
                                             <h3 className="mb-3 text-lg md:text-xl text-black-800 group-hover:text-black-900 font-semibold transition duration-200">

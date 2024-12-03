@@ -188,10 +188,10 @@ const ProfilePage: FC = () => {
   );
 
   return (
-    <section className="bg-coolGray-50 py-4">
+    <section className="bg-black-50 py-4">
       <div className="container px-4 mx-auto">
-        <div className="p-6 h-full border border-coolGray-100 overflow-hidden bg-white rounded-md shadow-dashboard">
-          <div className="pb-6 border-b border-coolGray-100">
+        <div className="p-6 h-full border border-black-100 overflow-hidden bg-white rounded-md shadow-dashboard">
+          <div className="pb-6 border-b border-black-100">
             <div className="flex flex-wrap items-center justify-between -m-2">
               <div className="w-full md:w-auto p-2">
                 <h2 className="text-black-900 text-lg font-semibold">Profil Bilgileri</h2>
@@ -203,7 +203,7 @@ const ProfilePage: FC = () => {
                     <button 
                       onClick={() => setIsEditing(false)}
                       disabled={isLoading}
-                      className="px-4 py-2 text-sm text-gray-500 hover:text-black-600 border border-coolGray-200 hover:border-coolGray-300 rounded-md shadow-button"
+                      className="px-4 py-2 text-sm text-gray-500 hover:text-black-600 border border-black-200 hover:border-black-300 rounded-md shadow-button"
                     >
                       İptal
                     </button>
@@ -235,7 +235,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* İsim Bölümü */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -249,7 +249,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* Email Bölümü */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -263,7 +263,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* Avatar Bölümü */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -273,7 +273,7 @@ const ProfilePage: FC = () => {
                   <div className="flex items-center gap-4">
                     <AvatarDisplay />
                     {isEditing && (
-                      <div className="relative flex flex-col items-center justify-center p-6 h-44 text-center text-primary-500 focus-within:border-primary-500 border border-dashed border-coolGray-200 rounded-lg flex-1">
+                      <div className="relative flex flex-col items-center justify-center p-6 h-44 text-center text-primary-500 focus-within:border-primary-500 border border-dashed border-black-200 rounded-lg flex-1">
                         <svg
                           className="mb-1.5"
                           width="24"
@@ -306,7 +306,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* Doğum Günü Bölümü */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -316,7 +316,7 @@ const ProfilePage: FC = () => {
                   {isEditing ? (
                     <input
                       type="date"
-                      className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                       value={userData.birthDate}
                       onChange={(e) => setUserData({...userData, birthDate: e.target.value})}
                     />
@@ -331,7 +331,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* Üniversite Bilgileri */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -341,19 +341,19 @@ const ProfilePage: FC = () => {
                   {isEditing ? (
                     <div className="space-y-3">
                       <input
-                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                         value={userData.university}
                         placeholder="Üniversite"
                         onChange={(e) => setUserData({...userData, university: e.target.value})}
                       />
                       <input
-                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                         value={userData.department}
                         placeholder="Bölüm"
                         onChange={(e) => setUserData({...userData, department: e.target.value})}
                       />
                       <select
-                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                        className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                         value={userData.year}
                         onChange={(e) => setUserData({...userData, year: e.target.value})}
                       >
@@ -377,7 +377,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* LinkedIn Bölümü */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -386,7 +386,7 @@ const ProfilePage: FC = () => {
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <input
-                      className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                       value={userData.linkedin}
                       onChange={(e) => setUserData({...userData, linkedin: e.target.value})}
                     />
@@ -406,7 +406,7 @@ const ProfilePage: FC = () => {
           </div>
 
           {/* Kendini Tanıtma Bölümü */}
-          <div className="py-6 border-b border-coolGray-100">
+          <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
               <div className="flex flex-wrap -m-3">
                 <div className="w-full md:w-1/3 p-3">
@@ -416,7 +416,7 @@ const ProfilePage: FC = () => {
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <textarea
-                      className="w-full h-32 px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full h-32 px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                       value={userData.description}
                       onChange={(e) => setUserData({...userData, description: e.target.value})}
                     />
@@ -438,7 +438,7 @@ const ProfilePage: FC = () => {
                 <div className="w-full md:flex-1 p-3">
                   {isEditing ? (
                     <textarea
-                      className="w-full h-32 px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-coolGray-200 rounded-lg shadow-input"
+                      className="w-full h-32 px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
                       value={userData.bio}
                       onChange={(e) => setUserData({...userData, bio: e.target.value})}
                     />

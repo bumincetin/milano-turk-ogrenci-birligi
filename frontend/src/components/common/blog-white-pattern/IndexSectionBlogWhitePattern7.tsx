@@ -54,7 +54,7 @@ export default function IndexSectionBlogWhitePattern7() {
         {/* Başlık kısmı */}
         <div className="mb-8 md:mb-16 md:max-w-5xl">
           <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">Blog</span>
-          <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">Amacımız, öğrenci deneyimlerini ve kültürel paylaşımları erişilebilir kılmak.</h3>
+          <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-black-900 font-bold tracking-tighter">Amacımız, öğrenci deneyimlerini ve kültürel paylaşımları erişilebilir kılmak.</h3>
           <p className="text-lg md:text-xl text-gray-500 font-medium">Milano'da yaşayan Türk öğrencilerin tecrübeleri ve etkinliklerinden haberdar olun.</p>
         </div>
 
@@ -105,11 +105,11 @@ export default function IndexSectionBlogWhitePattern7() {
 
         {/* Sayfalama */}
         {totalPages > 1 && (
-          <div className="flex justify-center mx-auto max-w-max bg-white border border-coolGray-100 rounded-md shadow-lg">
+          <div className="flex justify-center mx-auto max-w-max bg-white border border-black-100 rounded-md shadow-lg">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="inline-flex items-center justify-center w-11 h-11 text-black-300 hover:text-gray-500 font-medium border-r border-coolGray-100 disabled:opacity-50"
+              className="inline-flex items-center justify-center w-11 h-11 text-black-300 hover:text-gray-500 font-medium border-r border-black-100 disabled:opacity-50"
             >
               <svg width={8} height={12} viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform rotate-180">
                 <path d="M4.71006 6.00005L1.17006 9.54005C0.983805 9.72741 0.879264 9.98087 0.879264 10.2451C0.879264 10.5092 0.983805 10.7627 1.17006 10.9501C1.26302 11.0438 1.37362 11.1182 1.49548 11.1689C1.61734 11.2197 1.74804 11.2459 1.88006 11.2459C2.01207 11.2459 2.14277 11.2197 2.26463 11.1689C2.38649 11.1182 2.49709 11.0438 2.59006 10.9501L6.83006 6.71005C6.92378 6.61709 6.99818 6.50649 7.04895 6.38463C7.09972 6.26277 7.12585 6.13206 7.12585 6.00005C7.12585 5.86804 7.09972 5.73733 7.04895 5.61547C6.99818 5.49362 6.92378 5.38301 6.83006 5.29005L2.59006 1.00005C2.49662 0.907371 2.3858 0.834046 2.26396 0.784281C2.14212 0.734517 2.01166 0.70929 1.88006 0.710051C1.74845 0.70929 1.61799 0.734517 1.49615 0.784281C1.37431 0.834046 1.2635 0.907371 1.17006 1.00005C0.983804 1.18741 0.879263 1.44087 0.879263 1.70505C0.879263 1.96924 0.983804 2.22269 1.17006 2.41005L4.71006 6.00005Z" fill="currentColor"/>
@@ -120,7 +120,7 @@ export default function IndexSectionBlogWhitePattern7() {
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`inline-flex items-center justify-center w-11 h-11 font-medium border-r border-coolGray-100 ${currentPage === page ? 'text-primary-500 bg-primary-50' : 'text-black-300 hover:text-primary-500'}`}
+                className={`inline-flex items-center justify-center w-11 h-11 font-medium border-r border-black-100 ${currentPage === page ? 'text-primary-500 bg-primary-50' : 'text-black-300 hover:text-primary-500'}`}
               >
                 {page}
               </button>

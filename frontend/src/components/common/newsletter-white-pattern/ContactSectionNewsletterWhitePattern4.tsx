@@ -13,7 +13,7 @@ export default function ContactSectionNewsletterWhitePattern4() {
     }
 
     return (
-        <section className="py-24 bg-coolGray-900">
+        <section className="py-24 bg-black-900">
             <div className="container px-4 mx-auto">
                 <div 
                     className="relative py-16 md:py-32 px-6 text-center bg-white overflow-hidden rounded-7xl" 
@@ -67,7 +67,7 @@ export default function ContactSectionNewsletterWhitePattern4() {
                                 <div className="flex flex-wrap mb-1">
                                     <div className="w-full md:flex-1 mb-3 md:mb-0 md:mr-6">
                                         <input 
-                                            className="w-full py-3 px-4 text-gray-500 leading-tight placeholder-coolGray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-coolGray-200 rounded-lg shadow-xsm" 
+                                            className="w-full py-3 px-4 text-gray-500 leading-tight placeholder-black-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-black-200 rounded-lg shadow-xsm" 
                                             type="email" 
                                             placeholder="E-posta adresiniz"
                                             value={email}

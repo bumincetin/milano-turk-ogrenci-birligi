@@ -277,7 +277,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             type="text"
                                             value={formData.name}
                                             onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                             placeholder="İsim Soyisim"
                                             required
                                         />
@@ -294,8 +294,8 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             value={formData.password}
                                             onChange={handlePasswordChange}
                                             className={`appearance-none block w-full p-3 leading-5 text-black-900 border ${
-                                                passwordError ? 'border-red-500' : 'border-coolGray-200'
-                                            } rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
+                                                passwordError ? 'border-red-500' : 'border-black-200'
+                                            } rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
                                             placeholder="••••••••"
                                             required
                                         />
@@ -311,7 +311,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             type="text"
                                             value={formData.universityName}
                                             onChange={(e) => setFormData({...formData, universityName: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                             placeholder="Universite Adı"
                                         />
                                     </div>
@@ -325,7 +325,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             id="year"
                                             value={formData.year}
                                             onChange={(e) => setFormData({...formData, year: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                         >
                                             <option value="hazırlık">Hazırlık</option>
                                             <option value="1.sınıf">1. Sınıf</option>
@@ -353,7 +353,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             type="email"
                                             value={formData.email}
                                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                             placeholder="ornek@gmail.com"
                                             required
                                         />
@@ -370,8 +370,8 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             value={formData.passwordConfirm}
                                             onChange={handleConfirmPasswordChange}
                                             className={`appearance-none block w-full p-3 leading-5 text-black-900 border ${
-                                                passwordError ? 'border-red-500' : 'border-coolGray-200'
-                                            } rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
+                                                passwordError ? 'border-red-500' : 'border-black-200'
+                                            } rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`}
                                             placeholder="••••••••"
                                             required
                                         />
@@ -392,7 +392,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             type="tel"
                                             value={formData.telephone}
                                             onChange={(e) => setFormData({...formData, telephone: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                             placeholder="0535 123 23 34"
                                         />
                                     </div>
@@ -407,7 +407,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             type="text"
                                             value={formData.department}
                                             onChange={(e) => setFormData({...formData, department: e.target.value})}
-                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                            className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                             placeholder="Bölüm Adı"
                                         />
                                     </div>
@@ -449,7 +449,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             {/* Google ile Giriş */}
                             {/* <button 
                                 type="button"
-                                className="inline-flex items-center justify-center py-3 px-7 mb-6 w-full text-base text-gray-500 font-medium text-center leading-6 bg-white border border-coolGray-100 hover:border-coolGray-200 rounded-md shadow-sm"
+                                className="inline-flex items-center justify-center py-3 px-7 mb-6 w-full text-base text-gray-500 font-medium text-center leading-6 bg-white border border-black-100 hover:border-black-200 rounded-md shadow-sm"
                             >
                                 <Image 
                                     className="mr-2"
@@ -480,7 +480,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
 
             {/* Sağ Taraf - Referans */}
             <div className="md:absolute md:top-0 md:right-0 md:w-1/2 md:h-full md:pl-4">
-                <div className="flex items-center justify-center h-full px-8 py-14 bg-coolGray-50">
+                <div className="flex items-center justify-center h-full px-8 py-14 bg-black-50">
                     <div className="md:max-w-xl mx-auto text-center">
                         <span className="relative z-10 inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">
                             Referanslar
@@ -519,9 +519,9 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                 {testimonial.title}
                             </span>
                             <div className="flex items-center justify-center">
-                                <Link href="#" className="w-3 h-3 mr-3 bg-coolGray-100 rounded-full" />
+                                <Link href="#" className="w-3 h-3 mr-3 bg-black-100 rounded-full" />
                                 <Link href="#" className="w-3 h-3 mr-3 bg-primary-500 rounded-full" />
-                                <Link href="#" className="w-3 h-3 bg-coolGray-100 rounded-full" />
+                                <Link href="#" className="w-3 h-3 bg-black-100 rounded-full" />
                             </div>
                         </div>
                     </div>

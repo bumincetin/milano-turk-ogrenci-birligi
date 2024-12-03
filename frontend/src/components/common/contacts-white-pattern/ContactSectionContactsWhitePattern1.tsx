@@ -20,7 +20,7 @@ export default function ContactSectionContactsWhitePattern1() {
                         <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                             İletişim
                         </span>
-                        <h3 className="mb-4 text-4xl md:text-5xl text-darkCoolGray-900 font-bold tracking-tighter leading-tight">
+                        <h3 className="mb-4 text-4xl md:text-5xl text-black-900 font-bold tracking-tighter leading-tight">
                             Bağlantıda Kalalım
                         </h3>
                         <p className="text-lg md:text-xl text-gray-500 font-medium">
@@ -32,7 +32,7 @@ export default function ContactSectionContactsWhitePattern1() {
                             <Link href="/pozisyonlar" className="inline-block py-4 px-6 mb-2 md:mb-0 w-full md:w-auto md:mr-5 text-lg leading-6 text-black-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm">
                                 Açık Pozisyonlar
                             </Link>
-                            <Link href="/hakkimizda" className="inline-block py-4 px-6 w-full md:w-auto text-lg leading-6 font-medium text-center text-gray-500 bg-white border border-coolGray-200 hover:border-coolGray-300 focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                            <Link href="/hakkimizda" className="inline-block py-4 px-6 w-full md:w-auto text-lg leading-6 font-medium text-center text-gray-500 bg-white border border-black-200 hover:border-black-300 focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                 Hakkımızda
                             </Link>
                         </div>
@@ -74,7 +74,7 @@ export default function ContactSectionContactsWhitePattern1() {
 
                     {/* Sağ taraf - İletişim formu */}
                     <div className="w-full lg:w-1/2 px-4">
-                        <div className="px-4 py-8 md:p-10 bg-coolGray-50 rounded-md">
+                        <div className="px-4 py-8 md:p-10 bg-black-50 rounded-md">
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-6">
                                     <label className="block mb-2 text-black-800 font-medium leading-6">
@@ -84,7 +84,7 @@ export default function ContactSectionContactsWhitePattern1() {
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="block w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                        className="block w-full py-2 px-3 appearance-none border border-black-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                         placeholder="ornek@email.com"
                                     />
                                 </div>
@@ -95,7 +95,7 @@ export default function ContactSectionContactsWhitePattern1() {
                                     <textarea 
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
-                                        className="block h-32 md:h-52 w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 resize-none"
+                                        className="block h-32 md:h-52 w-full py-2 px-3 appearance-none border border-black-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 resize-none"
                                         placeholder="Mesajınız..."
                                     />
                                 </div>

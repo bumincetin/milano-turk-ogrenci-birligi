@@ -95,7 +95,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                                     placeholder="ornek@mail.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                    className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                     required
                                 />
                             </div>
@@ -114,7 +114,7 @@ export default function LoginSectionSignUpWhitePattern1() {
                                     placeholder="••••••••"
                                     value={formData.password}
                                     onChange={(e) => setFormData({...formData, password: e.target.value})}
-                                    className="appearance-none block w-full p-3 leading-5 text-black-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                    className="appearance-none block w-full p-3 leading-5 text-black-900 border border-black-200 rounded-lg shadow-md placeholder-black-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                     required
                                 />
                             </div>
