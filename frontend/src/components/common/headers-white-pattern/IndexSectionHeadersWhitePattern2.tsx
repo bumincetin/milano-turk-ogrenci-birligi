@@ -21,7 +21,8 @@ export default function IndexSectionHeadersWhitePattern2() {
         { text: "Anasayfa", href: "/" },
         { text: "Etkinlikler", href: "/etkinlikler" },
         { text: "SSS", href: "/sss" },
-        { text: "İletişim", href: "/iletisim" }
+        { text: "İletişim", href: "/iletisim" },
+        { text: "Hakkımızda", href: "/hakkimizda"}
     ]
 
     const renderAuthSection = () => {
