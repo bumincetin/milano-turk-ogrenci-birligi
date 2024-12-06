@@ -89,9 +89,6 @@
         "audios"
       ]
     },
-    "company_email": {
-      "type": "email"
-    },
     "position": {
       "type": "string"
     },
@@ -103,12 +100,6 @@
     },
     "website": {
       "type": "text"
-    },
-    "billing_information": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::billing-information.billing-information",
-      "inversedBy": "user"
     },
     "purchases": {
       "type": "relation",
@@ -150,6 +141,10 @@
       "relation": "manyToMany",
       "target": "api::event.event",
       "mappedBy": "users"
+    },
+    "isTeam": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

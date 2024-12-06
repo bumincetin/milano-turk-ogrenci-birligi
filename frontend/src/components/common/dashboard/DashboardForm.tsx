@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfileForm: React.FC = () => {
   return (
-    <section className="bg-black-50 py-4">
+    <section className="bg-white py-4">
       <div className="container px-4 mx-auto">
         <div className="p-6 h-full border border-black-100 overflow-hidden bg-white rounded-md shadow-dashboard">
           <div className="pb-6 border-b border-black-100">

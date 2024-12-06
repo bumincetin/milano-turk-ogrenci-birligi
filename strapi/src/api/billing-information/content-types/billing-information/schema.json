@@ -31,12 +31,6 @@
         "corporate"
       ]
     },
-    "user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "mappedBy": "billing_information"
-    },
     "ticket_histories": {
       "type": "relation",
       "relation": "oneToMany",

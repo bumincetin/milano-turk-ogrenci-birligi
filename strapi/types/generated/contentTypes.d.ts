@@ -775,16 +775,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     description: Attribute.Text;
     birthday: Attribute.Date;
     avatar: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    company_email: Attribute.Email;
     position: Attribute.String;
     twitter: Attribute.Text;
     linkedin: Attribute.Text;
     website: Attribute.Text;
-    billing_information: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'api::billing-information.billing-information'
-    >;
     purchases: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -812,6 +806,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::event.event'
     >;
+    isTeam: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -847,11 +842,6 @@ export interface ApiBillingInformationBillingInformation
     tax_administration: Attribute.String;
     address: Attribute.Text;
     type: Attribute.Enumeration<['individual', 'corporate']>;
-    user: Attribute.Relation<
-      'api::billing-information.billing-information',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
     ticket_histories: Attribute.Relation<
       'api::billing-information.billing-information',
       'oneToMany',
