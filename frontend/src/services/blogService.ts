@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 export const blogService = {
   async getBlogs(page = 1) {
@@ -11,7 +10,8 @@ export const blogService = {
         'pagination[page]': page,
         'pagination[pageSize]': pageSize,
         'populate': '*',
-        'sort': 'published:desc'
+        'sort': 'published:desc',
+        'publicationState': 'live'
       };
 
       const response = await axios.get(
@@ -19,7 +19,6 @@ export const blogService = {
         { 
           params: queryParams,
           headers: {
-            'Authorization': `Bearer ${API_TOKEN}`,
             'Content-Type': 'application/json'
           }
         }
@@ -39,7 +38,8 @@ export const blogService = {
     try {
       const queryParams = {
         'filters[slug][$eq]': slug,
-        'populate': '*'
+        'populate': '*',
+        'publicationState': 'live'
       };
 
       const response = await axios.get(
@@ -47,13 +47,10 @@ export const blogService = {
         {
           params: queryParams,
           headers: {
-            'Authorization': `Bearer ${API_TOKEN}`,
             'Content-Type': 'application/json'
           }
         }
       );
-
-      console.log('Blog içeriği:', response.data.data[0]?.attributes);
 
       if (!response.data.data || response.data.data.length === 0) {
         throw new Error('Blog yazısı bulunamadı');

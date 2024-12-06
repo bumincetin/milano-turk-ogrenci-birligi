@@ -39,7 +39,7 @@ export default function IndexSectionBlogWhitePattern7() {
 
   const getImageUrl = (imageData: any) => {
     if (!imageData?.data?.attributes?.url) {
-      return "/flex-ui-assets/images/blog/default.jpg";
+      return null;
     }
     
     const imageUrl = imageData.data.attributes.url;
@@ -71,14 +71,14 @@ export default function IndexSectionBlogWhitePattern7() {
               <div key={blog.id} className="flex flex-wrap items-center w-full xl:w-1/2 px-4 mb-8 md:-mx-4">
                 <div className="w-full md:w-auto md:px-4">
                   <Link href={`/blog/${blog.attributes.slug}`} className="inline-block mb-6 md:mb-0 overflow-hidden rounded-md">
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${blog.attributes.cover.data.attributes.url}`}
-                      alt={blog.attributes.title}
-                      style={{ objectFit: 'cover' }}
-                      className="object-cover"
-                      width={256}
-                      height={256}
-                    />
+                    {blog.attributes.cover?.data?.attributes?.url && (
+                      <img
+                        src={getImageUrl(blog.attributes.cover)}
+                        alt={blog.attributes.title}
+                        style={{ objectFit: 'cover', width: '256px', height: '256px' }}
+                        className="object-cover rounded-md"
+                      />
+                    )}
                   </Link>
                 </div>
                 <div className="w-full md:flex-1 md:px-4">
