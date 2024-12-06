@@ -67,10 +67,14 @@ const CommunityPage: FC = () => {
     try {
       setLoading(true);
       const data = await EventsAPI.getAll();
+      console.log('Gelen etkinlik verileri:', data); // Verileri kontrol etmek için log ekleyelim
+      if (!data || !data.data) {
+        throw new Error('Etkinlik verileri alınamadı');
+      }
       setEvents(data.data);
     } catch (err) {
       console.error('Error fetching events:', err);
-      setError(err instanceof Error ? err.message : 'Bir hata oluştu');
+      setError(err instanceof Error ? err.message : 'Etkinlikler yüklenirken bir hata oluştu');
     } finally {
       setLoading(false);
     }
@@ -270,7 +274,7 @@ const CommunityPage: FC = () => {
                 
                 <div className="mt-4 flex gap-2">
                   <Link 
-                    href={`/dashboard/community/${event.id}`}
+                    href={`/dashboard/events/${event.id}`}
                     className="text-blue-600 hover:text-blue-800 text-sm"
                   >
                     Detayları Gör
