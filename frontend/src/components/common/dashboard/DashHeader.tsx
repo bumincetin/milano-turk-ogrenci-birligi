@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  pageTitle: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
   return (
     <section className="bg-white p-8">
       <div className="flex flex-wrap items-center -m-2">
@@ -45,7 +49,7 @@ const Header: React.FC = () => {
               </a>
             </li>
           </ul>
-          <h2 className="font-semibold text-black text-3xl">Page heading name</h2>
+          <h2 className="font-semibold text-black text-3xl">{pageTitle}</h2>
         </div>
       </div>
     </section>

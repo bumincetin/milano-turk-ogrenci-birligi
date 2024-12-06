@@ -95,12 +95,12 @@ const Sidebar: React.FC = () => {
               </button>
               {isDashboardOpen && (
                 <ul className="ml-8 mt-2 space-y-2">
-                  <li><Link href="/dashboard/overview" className="text-gray-400 hover:text-primary-500 block py-2">Overview</Link></li>
-                  <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-primary-500 block py-2">Notifications</Link></li>
+                  <li><Link href="/dashboard/profile" className="text-gray-400 hover:text-primary-500 block py-2">Profil</Link></li>
+                  {/* <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-primary-500 block py-2">Notifications</Link></li> */}
                 </ul>
               )}
             </li>
-            <li>
+            {/* <li>
               <Link href="/dashboard/projects" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
                 <div className="flex items-center">
                   <Image 
@@ -113,8 +113,8 @@ const Sidebar: React.FC = () => {
                   <p className="text-white font-medium text-base">Projects</p>
                 </div>
               </Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link href="/dashboard/tasks" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
                 <div className="flex items-center">
                   <Image 
@@ -127,14 +127,14 @@ const Sidebar: React.FC = () => {
                   <p className="text-white font-medium text-base">Tasks</p>
                 </div>
               </Link>
-            </li>
+            </li> */}
           </ul>
 
           {/* Çalışma Alanı */}
           <p className="px-8 mb-2 text-xs font-medium text-gray-500 uppercase">Çalışma Alanı</p>
           <ul className="px-4 pb-8">
             <li>
-              <Link href="/dashboard/community" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
+              <Link href="/dashboard/events" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
                 <div className="flex items-center">
                   <Image 
                     src="/flex-ui-assets/elements/dashboard/icons/community-icon.svg" 
@@ -143,7 +143,7 @@ const Sidebar: React.FC = () => {
                     height={24} 
                     className="mr-2"
                   />
-                  <p className="text-white font-medium text-base">Community</p>
+                  <p className="text-white font-medium text-base">Etkinlikler</p>
                 </div>
               </Link>
             </li>
@@ -157,12 +157,12 @@ const Sidebar: React.FC = () => {
                     height={24} 
                     className="mr-2"
                   />
-                  <p className="text-white font-medium text-base">Calendar</p>
+                  <p className="text-white font-medium text-base">Takvim</p>
                 </div>
               </Link>
             </li>
             {/* Pages Dropdown */}
-            <li>
+            {/* <li>
               <button 
                 onClick={() => setIsPagesOpen(!isPagesOpen)}
                 className="w-full p-3 py-4 flex items-center justify-between text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md"
@@ -175,7 +175,7 @@ const Sidebar: React.FC = () => {
                     height={24} 
                     className="mr-2"
                   />
-                  <p className="text-white font-medium text-base">Pages</p>
+                  <p className="text-white font-medium text-base">Sayfalar</p>
                 </div>
                 <svg className={`w-4 h-4 transition-transform ${isPagesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -187,8 +187,8 @@ const Sidebar: React.FC = () => {
                   <li><Link href="/dashboard/pages/page2" className="text-gray-400 hover:text-primary-500 block py-2">Page 2</Link></li>
                 </ul>
               )}
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link href="/dashboard/analytics" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
                 <div className="flex items-center">
                   <Image 
@@ -201,7 +201,7 @@ const Sidebar: React.FC = () => {
                   <p className="text-white font-medium text-base">Analytics</p>
                 </div>
               </Link>
-            </li>
+            </li> */}
           </ul>
 
           {/* Ayarlar */}
@@ -217,7 +217,7 @@ const Sidebar: React.FC = () => {
                     height={24} 
                     className="mr-2"
                   />
-                  <p className="text-white font-medium text-base">Accounts</p>
+                  <p className="text-white font-medium text-base">Profil</p>
                 </div>
               </Link>
             </li>
