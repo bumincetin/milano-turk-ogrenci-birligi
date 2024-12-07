@@ -357,10 +357,13 @@ const ProfilePage: FC = () => {
                         value={userData.year}
                         onChange={(e) => setUserData({...userData, year: e.target.value})}
                       >
+                        <option value="">Hazırlık</option>
                         <option value="1">1. Sınıf</option>
                         <option value="2">2. Sınıf</option>
                         <option value="3">3. Sınıf</option>
                         <option value="4">4. Sınıf</option>
+                        <option value="5">Yüksek Lisans</option>
+                        <option value="6">Doktora</option>
                         <option value="mezun">Mezun</option>
                       </select>
                     </div>

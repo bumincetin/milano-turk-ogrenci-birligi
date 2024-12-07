@@ -53,3 +53,17 @@ article h4 {
 h4:not(article h4) {
   color: #222
 }
+
+/* Google Translate dropdown'ını özelleştirmek için */
+.goog-te-combo {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  outline: none;
+}
+
+/* Gereksiz Google Translate elementlerini gizle */
+.skiptranslate iframe {
+  display: none;
+}
