@@ -58,7 +58,6 @@ export const userService = {
         description: userData.description || '',
         website: userData.website || '',
         position: userData.position || '',
-        companyEmail: userData.company_email || '',
         birthday: userData.birthday || '',
         username: userData.username || ''
       };
