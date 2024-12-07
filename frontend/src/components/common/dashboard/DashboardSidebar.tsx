@@ -95,7 +95,7 @@ const Sidebar: React.FC = () => {
               </button>
               {isDashboardOpen && (
                 <ul className="ml-8 mt-2 space-y-2">
-                  <li><Link href="/dashboard/profile" className="text-gray-400 hover:text-primary-500 block py-2">Profil</Link></li>
+                  <li><Link href="#v" className="text-gray-400 hover:text-primary-500 block py-2">İçerik</Link></li>
                   {/* <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-primary-500 block py-2">Notifications</Link></li> */}
                 </ul>
               )}

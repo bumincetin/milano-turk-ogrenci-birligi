@@ -13,6 +13,7 @@ export default function Home() {
         const HeroSection = (await import('@/components/common/hero-section/HeroSection')).default;
         const IndexSectionNavigationsWhite1 = (await import('@/components/common/navigations-white/IndexSectionNavigationsWhite1')).default;
         const IndexSectionHeadersWhitePattern2 = (await import('@/components/common/headers-white-pattern/IndexSectionHeadersWhitePattern2')).default;
+        const EventsSlider = (await import('@/components/EventsList/EventsSlider')).default;
         const IndexSectionFeaturesWhitePattern3 = (await import('@/components/common/features-white-pattern/IndexSectionFeaturesWhitePattern3')).default;
         const IndexSectionHowItWorksWhitePattern4 = (await import('@/components/common/how-it-works-white-pattern/IndexSectionHowItWorksWhitePattern4')).default;
         const IndexSectionLogoCloudsWhitePattern6 = (await import('@/components/common/logo-clouds-white-pattern/IndexSectionLogoCloudsWhitePattern6')).default;
@@ -30,6 +31,7 @@ export default function Home() {
           { Component: IndexSectionNavigationsWhite1, key: 'nav' },
           { Component: IndexSectionHeadersWhitePattern2, key: 'headers' },
           { Component: HeroSection, key: 'hero' },
+          { Component: EventsSlider, key: 'events-slider' },
           { Component: IndexSectionFeaturesWhitePattern3, key: 'features' },
           { Component: IndexSectionHowItWorksWhitePattern4, key: 'howItWorks' },
           { Component: IndexSectionLogoCloudsWhitePattern6, key: 'logoClouds' },
