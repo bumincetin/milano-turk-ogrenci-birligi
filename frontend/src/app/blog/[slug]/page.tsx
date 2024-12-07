@@ -230,7 +230,7 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
     <div className="min-h-screen bg-white">
       <IndexSectionHeadersWhitePattern2 />
       <Suspense fallback={<div className="text-center py-8">Yükleniyor...</div>}>
-        <BlogContent slug={resolvedParams.slug} />ü
+        <BlogContent slug={resolvedParams.slug} />
       </Suspense>
       <IndexSectionFootersWhitePattern14 />
     </div>
