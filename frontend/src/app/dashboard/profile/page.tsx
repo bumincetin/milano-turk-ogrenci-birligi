@@ -24,7 +24,6 @@ interface UserData {
   phone?: string;
   website?: string;
   position?: string;
-  companyEmail?: string;
   username?: string;
 }
 
@@ -75,7 +74,6 @@ const ProfilePage: FC = () => {
             phone: data.phone || '',
             website: data.website || '',
             position: data.position || '',
-            companyEmail: data.companyEmail || '',
             username: data.username || ''
           });
           setAvatarPreview(data.avatar?.url || ''); // Önizleme için URL'i sakla
@@ -111,7 +109,6 @@ const ProfilePage: FC = () => {
         description: userData.description || null,
         website: userData.website || null,
         position: userData.position || null,
-        company_email: userData.companyEmail || null,
         birthday: userData.birthDate || null,
         username: userData.username || null
       };
@@ -137,7 +134,6 @@ const ProfilePage: FC = () => {
         description: updatedProfile.description,
         website: updatedProfile.website,
         position: updatedProfile.position,
-        companyEmail: updatedProfile.companyEmail,
         birthDate: updatedProfile.birthday,
         username: updatedProfile.username
       }));
