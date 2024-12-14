@@ -1,6 +1,6 @@
 'use client'
 import { FC, useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EventsAPI } from '@/services/eventService';
@@ -34,6 +34,7 @@ interface Event {
 
 const EventDetailPage: FC = () => {
   const params = useParams();
+  const router = useRouter();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [enrollingEventId, setEnrollingEventId] = useState<number | null>(null);
@@ -56,11 +57,17 @@ const EventDetailPage: FC = () => {
 
   const handleEnroll = async () => {
     try {
-      // Önce oturum kontrolü yap
+      // Oturum kontrolü
       const isAuthenticated = user !== null;
       
       if (!isAuthenticated) {
         toast.error('Kayıt olmak için giriş yapmanız gerekmektedir.');
+        
+        // 2 saniye bekle ve sonra yönlendir
+        setTimeout(() => {
+          router.push('/giris');
+        }, 1500);
+        
         return;
       }
 
@@ -68,7 +75,13 @@ const EventDetailPage: FC = () => {
       const token = Cookies.get(COOKIE_NAME);
       if (!token) {
         toast.error('Oturum bilgileriniz bulunamadı. Lütfen tekrar giriş yapın.');
-        logout();
+        
+        // 2 saniye bekle ve sonra yönlendir
+        setTimeout(() => {
+          logout();
+          router.push('/giris');
+        }, 1500);
+        
         return;
       }
 
@@ -83,7 +96,11 @@ const EventDetailPage: FC = () => {
       toast.error(error.message || 'Kayıt işlemi sırasında bir hata oluştu');
       
       if (error.message.includes('Oturum süreniz dolmuş')) {
-        logout();
+        // 2 saniye bekle ve sonra yönlendir
+        setTimeout(() => {
+          logout();
+          router.push('/giris');
+        }, 1500);
       }
     }
   };
@@ -93,8 +110,24 @@ const EventDetailPage: FC = () => {
     return new Date(lastEnrollTime) < new Date();
   };
 
+  // Yükleme durumunda loading göster
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-96">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary-500"></div>
+      </div>
+    );
+  }
+
+  // Etkinlik bulunamadığında hata mesajı göster
   if (!event) {
-    return <div className="p-8">Etkinlik bulunamadı.</div>;
+    return (
+      <div className="max-w-4xl mx-auto p-8">
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          Etkinlik bulunamadı.
+        </div>
+      </div>
+    );
   }
 
   return (

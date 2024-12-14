@@ -15,12 +15,9 @@ export const EventsAPI = {
         'publicationState': 'live'
       }).toString();
       
-      const token = Cookies.get(COOKIE_NAME);
-      
       const response = await fetch(`${API_URL}/api/events?${queryParams}`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         }
       });
@@ -51,11 +48,6 @@ export const EventsAPI = {
         throw new Error('API URL tanımlanmamış');
       }
 
-      const token = Cookies.get(COOKIE_NAME);
-      if (!token) {
-        throw new Error('Oturum bilgisi bulunamadı');
-      }
-
       const queryParams = new URLSearchParams({
         'populate': '*',
         'publicationState': 'live'
@@ -65,7 +57,6 @@ export const EventsAPI = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         }
       });
 
