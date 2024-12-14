@@ -169,7 +169,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                                 <span className="text-gray-700 font-medium">{user.name}</span>
                                                 <div className="h-10 w-10 rounded-full overflow-hidden">
                                                     <Image 
-                                                        src={user.profileImage || "/default-avatar.png"}
+                                                        src={user.profileImage || "/flex-ui-assets/images/dashboard/navigations/avatar.png"}
                                                         alt="Profil Fotoğrafı"
                                                         width={40}
                                                         height={40}
