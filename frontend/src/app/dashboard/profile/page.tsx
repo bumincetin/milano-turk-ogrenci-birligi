@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { userService } from '@/services/userService';
 import Cookies from 'js-cookie'
 import {jwtDecode} from 'jwt-decode';
+import { useRouter } from 'next/navigation';
 const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
 
 interface UserData {
@@ -46,6 +47,7 @@ const ProfilePage: FC = () => {
     year: '',
     bio: ''
   });
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -174,6 +176,10 @@ const ProfilePage: FC = () => {
     }
   };
 
+  const handleMembershipClick = () => {
+    router.push('/dashboard/membership');
+  };
+
   // Avatar görüntüleme komponenti
   const AvatarDisplay = () => (
     <img 
@@ -182,6 +188,27 @@ const ProfilePage: FC = () => {
       className="w-20 h-20 rounded-full object-cover"
     />
   );
+
+  const getYearText = (year: string) => {
+    switch (year) {
+      case '1':
+        return '1. Sınıf';
+      case '2':
+        return '2. Sınıf';
+      case '3':
+        return '3. Sınıf';
+      case '4':
+        return '4. Sınıf';
+      case '5':
+        return 'Yüksek Lisans';
+      case '6':
+        return 'Doktora';
+      case 'mezun':
+        return 'Mezun';
+      default:
+        return 'Hazırlık';
+    }
+  };
 
   return (
     <section className="bg-black-50 py-4">
@@ -258,6 +285,40 @@ const ProfilePage: FC = () => {
             </div>
           </div>
 
+          {/* Üyelik Durumu Bölümü */}
+          <div className="py-6 border-b border-black-100">
+            <div className="w-full md:w-12/12">
+              <div className="flex flex-wrap -m-3">
+                <div className="w-full md:w-1/4 p-3">
+                  <p className="text-sm text-black-800 font-semibold">Üyelik Durumu</p>
+                </div>
+                <div className="w-full md:flex-1 p-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      {userData.role === 'member' ? (
+                        <span className="px-3 py-1 text-sm text-green-700 bg-green-100 rounded-full">
+                          Üye
+                        </span>
+                      ) : (
+                        <span className="px-3 py-1 text-sm text-red-700 bg-red-100 rounded-full">
+                          Üye Değil
+                        </span>
+                      )}
+                    </div>
+                    {userData.role !== 'member' && (
+                      <button 
+                        className="px-4 py-1 text-sm text-white bg-primary-500 hover:bg-primary-600 rounded-md shadow-button"
+                        onClick={handleMembershipClick}
+                      >
+                        Üye Ol
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Avatar Bölümü */}
           <div className="py-6 border-b border-black-100">
             <div className="w-full md:w-9/12">
@@ -284,7 +345,7 @@ const ProfilePage: FC = () => {
                           />
                         </svg>
                         <p className="mb-1 text-sm text-black-800 font-medium">
-                          <span className="text-primary-500">Dosya yüklemek için tıklayın</span> veya sürükleyip bırakın
+                          <span className="text-primary-500">Dosya yüklemek için tıklayın</span> veya sürükleyip bırak��n
                         </p>
                         <p className="text-xs text-gray-500 font-medium">PNG, JPG, GIF veya en fazla 10MB</p>
                         <input 
@@ -367,7 +428,7 @@ const ProfilePage: FC = () => {
                     <div className="space-y-1">
                       <p className="text-base text-black-900">{userData.university}</p>
                       <p className="text-base text-black-900">{userData.department}</p>
-                      <p className="text-base text-black-900">{userData.year}</p>
+                      <p className="text-base text-black-900">{getYearText(userData.year)}</p>
                     </div>
                   )}
                 </div>

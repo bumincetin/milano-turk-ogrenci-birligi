@@ -161,6 +161,14 @@ const Sidebar: React.FC = () => {
                 </div>
               </Link>
             </li>
+            <li>
+              <Link href="/dashboard/membership" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
+                <div className="flex items-center">
+                  <Image src="/flex-ui-assets/elements/dashboard/icons/membership.svg" alt="Membership" width={24} height={24} className="mr-2" />
+                  <p className="text-white font-medium text-base">Üyelik</p>
+                </div>
+              </Link>
+            </li>π
             {/* Pages Dropdown */}
             {/* <li>
               <button 
@@ -231,7 +239,7 @@ const Sidebar: React.FC = () => {
                     height={24} 
                     className="mr-2"
                   />
-                  <p className="text-white font-medium text-base">Settings</p>
+                  <p className="text-white font-medium text-base">Ayarlar</p>
                 </div>
               </Link>
             </li>

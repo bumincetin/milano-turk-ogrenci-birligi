@@ -2,6 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
 export default function Home() {
   const [components, setComponents] = useState<any[]>([])
@@ -10,6 +13,7 @@ export default function Home() {
   useEffect(() => {
     const loadComponents = async () => {
       try {
+        console.log('Bileşenler yükleniyor...');
         const HeroSection = (await import('@/components/common/hero-section/HeroSection')).default;
         const IndexSectionNavigationsWhite1 = (await import('@/components/common/navigations-white/IndexSectionNavigationsWhite1')).default;
         const IndexSectionHeadersWhitePattern2 = (await import('@/components/common/headers-white-pattern/IndexSectionHeadersWhitePattern2')).default;
@@ -45,6 +49,8 @@ export default function Home() {
           { Component: IndexSectionNewsletterWhitePattern11, key: 'newsletter' },
           { Component: IndexSectionFootersWhitePattern14, key: 'footers' }
         ]);
+
+        console.log('Bileşenler başarıyla yüklendi');
       } catch (error) {
         console.error('Bileşenler yüklenirken hata:', error);
       } finally {
@@ -53,10 +59,20 @@ export default function Home() {
     }
 
     loadComponents();
+
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   if (isLoading) {
-    return <div>Yükleniyor...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary-500"></div>
+      </div>
+    );
   }
 
   return (

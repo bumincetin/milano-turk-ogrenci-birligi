@@ -12,18 +12,19 @@ export default function ContactSectionContactsWhitePattern3() {
                         Bağlantıda Kalalım
                     </h3>
                     <p className="text-lg md:text-xl text-gray-500 font-medium">
-                        Bizimle iletişime geçmek hiç bu kadar kolay olmamıştı. Bizi arayın, canlı sohbet özelliğimizi kullanın veya e-posta gönderin, en kısa sürede size geri döneceğiz!
+                        Bizimle iletişime geçmek hiç bu kadar kolay olmamıştı. Bizi arayın veya e-posta gönderin, en kısa sürede size geri döneceğiz!
                     </p>
                 </div>
                 
                 <div className="relative mx-auto h-72 md:h-[500px] -mb-32 md:-mb-80">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11583.123456789012!2d9.1899823!3d45.4642035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDI3JzUxLjIiTiA5wrAxMSc0Ni4wIkU!5e0!3m2!1str!2str!4v1611234567890!5m2!1str!2str"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.3027138892387!2d9.197670899999999!3d45.4657595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6a34f68b541%3A0xdfdc991d5c1806a3!2sVia%20Conservatorio%2C%207%2C%2020122%20Milano%20MI%2C%20%C4%B0talya!5e0!3m2!1str!2str!4v1702325151243!5m2!1str!2str"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
                         allowFullScreen={true}
                         loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
                     ></iframe>
                 </div>
             </div>

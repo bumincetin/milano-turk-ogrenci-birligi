@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
         <div className="w-full md:w-1/2 p-2">
           <ul className="flex flex-wrap items-center gap-x-3 mb-2">
             <li>
-              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
+              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="/">
                 <svg
                   className="mr-2"
                   width="16"
@@ -34,8 +34,8 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
               </svg>
             </li>
             <li>
-              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
-                Products
+              <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="/dashboard">
+                Dashboard
               </a>
             </li>
             <li>
@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
             </li>
             <li>
               <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
-                Lorem Ipsum
+                {pageTitle}
               </a>
             </li>
           </ul>
