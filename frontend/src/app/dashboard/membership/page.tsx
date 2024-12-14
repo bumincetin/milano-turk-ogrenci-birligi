@@ -1,10 +1,48 @@
 'use client'
 import { FC } from 'react';
 import { toast } from 'sonner';
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const MembershipPage: FC = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
   const handleMembershipRequest = () => {
-    toast.success('Üyelik talebiniz alınmıştır. En kısa sürede sizinle iletişime geçilecektir.');
+    if (!user) {
+      toast.error('Üyelik talebi göndermek için önce giriş yapmalısınız.');
+      
+      // 2 saniye bekle ve yönlendir
+      setTimeout(() => {
+        router.push('/giris');
+      }, 2000);
+      
+      return;
+    }
+
+    // Kullanıcı bilgilerini içeren mail body'si oluştur
+    const mailBody = `Sayın Milano Türk Öğrenci Birliği Yetkilileri,
+
+Üyelik talebimi iletmek istiyorum.
+
+Üye Bilgileri:
+Ad Soyad: ${user.name} ${user.lastname}
+E-posta: ${user.email}
+${user.universityName ? `Üniversite: ${user.universityName}` : ''}
+${user.universityDepartment ? `Bölüm: ${user.universityDepartment}` : ''}
+
+Lütfen benimle iletişime geçer misiniz?
+
+Teşekkürler,
+${user.name} ${user.lastname}`;
+
+    // Mail linkini oluştur
+    const mailtoLink = `mailto:umut3a5@gmail.com?subject=Üyelik Talebi&body=${encodeURIComponent(mailBody)}`;
+    
+    // Yeni pencerede mail linkini aç
+    window.open(mailtoLink, '_blank');
+    
+    toast.success('Üyelik talebiniz için maile yönlendiriliyorsunuz.');
   };
 
   return (
@@ -25,6 +63,11 @@ const MembershipPage: FC = () => {
             >
               Üye Olmak İstiyorum
             </button>
+            {!user && (
+              <p className="mt-2 text-sm text-gray-600">
+                Üyelik talebi göndermek için lütfen önce giriş yapın.
+              </p>
+            )}
           </div>
         </div>
       </div>
