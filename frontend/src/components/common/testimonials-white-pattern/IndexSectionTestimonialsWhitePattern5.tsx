@@ -7,34 +7,34 @@ interface Testimonial {
 export default function IndexSectionTestimonialsWhitePattern5() {
     const testimonials: Testimonial[] = [
         {
-            quote: "Milano'da öğrenci olarak dayanışma içinde olmak benim için çok değerli. MTÖB sayesinde birçok yeni arkadaş edindim.",
-            name: "Ali Can",
-            title: "Mühendislik Öğrencisi"
+            quote: "Akademik ve sosyal hayat adaptasyonu sürecinde bana yardımcı olan MTÖB'ye teşekkür ederim.",
+            name: "Ali Omay",
+            title: "Tasarım Öğrencisi"
         },
         {
-            quote: "MTÖB sayesinde yalnız hissetmiyorum. Etkinlikler ve buluşmalar harika bir ortam sağlıyor.",
-            name: "Emine Yıldız",
-            title: "İşletme Öğrencisi"
+            quote: "MTÖB etkinlikleri sayesinde yeni arkadaşlar edinip çevremi genişletebiliyorum.",
+            name: "Dilşan Öksüzoğlu",
+            title: "Bioinformatik Öğrencisi"
         },
         {
-            quote: "MTÖB'nin sunduğu destekle, Milano'da hem kültürel hem de akademik olarak gelişme fırsatı buldum.",
-            name: "Deniz Kaya",
-            title: "Sanat Tarihi Öğrencisi"
-        },
-        {
-            quote: "MTÖB'nin sağladığı sosyal etkinlikler sayesinde yeni bir şehirde kendimi daha rahat hissetmeye başladım.",
-            name: "Ayşe Öztürk",
-            title: "Hukuk Öğrencisi"
-        },
-        {
-            quote: "Milano'daki Türk öğrencilerle bir araya gelmek, kültürel bağlarımızı güçlendirmek adına çok önemliydi.",
-            name: "Murat Akın",
-            title: "Mimarlık Öğrencisi"
-        },
-        {
-            quote: "MTÖB sayesinde kendime bir destek ağı kurdum. Bu topluluk sayesinde akademik hedeflerime odaklanabiliyorum.",
-            name: "Selin Demir",
+            quote: "MTÖB etkinlikleri sayesinde diğer Türk öğrenciler ile buluşma fırsatı yakaladım ve yalnız olmadığımı hissettim, teşekkürler.",
+            name: "Onur Çelik",
             title: "Ekonomi Öğrencisi"
+        },
+        {
+            quote: "Milano'ya geldikten sonraki tüm yasal prosedürler için beni bilgilendiren ve desteğini esirgemeyen MTÖB'ye gönülden teşekkür ederim.",
+            name: "Anıl Egin",
+            title: "Yapay Zeka Öğrencisi"
+        },
+        {
+            quote: "Kendi yaşadıkları sorunları yeni gelen öğrencilerin yaşamaması için bir araya gelmiş şahane bir gönüllü grup.",
+            name: "Mehmet Akif Acar",
+            title: "Elektronik Mühendisliği Öğrencisi"
+        },
+        {
+            quote: "Zorlu akademik süreçte yaptığı etkinlikler sayesinde bizleri motive eden ve evimizde hissettiren MTÖB'nin başarılarının devamını dilerim.",
+            name: "Berkay Öztürk",
+            title: "Siyaset Bilimi Öğrencisi"
         }
     ]
 

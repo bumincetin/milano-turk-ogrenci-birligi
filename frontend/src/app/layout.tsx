@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import Providers from '@/providers/Providers'
 import { Toaster } from 'sonner';
 import GoogleTranslate from '@/components/common/translate/GoogleTranslate';
+import Script from 'next/script'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +32,18 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans h-full bg-black-50`}>
+        <Script
+          src="https://translate.google.com/translate_a/element.js?cb=TranslateInit"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="/assets/lang-config.ts"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="/assets/translations.ts"
+          strategy="afterInteractive"
+        />
         
         <Providers>
           {children}
@@ -40,7 +53,7 @@ export default function RootLayout({
             richColors
             closeButton
           />
-          <GoogleTranslate />
+          <div id="google_translate_element" className="hidden" />
         </Providers>
       </body>
     </html>

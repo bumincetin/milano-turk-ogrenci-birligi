@@ -5,10 +5,18 @@ import Link from "next/link";
 import { useSession } from 'next-auth/react'
 import { userService } from '@/services/userService'
 import Cookies from 'js-cookie'
-import {jwtDecode} from 'jwt-decode';
+import {jwtDecode, JwtPayload} from 'jwt-decode';
 import { useAuth } from '@/contexts/AuthContext'
 
 const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
+
+// Custom interface tanımlıyoruz
+interface CustomJwtPayload extends JwtPayload {
+  id: string;
+  // JWT token'ınızda bulunan diğer özel alanları da ekleyebilirsiniz
+  email?: string;
+  role?: string;
+}
 
 const Sidebar: React.FC = () => {
   const { data: session } = useSession()
@@ -20,21 +28,23 @@ const Sidebar: React.FC = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      if (session?.user?.id) {
-        try {
-          let token :string = Cookies.get(COOKIE_NAME) as string;
-          let user : any = jwtDecode(token as string);
-          const data = await userService.getProfile(user.id,token)
-          console.log('Gelen kullanıcı verileri:', data)
-          setUserData(data)
-        } catch (error) {
-          console.error('Kullanıcı bilgileri yüklenirken hata:', error)
+      try {
+        const token = Cookies.get(COOKIE_NAME);
+        if (token) {
+          const decodedUser = jwtDecode<CustomJwtPayload>(token);
+          if (decodedUser.id) {
+            const data = await userService.getProfile(decodedUser.id, token);
+            console.log('Kullanıcı verileri yüklendi:', data);
+            setUserData(data);
+          }
         }
+      } catch (error) {
+        console.error('Kullanıcı bilgileri yüklenirken hata:', error);
       }
-    }
+    };
 
-    fetchUserData()
-  }, [session])
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -64,19 +74,19 @@ const Sidebar: React.FC = () => {
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         {/* Logo Bölümü */}
-        <div className="p-6">
+        <div className="p-10">
           <Link href="/" className="block">
             <Image
-              src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo-Arka.png"
+              src="/mtob-images/mtob-logo-dark-bg.png"
               alt="Logo"
-              width={120}
-              height={40}
+              width={160}
+              height={60}
             />
           </Link>
         </div>
 
         {/* Ana Menü */}
-        <div className="mt-10">
+        <div className="mt-2">
           <p className="px-8 mb-2 text-xs font-medium text-gray-500 uppercase">Ana Menü</p>
           <ul className="px-4 mb-8">
             {/* Dashboard Dropdown */}
@@ -95,7 +105,7 @@ const Sidebar: React.FC = () => {
               </button>
               {isDashboardOpen && (
                 <ul className="ml-8 mt-2 space-y-2">
-                  <li><Link href="#v" className="text-gray-400 hover:text-primary-500 block py-2">İçerik</Link></li>
+                  <li><Link href="/dashboard/overview" className="text-gray-400 hover:text-primary-500 block py-2">İçerik</Link></li>
                   {/* <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-primary-500 block py-2">Notifications</Link></li> */}
                 </ul>
               )}
@@ -144,6 +154,14 @@ const Sidebar: React.FC = () => {
                     className="mr-2"
                   />
                   <p className="text-white font-medium text-base">Etkinlikler</p>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/registered-events" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
+                <div className="flex items-center">
+                  <Image src="/flex-ui-assets/elements/dashboard/icons/check-box.svg" alt="Dashboard" width={24} height={24} className="mr-2" />
+                  <p className="text-white font-medium text-base">Kayıtlı Etkinlikler</p>
                 </div>
               </Link>
             </li>

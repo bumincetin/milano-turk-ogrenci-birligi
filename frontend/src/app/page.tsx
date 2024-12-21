@@ -30,7 +30,7 @@ export default function Home() {
         const IndexSectionCookiesWhite13 = (await import('@/components/common/cookies-white/IndexSectionCookiesWhite13')).default;
         const IndexSectionNewsletterWhitePattern11 = (await import('@/components/common/newsletter-white-pattern/IndexSectionNewsletterWhitePattern11')).default;
         const IndexSectionFootersWhitePattern14 = (await import('@/components/common/footers-white-pattern/IndexSectionFootersWhitePattern14')).default;
-
+        const LanguageSwitcher = (await import('@/components/common/translate/LanguageSwitcher')).default;
         setComponents([
           { Component: IndexSectionNavigationsWhite1, key: 'nav' },
           { Component: IndexSectionHeadersWhitePattern2, key: 'headers' },
@@ -47,7 +47,8 @@ export default function Home() {
           { Component: IndexSectionNumbersWhitePattern12, key: 'numbers' },
           { Component: IndexSectionCookiesWhite13, key: 'cookies' },
           { Component: IndexSectionNewsletterWhitePattern11, key: 'newsletter' },
-          { Component: IndexSectionFootersWhitePattern14, key: 'footers' }
+          { Component: IndexSectionFootersWhitePattern14, key: 'footers' },
+          { Component: LanguageSwitcher, key: 'languageSwitcher' }
         ]);
 
         console.log('Bileşenler başarıyla yüklendi');
@@ -77,11 +78,19 @@ export default function Home() {
 
   return (
     <>
-      {components.slice(0, 2).map(({ Component, key }, index) => (
+      <div className="fixed bottom-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-lg">
+        {components
+          .filter(({ key }) => key === 'languageSwitcher')
+          .map(({ Component, key }) => (
+            <Component key={key} />
+          ))}
+      </div>
+
+      {components.slice(0, 2).map(({ Component, key }) => (
         <Component key={key} />
       ))}
 
-      {components.slice(2).map(({ Component, key }, index) => (
+      {components.slice(2).map(({ Component, key }) => (
         <motion.div
           key={key}
           initial={{ opacity: 0, y: 50 }}

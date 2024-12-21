@@ -9,7 +9,6 @@ const OverviewPage: FC = () => {
   return (
     <>
       <DashboardInfoCards />
-      <DashboardForm />
       <DashboardProfileCards />
       <DashboardFooter />
     </>

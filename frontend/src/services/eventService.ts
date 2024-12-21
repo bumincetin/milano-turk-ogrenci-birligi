@@ -163,21 +163,21 @@ export const EventsAPI = {
       }
 
       const response = await fetch(`${API_URL}/api/events/${eventId}/cancel-enrollment`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Kayıt silme işlemi sırasında bir hata oluştu');
+        const error = await response.json();
+        throw new Error(error.message || 'Kayıt iptal edilemedi');
       }
 
       return await response.json();
     } catch (error) {
-      console.error('Kayıt silme hatası:', error);
+      console.error('Kayıt iptal hatası:', error);
       throw error;
     }
   },
@@ -193,9 +193,10 @@ export const EventsAPI = {
         throw new Error('Oturum süreniz dolmuş');
       }
 
-      const response = await fetch(`${API_URL}/api/events/${eventId}/check-enrollment`, {
+      const response = await fetch(`${API_URL}/api/events/${eventId}?populate=users`, {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       });
 
@@ -203,7 +204,24 @@ export const EventsAPI = {
         throw new Error('Kayıt durumu kontrol edilemedi');
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log('API Yanıtı:', data); // API'den gelen veriyi kontrol et
+
+      // JWT'den kullanıcı ID'sini al
+      const userToken = JSON.parse(atob(token.split('.')[1]));
+      const userId = userToken.id;
+      console.log('Mevcut Kullanıcı ID:', userId); // Kullanıcı ID'sini kontrol et
+
+      // Kayıtlı kullanıcıları kontrol et
+      console.log('Kayıtlı Kullanıcılar:', data.data.attributes.users?.data); // Kayıtlı kullanıcıları kontrol et
+
+      const isEnrolled = data.data.attributes.users?.data?.some(
+        (user: any) => user.id === userId
+      );
+      
+      console.log('Kayıt Durumu:', isEnrolled); // Final durumu kontrol et
+
+      return { isEnrolled };
     } catch (error) {
       console.error('Kayıt durumu kontrol hatası:', error);
       throw error;

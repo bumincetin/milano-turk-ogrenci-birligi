@@ -38,11 +38,15 @@ const EventDetailPage: FC = () => {
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [enrollingEventId, setEnrollingEventId] = useState<number | null>(null);
+  const [isEnrolled, setIsEnrolled] = useState(false);
   const { user, logout } = useAuth()
 
   useEffect(() => {
     fetchEvent();
-  }, [params.eventId]);
+    if (user) {
+      checkEnrollmentStatus();
+    }
+  }, [params.eventId, user]);
 
   const fetchEvent = async () => {
     try {
@@ -52,6 +56,15 @@ const EventDetailPage: FC = () => {
       console.error('Error fetching event:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const checkEnrollmentStatus = async () => {
+    try {
+      const status = await EventsAPI.checkEnrollmentStatus(Number(params.eventId));
+      setIsEnrolled(status.isEnrolled);
+    } catch (error) {
+      console.error('Kayıt durumu kontrol hatası:', error);
     }
   };
 
@@ -89,7 +102,7 @@ const EventDetailPage: FC = () => {
       await EventsAPI.enrollEvent(Number(params.eventId));
       
       toast.success('Etkinliğe başarıyla kayıt oldunuz!');
-      // Etkinlik detaylarını güncelle
+      setIsEnrolled(true);
       fetchEvent();
       
     } catch (error: any) {
@@ -102,6 +115,20 @@ const EventDetailPage: FC = () => {
           router.push('/giris');
         }, 1500);
       }
+    }
+  };
+
+  const handleCancelEnrollment = async () => {
+    try {
+      setEnrollingEventId(Number(params.eventId));
+      await EventsAPI.cancelEnrollment(Number(params.eventId));
+      toast.success('Etkinlik kaydınız iptal edildi');
+      setIsEnrolled(false);
+      fetchEvent(); // Etkinlik bilgilerini güncelle
+    } catch (error: any) {
+      toast.error(error.message || 'Kayıt iptal işlemi sırasında bir hata oluştu');
+    } finally {
+      setEnrollingEventId(null);
     }
   };
 
@@ -215,31 +242,45 @@ const EventDetailPage: FC = () => {
           </div>
 
           <div className="mt-8">
-            <button 
-              onClick={handleEnroll}
-              disabled={
-                event.attributes.current_person_count === event.attributes.person_limit ||
-                enrollingEventId === event.id ||
-                isEnrollmentClosed(event.attributes.last_enroll_time)
-              }
-              className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${
-                event.attributes.current_person_count === event.attributes.person_limit 
-                  ? 'bg-gray-400 cursor-not-allowed' 
+            {isEnrolled ? (
+              <button 
+                onClick={handleCancelEnrollment}
+                disabled={enrollingEventId === event?.id}
+                className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${
+                  enrollingEventId === event?.id
+                    ? 'bg-red-400 cursor-wait'
+                    : 'bg-red-500 hover:bg-red-600'
+                }`}
+              >
+                {enrollingEventId === event?.id ? 'İptal Ediliyor...' : 'Kaydı İptal Et'}
+              </button>
+            ) : (
+              <button 
+                onClick={handleEnroll}
+                disabled={
+                  event.attributes.current_person_count === event.attributes.person_limit ||
+                  enrollingEventId === event.id ||
+                  isEnrollmentClosed(event.attributes.last_enroll_time)
+                }
+                className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${
+                  event.attributes.current_person_count === event.attributes.person_limit 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : isEnrollmentClosed(event.attributes.last_enroll_time)
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : enrollingEventId === event.id
+                    ? 'bg-primary-400 cursor-wait'
+                    : 'bg-primary-500 hover:bg-primary-600'
+                }`}
+              >
+                {event.attributes.current_person_count === event.attributes.person_limit 
+                  ? 'Kontenjan Doldu' 
                   : isEnrollmentClosed(event.attributes.last_enroll_time)
-                  ? 'bg-gray-400 cursor-not-allowed'
+                  ? 'Kayıt Süresi Doldu'
                   : enrollingEventId === event.id
-                  ? 'bg-primary-400 cursor-wait'
-                  : 'bg-primary-500 hover:bg-primary-600'
-              }`}
-            >
-              {event.attributes.current_person_count === event.attributes.person_limit 
-                ? 'Kontenjan Doldu' 
-                : isEnrollmentClosed(event.attributes.last_enroll_time)
-                ? 'Kayıt Süresi Doldu'
-                : enrollingEventId === event.id
-                ? 'Kaydediliyor...'
-                : 'Kayıt Ol'}
-            </button>
+                  ? 'Kaydediliyor...'
+                  : 'Kayıt Ol'}
+              </button>
+            )}
 
             {/* Son kayıt tarihi bilgisi */}
             <p className="text-sm text-gray-500 text-center mt-2">

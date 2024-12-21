@@ -11,33 +11,33 @@ export default function IndexSectionHowItWorksWhitePattern4() {
     const steps: Step[] = [
         {
             number: 1,
-            title: "Dayanışma ve Destek",
-            description: "Milano'daki Türk öğrenciler arasında güçlü bir destek ağı oluşturarak ihtiyaç anında yardım almanızı sağlıyoruz."
+            title: "Destek ve Rehberlik",
+            description: "Eğitim, günlük yaşam ve benzeri konularda ihtiyaç duyduğunuz her an yanınızdayız. Milano'ya yeni gelen öğrencilerin karşılaşabileceği zorlukların üstesinden gelmeleri için kapsamlı danışmanlık ve rehberlik hizmeti sağlıyoruz."
         },
         {
             number: 2,
-            title: "Eğitim ve Gelişim",
-            description: "Topluluğumuz, yeni beceriler edinmeniz için çeşitli eğitimler ve seminerler düzenlemektedir."
+            title: "Gönüllülük ve Sosyal Sorumluluk Projeleri",
+            description: "Birliğimiz, gönüllülük projeleri ve sosyal sorumluluk etkinlikleri aracılığıyla çevresine katkıda bulunmayı hedefler. Bu çalışmalara katılarak hem topluma destek olabilir hem de kişisel ve profesyonel gelişiminize değer katan deneyimler edinebilirsiniz."
         },
         {
             number: 3,
-            title: "Etkinlik Organizasyonu",
-            description: "Milano'da Türk kültürünü tanıtmak ve öğrenciler arasında sosyal bağları güçlendirmek için etkinlikler organize ediyoruz."
+            title: "Dil ve Kültür Atölyeleri",
+            description: "Farklı dillere ve kültürlere ilgi duyan üyeler için düzenlediğimiz atölyeler, yeni beceriler kazanmanıza ve iletişim yetkinliklerinizi geliştirmenize imkân tanır."
         },
         {
             number: 4,
-            title: "Kariyer Destek Programları",
-            description: "Kariyer hedeflerinize ulaşmanız için staj ve iş bulma konularında rehberlik sağlıyoruz."
+            title: "Eğlence ve Sosyal Etkinlikler",
+            description: "Piknikler, geziler, film gösterimleri ve benzeri etkinliklerle hem keyifli vakit geçirir hem de stresinizi atabilirsiniz. Milano'da bulunduğunuz süre boyunca unutulmaz anılar biriktirmenizi amaçlıyoruz."
         },
         {
             number: 5,
-            title: "Kültürel Paylaşım",
-            description: "Türk kültürünü Milano'da tanıtarak farklı kültürlerle iletişimi güçlendiriyoruz."
+            title: "Mentorluk Programı",
+            description: "Şehre yeni gelen öğrencilere uyum süreçlerinde yardımcı olmak üzere, tecrübeli üyelerimizle yürüttüğümüz bir mentorluk sistemi sunuyoruz. Böylece, ihtiyaç duyduğunuz her konuda destek alabilir ve daha hızlı adapte olabilirsiniz."
         },
         {
             number: 6,
-            title: "Ağ Kurma Fırsatları",
-            description: "Milano'da ve uluslararası düzeyde profesyonel bağlantılar kurmanızı destekliyoruz."
+            title: "Yurt Dışında Yaşam Rehberi",
+            description: "Milano'da konaklama, ulaşım, bürokratik işlemler gibi pek çok alanda rehberlik sunarak yeni yaşamınıza en hızlı ve sorunsuz şekilde uyum sağlamanıza yardımcı oluyoruz."
         }
     ]
 
@@ -60,7 +60,7 @@ export default function IndexSectionHowItWorksWhitePattern4() {
                             MTÖB'ün sizlere nasıl katkı sağladığını keşfedin
                         </h2>
                         <p className="text-lg md:text-xl text-gray-500 font-medium">
-                            Dayanışma, gelişim ve kariyer desteği odaklı faaliyetlerimizle Milano’daki Türk öğrencileri bir araya getiriyoruz.
+                            Dayanışma, gelişim ve kariyer desteği odaklı faaliyetlerimizle Milano'daki Türk öğrencileri bir araya getiriyoruz.
                         </p>
                     </div>
 
