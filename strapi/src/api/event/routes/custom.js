@@ -13,6 +13,18 @@ module.exports = {
           required: true
         }
       }
+    },
+    {
+      method: 'PUT',
+      path: '/events/:id/cancel-enrollment',
+      handler: 'api::event.event.cancelEnrollment',
+      config: {
+        policies: [],
+        middlewares: [],
+        auth: {
+          required: true
+        }
+      }
     }
   ]
 }; 

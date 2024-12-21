@@ -90,5 +90,51 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
       console.error('Kayıt hatası:', error);
       return ctx.badRequest('Kayıt işlemi sırasında bir hata oluştu');
     }
+  },
+
+  async cancelEnrollment(ctx) {
+    const { id } = ctx.params;
+    const userId = ctx.state.user?.id;
+
+    // Kullanıcı kontrolü
+    if (!userId) {
+      return ctx.unauthorized('Giriş yapmanız gerekmektedir.');
+    }
+
+    try {
+      // Etkinliği bul
+      const event = await strapi.entityService.findOne('api::event.event', id, {
+        populate: ['users']
+      });
+
+      if (!event) {
+        return ctx.notFound('Etkinlik bulunamadı');
+      }
+
+      // Kullanıcının etkinliğe kayıtlı olup olmadığını kontrol et
+      const isEnrolled = event.users.some(user => user.id === userId);
+      if (!isEnrolled) {
+        return ctx.badRequest('Bu etkinliğe kayıtlı değilsiniz.');
+      }
+
+      // Etkinlikten çıkış yap
+      const updatedEvent = await strapi.entityService.update('api::event.event', id, {
+        data: {
+          users: {
+            disconnect: [userId]
+          },
+          current_person_count: event.current_person_count - 1
+        }
+      });
+
+      return {
+        data: updatedEvent,
+        message: 'Etkinlik kaydınız başarıyla iptal edildi.'
+      };
+
+    } catch (error) {
+      console.error('Kayıt iptal hatası:', error);
+      return ctx.badRequest('Kayıt iptal işlemi sırasında bir hata oluştu');
+    }
   }
 }));
