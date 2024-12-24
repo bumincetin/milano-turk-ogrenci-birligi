@@ -54,9 +54,9 @@ export default function RegisterSectionSignUpWhitePattern1() {
 
     const testimonial: Testimonial = {
         quote: "Milano'da Türk öğrencilerle bir araya gelerek sosyal, kültürel ve akademik açıdan kendimi geliştirdim. MTÖB sayesinde harika dostluklar kurdum!",
-        author: "Ahmet Yılmaz",
+        author: "Ali Omay",
         title: "MTÖB Üyesi",
-        avatar: "/flex-ui-assets/images/sign-up/avatar-men-sign-up.png"
+        avatar: "/mtob-images/aliomayimage.jpeg"
     }
 
     const [error, setError] = useState<string | null>(null);
@@ -506,11 +506,11 @@ export default function RegisterSectionSignUpWhitePattern1() {
                         </div>
                         <div className="relative text-center">
                             <Image 
-                                className="w-24 h-24 mb-6 mx-auto rounded-full"
+                                className="w-[130px] h-[130px] mb-6 mx-auto rounded-full"
                                 src={testimonial.avatar}
                                 alt={testimonial.author}
-                                width={96}
-                                height={96}
+                                width={100}
+                                height={100}
                             />
                             <h4 className="mb-2 text-lg text-black-800 font-semibold">
                                 {testimonial.author}

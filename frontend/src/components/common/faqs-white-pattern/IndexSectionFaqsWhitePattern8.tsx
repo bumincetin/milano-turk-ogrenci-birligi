@@ -12,7 +12,7 @@ export default function IndexSectionFaqsWhitePattern8() {
     const faqs: FAQ[] = [
         {
             question: "MTÖB'ye nasıl üye olabilirim?",
-            answer: "MTÖB üyeliği için web sitemizden başvuru formunu doldurarak kayıt olabilirsiniz."
+            answer: "MTÖB’e üye olmak için öncelikle web sitemize kayıt olmanız gerekir. Ardından kullanıcı panelinizden “Üye Ol” butonuna tıklayarak yönlendirmeleri takip edebilir ve üyelik işleminizi tamamlayabilirsiniz."
         },
         {
             question: "MTÖB hangi tür etkinlikler düzenliyor?",
@@ -20,15 +20,15 @@ export default function IndexSectionFaqsWhitePattern8() {
         },
         {
             question: "Etkinliklere katılmak için üye olmam gerekiyor mu?",
-            answer: "Etkinliklere öncelikle üyelerimiz katılabilmekte, yer durumuna göre misafir katılımcılar da kabul edilmektedir."
+            answer: "Bazı etkinliklerimiz herkese açıkken, bazıları yalnızca üyelerimize özeldir. Etkinlik kapasitesi ve katılım öncelikleriyle ilgili bilgileri, ilgili etkinliklerin detaylarında bulabilirsiniz."
         },
         {
             question: "Milano'ya yeni gelen öğrencilere destek sağlıyor musunuz?",
-            answer: "Evet, yeni gelen öğrencilerimize konaklama, ulaşım ve yaşamla ilgili rehberlik sağlıyoruz."
+            answer: "Elbette! Yeni gelen öğrencilere konaklama, ulaşım ve günlük yaşama dair konularda sosyal medya hesaplarımız ve mentor programlarımız aracılığıyla rehberlik sunuyoruz."
         },
         {
             question: "MTÖB üyelik ücreti var mı?",
-            answer: "MTÖB üyeliği ücretsizdir ve tüm Türk öğrencilerimize açıktır."
+            answer: "MTÖB üyeliği yıllık 10 EUR’dur. Lokasyon, vatandaşlık veya milliyet fark etmeksizin herkes bize katılabilir."
         }
     ]
 

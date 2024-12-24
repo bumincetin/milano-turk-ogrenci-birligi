@@ -99,16 +99,16 @@ const Sidebar: React.FC = () => {
                   <Image src="/flex-ui-assets/elements/dashboard/icons/dashboard-icon.svg" alt="Dashboard" width={24} height={24} />
                   <p className="text-white font-medium text-base ml-2">Dashboard</p>
                 </div>
-                <svg className={`w-4 h-4 transition-transform ${isDashboardOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {/* <svg className={`w-4 h-4 transition-transform ${isDashboardOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                </svg>  overview alanı kaldırıldı  */}
               </button>
-              {isDashboardOpen && (
+              {/* {isDashboardOpen && (
                 <ul className="ml-8 mt-2 space-y-2">
                   <li><Link href="/dashboard/overview" className="text-gray-400 hover:text-primary-500 block py-2">İçerik</Link></li>
-                  {/* <li><Link href="/dashboard/notifications" className="text-gray-400 hover:text-primary-500 block py-2">Notifications</Link></li> */}
+                  
                 </ul>
-              )}
+              )}   overview alanı kaldırıld*/}
             </li>
             {/* <li>
               <Link href="/dashboard/projects" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">

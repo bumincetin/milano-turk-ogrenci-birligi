@@ -30,7 +30,11 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
     ]
 
     return (
-        <section 
+
+        <div></div>
+
+        
+        /*  <section 
             className="py-20 xl:pt-24 bg-white" 
             style={{
                 backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', 
@@ -38,7 +42,7 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
             }}
         >
             <div className="container px-4 mx-auto">
-                {/* Başlık Bölümü */}
+               
                 <div className="mb-8 text-center">
                     <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-9xl">
                         İş Birliklerimiz
@@ -51,7 +55,7 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
                     </p>
                 </div>
 
-                {/* Logo Bulutu */}
+                
                 <div className="flex flex-wrap justify-center -mx-4">
                     {partners.map((partner, index) => (
                         <div 
@@ -71,6 +75,6 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
                     ))}
                 </div>
             </div>
-        </section>
+        </section>  */
     )
 } 

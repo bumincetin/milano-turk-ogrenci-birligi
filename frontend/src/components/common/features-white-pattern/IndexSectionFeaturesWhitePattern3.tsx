@@ -68,7 +68,7 @@ export default function IndexSectionFeaturesWhitePattern3() {
                     </p>
                 </div>
 
-                <div className="flex flex-wrap -mx-4">
+                <div className="flex flex-wrap -mx-4  ">
                     {/* Sol Taraf */}
                     <div className="w-full lg:w-1/3 px-4 lg:pt-6 mb-8 lg:mb-0">
                         {features.slice(0, 2).map((feature, index) => (
@@ -77,10 +77,10 @@ export default function IndexSectionFeaturesWhitePattern3() {
                     </div>
 
                     {/* Orta Resim */}
-                    <div className="w-full lg:w-1/3 px-4 mb-8 lg:mb-0">
+                    <div className="w-full lg:w-1/3 px-4 mb-8 mt-4 lg:mb-0  ">
                         <Image 
-                            className="mx-auto"
-                            src="/flex-ui-assets/images/features/stock.png"
+                            className="mx-auto rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300"
+                            src="/mtob-images/firsatlarimage.jpg"
                             alt="Özellikler görseli"
                             width={400}
                             height={500}

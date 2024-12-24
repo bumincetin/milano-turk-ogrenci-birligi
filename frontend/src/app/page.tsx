@@ -20,7 +20,7 @@ export default function Home() {
         const EventsSlider = (await import('@/components/EventsList/EventsSlider')).default;
         const IndexSectionFeaturesWhitePattern3 = (await import('@/components/common/features-white-pattern/IndexSectionFeaturesWhitePattern3')).default;
         const IndexSectionHowItWorksWhitePattern4 = (await import('@/components/common/how-it-works-white-pattern/IndexSectionHowItWorksWhitePattern4')).default;
-        const IndexSectionLogoCloudsWhitePattern6 = (await import('@/components/common/logo-clouds-white-pattern/IndexSectionLogoCloudsWhitePattern6')).default;
+        /* const IndexSectionLogoCloudsWhitePattern6 = (await import('@/components/common/logo-clouds-white-pattern/IndexSectionLogoCloudsWhitePattern6')).default; */
         const IndexSectionTestimonialsWhitePattern5 = (await import('@/components/common/testimonials-white-pattern/IndexSectionTestimonialsWhitePattern5')).default;
         const IndexSectionBlogWhitePattern7 = (await import('@/components/common/blog-white-pattern/IndexSectionBlogWhitePattern7')).default;
         const IndexSectionFaqsWhitePattern8 = (await import('@/components/common/faqs-white-pattern/IndexSectionFaqsWhitePattern8')).default;
@@ -38,7 +38,7 @@ export default function Home() {
           { Component: EventsSlider, key: 'events-slider' },
           { Component: IndexSectionFeaturesWhitePattern3, key: 'features' },
           { Component: IndexSectionHowItWorksWhitePattern4, key: 'howItWorks' },
-          { Component: IndexSectionLogoCloudsWhitePattern6, key: 'logoClouds' },
+          /* { Component: IndexSectionLogoCloudsWhitePattern6, key: 'logoClouds' }, */
           { Component: IndexSectionTestimonialsWhitePattern5, key: 'testimonials' },
           { Component: IndexSectionBlogWhitePattern7, key: 'blog' },
           { Component: IndexSectionFaqsWhitePattern8, key: 'faqs' },
