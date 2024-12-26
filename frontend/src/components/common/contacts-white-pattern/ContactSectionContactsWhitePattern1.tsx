@@ -44,8 +44,8 @@ export default function ContactSectionContactsWhitePattern1() {
                             <ContactCard 
                                 icon="email"
                                 title="E-posta"
-                                content={<Link href="mailto:iletisim@firma.com" className="text-lg md:text-xl text-gray-500 hover:text-black-600 font-medium">
-                                    iletisim@firma.com
+                                content={<Link href="mailto:milanoturkogrencibirligi@gmail.com" className="text-lg md:text-xl text-gray-500 hover:text-black-600 font-medium">
+                                    milanoturkogrencibirligi@gmail.com
                                 </Link>}
                             />
                             <ContactCard 

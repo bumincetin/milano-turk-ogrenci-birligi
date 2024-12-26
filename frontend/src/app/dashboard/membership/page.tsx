@@ -38,8 +38,9 @@ Teşekkürler,
 ${user.name} ${user.lastname}`;
 
     // Mail linkini oluştur
-    const mailtoLink = `mailto:umut3a5@gmail.com?subject=Üyelik Talebi&body=${encodeURIComponent(mailBody)}`;
-
+    // güncellenecek
+    const mailtoLink = `mailto:milanoturkogrencibirligi@gmail.com?subject=Üyelik Talebi&body=${encodeURIComponent(mailBody)}`;
+    
     // Yeni pencerede mail linkini aç
     window.open(mailtoLink, '_blank');
 
