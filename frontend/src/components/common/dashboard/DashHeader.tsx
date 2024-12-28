@@ -5,6 +5,20 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
+  const getLocalizedTitle = (title: string) => {
+    const titleMap: { [key: string]: string } = {
+      'Registered-events': 'Kayıtlı Etkinlikler',
+      'Dashboard': 'Panel',
+      'Home': 'Ana Sayfa',
+      'Events': 'Etkinlikler',
+      'Event-details': 'Etkinlik Detayı',
+      'Settings': 'Ayarlar',
+      'Profile': 'Profil',
+      'Calendar': 'Takvim',
+    };
+    return titleMap[title] || title;
+  };
+
   return (
     <section className="bg-white p-8">
       <div className="flex flex-wrap items-center -m-2">
@@ -25,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
                     fill="#BBC3CF"
                   />
                 </svg>
-                <p>Home</p>
+                <p>Ana Sayfa</p>
               </a>
             </li>
             <li>
@@ -35,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
             </li>
             <li>
               <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="/dashboard">
-                Dashboard
+                Panel
               </a>
             </li>
             <li>
@@ -45,11 +59,11 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
             </li>
             <li>
               <a className="flex font-medium text-xs text-gray-500 hover:text-black-700" href="#">
-                {pageTitle}
+                {getLocalizedTitle(pageTitle)}
               </a>
             </li>
           </ul>
-          <h2 className="font-semibold text-black text-3xl">{pageTitle}</h2>
+          <h2 className="font-semibold text-black text-3xl">{getLocalizedTitle(pageTitle)}</h2>
         </div>
       </div>
     </section>
