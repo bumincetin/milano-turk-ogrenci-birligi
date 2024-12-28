@@ -43,35 +43,34 @@ export const EventsAPI = {
   },
 
 
-  getUsersEvents : async (userId:number) => {
-    try{
-
-      if(!API_URL){
+  getUsersEvents : async (userId: number, query: string = '') => {
+    try {
+      if (!API_URL) {
         throw new Error('API URL tanımlanmamış');
       }
-  
-      const response = await fetch("http://localhost:9912/api/users/29?populate=*", {
-        method: 'GET',
+
+      const token = Cookies.get(COOKIE_NAME);
+      if (!token) {
+        throw new Error('Oturum bilgisi bulunamadı');
+      }
+
+      const response = await fetch(`${API_URL}/api/users/${userId}${query}`, {
         headers: {
-          'Content-Type': 'application/json',
-        }
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
       });
 
-      
-  
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
         throw new Error(errorData?.error?.message || 'API isteği başarısız oldu');
       }
-  
-      return await response.json();
 
-    }catch(error){
-      console.error('Event detayı alınırken hata:', error);
+      return await response.json();
+    } catch (error) {
+      console.error('Kullanıcı etkinlikleri alınırken hata:', error);
       throw error;
     }
-
-    
   },
 
 

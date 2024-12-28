@@ -1,11 +1,14 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
-import { Card, Typography, List, ListItem, Button, CircularProgress, Box } from '@mui/material';
+import { Card, Typography, List, ListItem, Button, CircularProgress, Box, Grid } from '@mui/material';
 import { EventsAPI } from '@/services/eventService';
 import Cookies from 'js-cookie';
 const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
 import { jwtDecode } from 'jwt-decode';
+import Link from 'next/link';
+import { toast } from 'sonner';
+import { CalendarToday, LocationOn, Timer, People } from '@mui/icons-material';
 
 interface Event {
   id: number;
@@ -54,27 +57,27 @@ interface User {
 const DashboardRegisteredEvents: FC = () => {
   const [myEvents, setMyEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const [cancelingEventId, setCancelingEventId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-
         setLoading(true);
         let token: string = Cookies.get(COOKIE_NAME) as string;
         let user: any = jwtDecode(token as string);
 
         if (user?.id) {
-          const data: User = await EventsAPI.getUsersEvents(user?.id);
+          const data: User = await EventsAPI.getUsersEvents(user?.id, '?populate=events');
           console.log('Gelen kullanıcı verisi:', data);
 
           if (data?.events) {
-            setMyEvents(data.events);
-            console.log('Etkinlikler:', data.events);
+            const sortedEvents = data.events.sort((a, b) => 
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            );
+            setMyEvents(sortedEvents);
+            console.log('Etkinlikler:', sortedEvents);
           }
-
         }
-
       } catch (err) {
         console.error('Etkinlikler alınırken hata oluştu:', err);
       } finally {
@@ -84,6 +87,31 @@ const DashboardRegisteredEvents: FC = () => {
 
     fetchEvents();
   }, []);
+
+  const handleCancelRegistration = async (eventId: number) => {
+    if (!confirm('Bu etkinlik kaydını iptal etmek istediğinizden emin misiniz?')) {
+      return;
+    }
+
+    try {
+      setCancelingEventId(eventId);
+      await EventsAPI.cancelEnrollment(eventId);
+      
+      setMyEvents(prevEvents => prevEvents.filter(event => event.id !== eventId));
+      toast.success('Etkinlik kaydınız başarıyla iptal edildi.');
+    } catch (error: any) {
+      console.error('Kayıt iptal hatası:', error);
+      toast.error(error.message || 'Kayıt iptal edilirken bir hata oluştu');
+      
+      if (error.message.includes('Oturum süreniz dolmuş')) {
+        setTimeout(() => {
+          window.location.href = '/giris';
+        }, 1500);
+      }
+    } finally {
+      setCancelingEventId(null);
+    }
+  };
 
   return (
     <Card sx={{ p: 3, mb: 3, boxShadow: 3 }}>
@@ -106,23 +134,105 @@ const DashboardRegisteredEvents: FC = () => {
               key={event.id}
               sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: '1px solid #eee',
-                padding: '10px 0',
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: 2,
+                borderRadius: 2,
+                backgroundColor: 'background.paper',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+                p: 3,
+                mb: 2,
+                border: '1px solid',
+                borderColor: 'divider',
+                '&:hover': {
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.12)',
+                  transition: 'all 0.3s ease',
+                },
               }}
             >
-              <Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              <Box sx={{ flex: 1 }}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
                   {event.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {event.location ? event.location : 'Bilinmeyen Lokasyon'}
-                </Typography>
+                
+                <Grid container spacing={2} sx={{ mb: 2 }}>
+                  <Grid item xs={12} sm={6}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <CalendarToday sx={{ color: 'primary.main', fontSize: 20 }} />
+                      <Typography variant="body2">
+                        {new Date(event.event_time || '').toLocaleDateString('tr-TR')}
+                      </Typography>
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                      <Timer sx={{ color: 'warning.main', fontSize: 20 }} />
+                      <Typography variant="body2">
+                        Son Kayıt: {new Date(event.last_enroll_time || '').toLocaleDateString('tr-TR')}
+                      </Typography>
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <LocationOn sx={{ color: 'error.main', fontSize: 20 }} />
+                      <Typography variant="body2">
+                        {event.location || 'Bilinmeyen Lokasyon'}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  
+                  {event.person_limit && (
+                    <Grid item xs={12} sm={6}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <People sx={{ color: 'info.main', fontSize: 20 }} />
+                        <Typography variant="body2">
+                          {event.current_person_count || 0} / {event.person_limit} Katılımcı
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  )}
+                </Grid>
               </Box>
-              <Button variant="contained" size="small" sx={{ textTransform: 'none' }}>
-                Detaylar
-              </Button>
+
+              <Box sx={{ 
+                display: 'flex', 
+                gap: 2,
+                alignSelf: { xs: 'stretch', md: 'center' },
+                justifyContent: { xs: 'space-between', md: 'flex-end' }
+              }}>
+                <Link href={`/dashboard/events/${event.id}`} passHref style={{ textDecoration: 'none' }}>
+                  <Button 
+                    variant="contained" 
+                    size="medium" 
+                    sx={{ 
+                      textTransform: 'none',
+                      minWidth: 120,
+                      backgroundColor: 'primary.main',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark',
+                      }
+                    }}
+                  >
+                    Detaylar
+                  </Button>
+                </Link>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  size="medium"
+                  sx={{ 
+                    textTransform: 'none',
+                    minWidth: 120,
+                    borderWidth: 2
+                  }}
+                  onClick={() => handleCancelRegistration(event.id)}
+                  disabled={cancelingEventId === event.id}
+                >
+                  {cancelingEventId === event.id ? (
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CircularProgress size={16} color="error" />
+                      <span>İptal Ediliyor</span>
+                    </Box>
+                  ) : 'Kaydı İptal Et'}
+                </Button>
+              </Box>
             </ListItem>
           ))}
         </List>

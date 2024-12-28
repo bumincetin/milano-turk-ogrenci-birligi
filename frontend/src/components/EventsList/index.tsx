@@ -107,21 +107,39 @@ export const EventsList: FC = () => {
 
   const handleEnroll = async (eventId: number) => {
     try {
-      const token = Cookies.get(COOKIE_NAME);
-      console.log("TOKEN ON KAYIT OL :", token);
-      console.log("USER ON KAYIT OL :", user);
-
       setEnrollingEventId(eventId);
+      
+      // Önce kayıt durumunu kontrol edelim
+      const enrollmentStatus = await EventsAPI.checkEnrollmentStatus(eventId);
+      if (enrollmentStatus.isEnrolled) {
+        toast.warning('Bu etkinliğe zaten kayıt olmuşsunuz.');
+        return;
+      }
+
       await EventsAPI.enrollEvent(eventId);
       await fetchEvents();
+      setEnrolledEvents([...enrolledEvents, eventId]);
       toast.success('Etkinliğe başarıyla kayıt oldunuz!');
     } catch (error: any) {
-      console.error('Kayıt Hatası:', error);
+      // Hata objesinin yapısını kontrol edelim
+      const errorMessage = error?.response?.data?.error?.message || 
+                          error?.message || 
+                          'Beklenmeyen bir hata oluştu';
       
-      if (error.message.includes('401')) {
-        toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
+      console.error('Kayıt Hatası:', errorMessage);
+      
+      if (typeof errorMessage === 'string') {
+        if (errorMessage.toLowerCase().includes('zaten kayıtlısınız')) {
+          toast.warning('Bu etkinliğe zaten kayıt olmuşsunuz.');
+        } else if (errorMessage.includes('401')) {
+          toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
+        } else if (errorMessage.toLowerCase().includes('kontenjan')) {
+          toast.error('Üzgünüz, etkinlik kontenjanı dolmuştur.');
+        } else {
+          toast.error('Kayıt işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+        }
       } else {
-        toast.error(error.message || 'Kayıt işlemi sırasında bir hata oluştu');
+        toast.error('Kayıt işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
     } finally {
       setEnrollingEventId(null);
