@@ -42,6 +42,41 @@ export const EventsAPI = {
     }
   },
 
+
+  getUsersEvents : async (userId:number) => {
+    try{
+
+      if(!API_URL){
+        throw new Error('API URL tanımlanmamış');
+      }
+  
+      const response = await fetch("http://localhost:9912/api/users/29?populate=*", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      
+  
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error?.message || 'API isteği başarısız oldu');
+      }
+  
+      return await response.json();
+
+    }catch(error){
+      console.error('Event detayı alınırken hata:', error);
+      throw error;
+    }
+
+    
+  },
+
+
+
+
   getById: async (id: number) => {
     try {
       if (!API_URL) {
@@ -226,5 +261,7 @@ export const EventsAPI = {
       console.error('Kayıt durumu kontrol hatası:', error);
       throw error;
     }
-  }
+  },
+
+
 }; 
