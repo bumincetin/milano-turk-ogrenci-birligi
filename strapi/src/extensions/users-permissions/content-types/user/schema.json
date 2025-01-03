@@ -101,12 +101,6 @@
     "website": {
       "type": "text"
     },
-    "purchases": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::purchase.purchase",
-      "mappedBy": "user"
-    },
     "telephone": {
       "type": "string",
       "regex": "^(\\+90|0)?\\s*(\\(\\d{3}\\)[\\s-]*\\d{3}[\\s-]*\\d{2}[\\s-]*\\d{2}|\\(\\d{3}\\)[\\s-]*\\d{3}[\\s-]*\\d{4}|\\(\\d{3}\\)[\\s-]*\\d{7}|\\d{3}[\\s-]*\\d{3}[\\s-]*\\d{4}|\\d{3}[\\s-]*\\d{3}[\\s-]*\\d{2}[\\s-]*\\d{2})$",
