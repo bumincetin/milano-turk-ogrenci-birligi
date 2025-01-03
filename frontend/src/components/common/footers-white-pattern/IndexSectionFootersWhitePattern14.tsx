@@ -1,5 +1,9 @@
+'use client'
+
+import { subscribeToNewsletter } from '@/services/newsletterService'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface FooterLink {
     text: string
@@ -34,6 +38,62 @@ export default function IndexSectionFootersWhitePattern14() {
             ]
         }
     ]
+
+    const [email, setEmail] = useState('')
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [status, setStatus] = useState<{
+        message: string;
+        type: 'success' | 'error' | null;
+    }>({ message: '', type: null })
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault()
+        
+        if (!email) {
+            setStatus({
+                message: 'Lütfen bir e-posta adresi girin.',
+                type: 'error'
+            })
+            return
+        }
+
+        // E-posta formatı kontrolü
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(email)) {
+            setStatus({
+                message: 'Lütfen geçerli bir e-posta adresi girin.',
+                type: 'error'
+            })
+            return
+        }
+
+        setIsSubmitting(true)
+        setStatus({ message: '', type: null })
+
+        try {
+            const response = await subscribeToNewsletter(email)
+            
+            if (response.success) {
+                setStatus({
+                    message: response.message,
+                    type: 'success'
+                })
+                setEmail('')
+            } else {
+                setStatus({
+                    message: response.message,
+                    type: 'error'
+                })
+            }
+        } catch (error) {
+            setStatus({
+                message: 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
+                type: 'error'
+            })
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
 
     return (
         <section 
@@ -87,19 +147,40 @@ export default function IndexSectionFootersWhitePattern14() {
                         <h3 className="mb-5 text-lg font-bold text-black-900">
                             Bülten
                         </h3>
-                        <div className="flex flex-wrap">
+                        <form onSubmit={handleSubscribe} className="flex flex-wrap">
                             <div className="w-full lg:flex-1 py-1 lg:py-0 lg:mr-3">
                                 <input 
-                                    className="px-3 w-full h-12 text-black-900 outline-none placeholder-black-500 border border-black-200 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-xsm" 
+                                    className={`px-3 w-full h-12 text-black-900 outline-none placeholder-black-500 border ${
+                                        status.type === 'error' ? 'border-red-500' : 'border-black-200'
+                                    } focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-xsm`}
                                     placeholder="E-posta adresiniz"
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    disabled={isSubmitting}
                                 />
                             </div>
                             <div className="w-full lg:w-auto py-1 lg:py-0">
-                                <button className="inline-block py-4 px-5 w-full leading-4 text-primary-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm">
-                                    Abone Ol
+                                <button 
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className={`inline-block py-4 px-5 w-full leading-4 text-primary-50 font-medium text-center 
+                                        ${isSubmitting 
+                                            ? 'bg-primary-400 cursor-not-allowed' 
+                                            : 'bg-primary-500 hover:bg-primary-600'
+                                        } focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm`}
+                                >
+                                    {isSubmitting ? 'Gönderiliyor...' : 'Abone Ol'}
                                 </button>
                             </div>
-                        </div>
+                            {status.message && (
+                                <div className={`w-full mt-2 text-sm ${
+                                    status.type === 'success' ? 'text-green-600' : 'text-red-600'
+                                }`}>
+                                    {status.message}
+                                </div>
+                            )}
+                        </form>
                     </div>
                 </div>
             </div>

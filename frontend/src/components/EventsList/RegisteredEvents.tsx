@@ -5,7 +5,7 @@ import { Card, Typography, List, ListItem, Button, CircularProgress, Box, Grid }
 import { EventsAPI } from '@/services/eventService';
 import Cookies from 'js-cookie';
 const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { CalendarToday, LocationOn, Timer, People } from '@mui/icons-material';
@@ -54,6 +54,13 @@ interface User {
   events: Event[];
 }
 
+// JWT için özel tip tanımlaması
+interface JwtUser extends JwtPayload {
+  id: number;
+  email: string;
+  username: string;
+}
+
 const DashboardRegisteredEvents: FC = () => {
   const [myEvents, setMyEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,20 +70,34 @@ const DashboardRegisteredEvents: FC = () => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        let token: string = Cookies.get(COOKIE_NAME) as string;
-        let user: any = jwtDecode(token as string);
+        const token = Cookies.get(COOKIE_NAME);
+        
+        if (!token) {
+          toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
+          setTimeout(() => {
+            window.location.href = '/giris';
+          }, 1500);
+          return;
+        }
 
-        if (user?.id) {
-          const data: User = await EventsAPI.getUsersEvents(user?.id, '?populate=events');
-          console.log('Gelen kullanıcı verisi:', data);
+        try {
+          const user = jwtDecode<JwtUser>(token);
+          if (!user?.id) {
+            throw new Error('Geçersiz kullanıcı bilgisi');
+          }
 
+          const data: User = await EventsAPI.getUsersEvents(user.id, '?populate=events');
           if (data?.events) {
             const sortedEvents = data.events.sort((a, b) => 
               new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
             );
             setMyEvents(sortedEvents);
-            console.log('Etkinlikler:', sortedEvents);
           }
+        } catch (tokenError) {
+          toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
+          setTimeout(() => {
+            window.location.href = '/giris';
+          }, 1500);
         }
       } catch (err) {
         console.error('Etkinlikler alınırken hata oluştu:', err);

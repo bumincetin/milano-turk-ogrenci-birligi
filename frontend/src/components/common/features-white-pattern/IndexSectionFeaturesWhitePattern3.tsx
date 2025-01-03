@@ -79,8 +79,8 @@ export default function IndexSectionFeaturesWhitePattern3() {
                     {/* Orta Resim */}
                     <div className="w-full lg:w-1/3 px-4 mb-8 mt-4 lg:mb-0  ">
                         <Image 
-                            className="mx-auto rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300"
-                            src="/mtob-images/firsatlarimage.jpg"
+                            className="mx-auto mt-24 rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300"
+                            src="/mtob-images/firsatlarimage.png"
                             alt="Özellikler görseli"
                             width={400}
                             height={500}
