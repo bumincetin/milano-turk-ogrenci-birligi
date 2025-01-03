@@ -107,12 +107,6 @@
       "target": "api::purchase.purchase",
       "mappedBy": "user"
     },
-    "ticket": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::ticket.ticket",
-      "mappedBy": "redemption_user"
-    },
     "telephone": {
       "type": "string",
       "regex": "^(\\+90|0)?\\s*(\\(\\d{3}\\)[\\s-]*\\d{3}[\\s-]*\\d{2}[\\s-]*\\d{2}|\\(\\d{3}\\)[\\s-]*\\d{3}[\\s-]*\\d{4}|\\(\\d{3}\\)[\\s-]*\\d{7}|\\d{3}[\\s-]*\\d{3}[\\s-]*\\d{4}|\\d{3}[\\s-]*\\d{3}[\\s-]*\\d{2}[\\s-]*\\d{2})$",

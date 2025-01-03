@@ -27,15 +27,6 @@
       "required": true,
       "maxLength": 25
     },
-    "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "maxLength": 35
-    },
     "summary": {
       "pluginOptions": {
         "i18n": {
@@ -94,6 +85,16 @@
         "published",
         "deleted"
       ]
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "title",
+      "required": false
     }
   }
 }
