@@ -334,6 +334,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             <option value="4.sınıf">4. Sınıf</option>
                                             <option value="Yüksek Lisans">Yüksek Lisans</option>
                                             <option value="Doktora">Doktora</option>
+                                            <option value="Mezun">Mezun</option>
                                             <option value="Diğer">Diğer</option>
                                         </select>
                                     </div>

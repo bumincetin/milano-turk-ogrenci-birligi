@@ -19,7 +19,7 @@ interface UserData {
   linkedin: string;
   university: string;
   department: string;
-  year: string;
+  universityClass: string;
   bio: string;
   twitter?: string;
   phone?: string;
@@ -40,11 +40,11 @@ const ProfilePage: FC = () => {
     role: '',
     birthDate: '',
     description: '',
-    avatar: '', // Başlangıçta boş string
+    avatar: '',
     linkedin: '',
     university: '',
     department: '',
-    year: '',
+    universityClass: '',
     bio: ''
   });
   const router = useRouter();
@@ -55,10 +55,9 @@ const ProfilePage: FC = () => {
         let token :string = Cookies.get(COOKIE_NAME) as string;
         let user : any = jwtDecode(token as string);
         if (user?.id) {
-            console.log("GET USER DATAS")
-            
-          const data : any = await userService.getProfile(user.id,token);
-          console.log("DATA : ",data);
+          const data = await userService.getProfile(user.id, token);
+          console.log("Alınan profil verisi:", data); // Debug için
+
           setUserData({
             firstName: data.firstName || '',
             lastName: data.lastName || '',
@@ -70,15 +69,16 @@ const ProfilePage: FC = () => {
             linkedin: data.linkedin || '',
             university: data.university || '',
             department: data.department || '',
-            year: data.year || '',
-            bio: data.description || '', // description'ı bio olarak kullanıyoruz
+            universityClass: data.universityClass || 'hazırlık', // Backend'den gelen değeri direkt kullan
+            bio: data.description || '',
             twitter: data.twitter || '',
             phone: data.phone || '',
             website: data.website || '',
             position: data.position || '',
             username: data.username || ''
           });
-          setAvatarPreview(data.avatar?.url || ''); // Önizleme için URL'i sakla
+
+          setAvatarPreview(data.avatar?.url || '');
         }
       } catch (error) {
         toast.error('Profil bilgileri yüklenirken bir hata oluştu');
@@ -100,11 +100,17 @@ const ProfilePage: FC = () => {
         throw new Error('Kullanıcı kimliği bulunamadı');
       }
 
-      // Strapi'ye gönderilecek verileri hazırla
+      const formData = new FormData();
+
+      if (userData.avatar && userData.avatar instanceof File) {
+        formData.append('files.avatar', userData.avatar);
+      }
+
+      // universityClass değerini doğrudan gönder
       const updateData = {
         universityName: userData.university || null,
         universityDepartment: userData.department || null,
-        universityClass: userData.year || null,
+        universityClass: userData.universityClass || 'hazirlik', // Boş değer kontrolü
         linkedin: userData.linkedin || null,
         twitter: userData.twitter || null,
         telephone: userData.phone || null,
@@ -115,21 +121,21 @@ const ProfilePage: FC = () => {
         username: userData.username || null
       };
 
-      console.log('Gönderilecek veriler:', updateData);
+      // Debug için gönderilen veriyi kontrol et
+      console.log('Gönderilecek veriler:', JSON.stringify(updateData, null, 2));
 
-      await userService.updateProfile(user.id, updateData, token);
-      
-      toast.success('Profil başarıyla güncellendi', {
-        duration: 3000,
-      });
+      // FormData yerine direkt JSON gönder
+      const updatedUser = await userService.updateProfile(user.id, updateData, token);
+      console.log('Backend yanıtı:', updatedUser);
       
       // Profili yeniden yükle
       const updatedProfile = await userService.getProfile(user.id, token);
+      
       setUserData(prevData => ({
         ...prevData,
         university: updatedProfile.university,
         department: updatedProfile.department,
-        year: updatedProfile.year,
+        universityClass: updatedProfile.universityClass,
         linkedin: updatedProfile.linkedin,
         twitter: updatedProfile.twitter,
         phone: updatedProfile.phone,
@@ -137,13 +143,19 @@ const ProfilePage: FC = () => {
         website: updatedProfile.website,
         position: updatedProfile.position,
         birthDate: updatedProfile.birthday,
-        username: updatedProfile.username
+        username: updatedProfile.username,
+        avatar: updatedProfile.avatar
       }));
       
+      if (updatedProfile.avatar?.url) {
+        setAvatarPreview(updatedProfile.avatar.url);
+      }
+      
+      toast.success('Profil başarıyla güncellendi');
       setIsEditing(false);
     } catch (error) {
-      toast.error('Profil güncellenirken bir hata oluştu');
       console.error('Güncelleme hatası:', error);
+      toast.error('Profil güncellenirken bir hata oluştu');
     } finally {
       setIsLoading(false);
     }
@@ -191,20 +203,24 @@ const ProfilePage: FC = () => {
 
   const getYearText = (year: string) => {
     switch (year) {
-      case '1':
+      case '1.sınıf':
         return '1. Sınıf';
-      case '2':
+      case '2.sınıf':
         return '2. Sınıf';
-      case '3':
+      case '3.sınıf':
         return '3. Sınıf';
-      case '4':
+      case '4.sınıf':
         return '4. Sınıf';
-      case '5':
+      case 'Yüksek Lisans':
         return 'Yüksek Lisans';
-      case '6':
+      case 'Doktora':
         return 'Doktora';
-      case 'mezun':
+      case 'Mezun':
         return 'Mezun';
+      case 'hazırlık':
+        return 'Hazırlık';
+      case 'Diğer':
+        return 'Diğer';
       default:
         return 'Hazırlık';
     }
@@ -345,7 +361,7 @@ const ProfilePage: FC = () => {
                           />
                         </svg>
                         <p className="mb-1 text-sm text-black-800 font-medium">
-                          <span className="text-primary-500">Dosya yüklemek için tıklayın</span> veya sürükleyip bırak��n
+                          <span className="text-primary-500">Dosya yüklemek için tıklayın</span> veya sürükleyip bırakın
                         </p>
                         <p className="text-xs text-gray-500 font-medium">PNG, JPG, GIF veya en fazla 10MB</p>
                         <input 
@@ -411,24 +427,25 @@ const ProfilePage: FC = () => {
                       />
                       <select
                         className="w-full px-4 py-2.5 text-base text-black-900 font-normal outline-none focus:border-primary-500 border border-black-200 rounded-lg shadow-input"
-                        value={userData.year}
-                        onChange={(e) => setUserData({...userData, year: e.target.value})}
+                        value={userData.universityClass || 'hazırlık'}
+                        onChange={(e) => setUserData({...userData, universityClass: e.target.value})}
                       >
-                        <option value="">Hazırlık</option>
-                        <option value="1">1. Sınıf</option>
-                        <option value="2">2. Sınıf</option>
-                        <option value="3">3. Sınıf</option>
-                        <option value="4">4. Sınıf</option>
-                        <option value="5">Yüksek Lisans</option>
-                        <option value="6">Doktora</option>
-                        <option value="mezun">Mezun</option>
+                        <option value="hazırlık">Hazırlık</option>
+                        <option value="1.sınıf">1. Sınıf</option>
+                        <option value="2.sınıf">2. Sınıf</option>
+                        <option value="3.sınıf">3. Sınıf</option>
+                        <option value="4.sınıf">4. Sınıf</option>
+                        <option value="Yüksek Lisans">Yüksek Lisans</option>
+                        <option value="Doktora">Doktora</option>
+                        <option value="Mezun">Mezun</option>
+                        <option value="Diğer">Diğer</option>
                       </select>
                     </div>
                   ) : (
                     <div className="space-y-1">
                       <p className="text-base text-black-900">{userData.university}</p>
                       <p className="text-base text-black-900">{userData.department}</p>
-                      <p className="text-base text-black-900">{getYearText(userData.year)}</p>
+                      <p className="text-base text-black-900">{getYearText(userData.universityClass)}</p>
                     </div>
                   )}
                 </div>
