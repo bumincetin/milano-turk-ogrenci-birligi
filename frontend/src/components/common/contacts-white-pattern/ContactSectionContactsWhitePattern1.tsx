@@ -4,12 +4,22 @@ import Link from 'next/link'
 
 export default function ContactSectionContactsWhitePattern1() {
     const [email, setEmail] = useState('')
+    const [subject, setSubject] = useState('')
     const [message, setMessage] = useState('')
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        // Form gönderme işlemi burada yapılacak
-        console.log('Form gönderildi:', { email, message })
+        
+        // Mail içeriğini oluştur
+        const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=milanoturkogrencibirligi@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}\n\nGönderen: ${email}`
+        
+        // Yeni sekmede Gmail'i aç
+        window.open(mailtoLink, '_blank')
+        
+        // Formu temizle
+        setEmail('')
+        setSubject('')
+        setMessage('')
     }
 
     return (
@@ -38,15 +48,22 @@ export default function ContactSectionContactsWhitePattern1() {
 
                 <div className="flex flex-wrap -mx-4">
                     {/* Sol taraf - İletişim bilgileri */}
-                    <div className="w-full lg:w-1/2 px-4 mb-14 lg:mb-0">
+                    <div className="w-full lg:w-3/5 px-2 mb-14 lg:mb-0">
                         <div className="flex flex-wrap -mx-4">
                             {/* İletişim kartları */}
                             <ContactCard 
                                 icon="email"
                                 title="E-posta"
-                                content={<Link href="mailto:milanoturkogrencibirligi@gmail.com" className="text-lg md:text-xl text-gray-500 hover:text-black-600 font-medium">
-                                    milanoturkogrencibirligi@gmail.com
-                                </Link>}
+                                content={
+                                    <Link 
+                                        href="https://mail.google.com/mail/?view=cm&fs=1&to=milanoturkogrencibirligi@gmail.com" 
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-lg md:text-xl text-gray-500 hover:text-black-600 font-medium"
+                                    >
+                                        milanoturkogrencibirligi@gmail.com
+                                    </Link>
+                                }
                             />
                             <ContactCard 
                                 icon="phone"
@@ -70,7 +87,7 @@ export default function ContactSectionContactsWhitePattern1() {
                     </div>
 
                     {/* Sağ taraf - İletişim formu */}
-                    <div className="w-full lg:w-1/2 px-4">
+                    <div className="w-full lg:w-2/5 px-2">
                         <div className="px-4 py-8 md:p-10 bg-black-50 rounded-md">
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-6">
@@ -83,6 +100,20 @@ export default function ContactSectionContactsWhitePattern1() {
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="block w-full py-2 px-3 appearance-none border border-black-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                                         placeholder="ornek@email.com"
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-6">
+                                    <label className="block mb-2 text-black-800 font-medium leading-6">
+                                        Konu
+                                    </label>
+                                    <input 
+                                        type="text"
+                                        value={subject}
+                                        onChange={(e) => setSubject(e.target.value)}
+                                        className="block w-full py-2 px-3 appearance-none border border-black-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                                        placeholder="Mesajınızın konusu"
+                                        required
                                     />
                                 </div>
                                 <div className="mb-6">
@@ -94,9 +125,13 @@ export default function ContactSectionContactsWhitePattern1() {
                                         onChange={(e) => setMessage(e.target.value)}
                                         className="block h-32 md:h-52 w-full py-2 px-3 appearance-none border border-black-200 rounded-lg shadow-md text-gray-500 leading-6 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 resize-none"
                                         placeholder="Mesajınız..."
+                                        required
                                     />
                                 </div>
-                                <button type="submit" className="block w-full py-4 px-6 text-lg leading-6 text-black-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm">
+                                <button 
+                                    type="submit" 
+                                    className="block w-full py-4 px-6 text-lg leading-6 text-black-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+                                >
                                     Gönder
                                 </button>
                             </form>
