@@ -37,14 +37,15 @@ Lütfen benimle iletişime geçer misiniz?
 Teşekkürler,
 ${user.name} ${user.lastname}`;
 
-    // Mail linkini oluştur
-    // güncellenecek
-    const mailtoLink = `mailto:milanoturkogrencibirligi@gmail.com?subject=Üyelik Talebi&body=${encodeURIComponent(mailBody)}`;
+    // Gmail compose URL'ini oluştur
+    const recipient = 'milanoturkogrencibirligi@gmail.com';
+    const subject = 'Üyelik Talebi';
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
     
-    // Yeni pencerede mail linkini aç
-    window.open(mailtoLink, '_blank');
+    // Yeni pencerede Gmail'i aç
+    window.open(gmailComposeUrl, '_blank');
 
-    toast.success('Üyelik talebiniz için maile yönlendiriliyorsunuz.');
+    toast.success('Gmail üzerinden üyelik talebi oluşturuluyor...');
   };
 
   return (
