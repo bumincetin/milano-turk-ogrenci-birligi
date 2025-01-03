@@ -57,15 +57,14 @@ export const userService = {
       );
       
       const userData = response.data;
-      console.log("Backend'den gelen ham veri:", userData); // Debug için
-
+      
       return {
         firstName: userData.name || '',
         lastName: userData.lastname || '',
         email: userData.email || '',
         university: userData.universityName || '',
         department: userData.universityDepartment || '',
-        universityClass: userData.universityClass || 'hazırlık', // Değeri olduğu gibi al
+        universityClass: userData.universityClass || '',
         linkedin: userData.linkedin || '',
         twitter: userData.twitter || '',
         phone: userData.telephone || '',
@@ -74,11 +73,34 @@ export const userService = {
         position: userData.position || '',
         birthday: userData.birthday || '',
         username: userData.username || '',
-        avatar: userData.avatar || null,
+        avatar: userData.avatar || '',
         role: userData.role || ''
       };
     } catch (error) {
       console.error('Profil getirme hatası:', error);
+      throw error;
+    }
+  },
+
+  async uploadAvatar(file: File, token: string) {
+    try {
+      const formData = new FormData();
+      formData.append('files', file);
+
+      const response = await axios.post(
+        `${API_URL}/api/upload`,
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+      );
+
+      console.log('Medya yükleme yanıtı:', response.data);
+      return response.data[0]?.id || null;
+    } catch (error) {
+      console.error('Avatar yükleme hatası:', error);
       throw error;
     }
   }

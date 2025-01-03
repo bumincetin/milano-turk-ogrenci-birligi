@@ -46,6 +46,14 @@ const Sidebar: React.FC = () => {
     fetchUserData();
   }, []);
 
+  const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+
+  const getImageUrl = (avatar: any) => {
+    if (!avatar?.url) return "/flex-ui-assets/images/dashboard/navigations/avatar.png";
+    if (avatar.url.startsWith('http')) return avatar.url;
+    return `${STRAPI_URL}${avatar.url}`;
+  };
+
   return (
     <>
       {/* Mobil Menü Butonu */}
@@ -268,7 +276,7 @@ const Sidebar: React.FC = () => {
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gray-900 border-t border-gray-800">
           <div className="flex items-center">
             <Image
-              src={userData?.avatar?.url || "/flex-ui-assets/images/dashboard/navigations/avatar.png"}
+              src={getImageUrl(userData?.avatar)}
               alt="Profile"
               width={40}
               height={40}

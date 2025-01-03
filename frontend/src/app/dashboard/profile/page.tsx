@@ -78,7 +78,14 @@ const ProfilePage: FC = () => {
             username: data.username || ''
           });
 
-          setAvatarPreview(data.avatar?.url || '');
+          // Avatar URL'ini ayarla
+          if (data.avatar?.url) {
+            const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+            const fullAvatarUrl = data.avatar.url.startsWith('http') 
+              ? data.avatar.url 
+              : `${STRAPI_URL}${data.avatar.url}`;
+            setAvatarPreview(fullAvatarUrl);
+          }
         }
       } catch (error) {
         toast.error('Profil bilgileri yüklenirken bir hata oluştu');
@@ -100,17 +107,39 @@ const ProfilePage: FC = () => {
         throw new Error('Kullanıcı kimliği bulunamadı');
       }
 
-      const formData = new FormData();
+      let avatarId = null;
 
+      // Önce avatar'ı yükle
       if (userData.avatar && userData.avatar instanceof File) {
-        formData.append('files.avatar', userData.avatar);
+        try {
+          avatarId = await userService.uploadAvatar(userData.avatar, token);
+        } catch (error) {
+          console.error('Avatar yükleme hatası:', error);
+          throw new Error('Profil fotoğrafı yüklenirken bir hata oluştu');
+        }
       }
 
-      // universityClass değerini doğrudan gönder
-      const updateData = {
+      // Kullanıcı bilgilerini güncelle
+      interface UpdateDataType {
+        [key: string]: string | null | number;
+        universityName: string | null;
+        universityDepartment: string | null;
+        universityClass: string;
+        linkedin: string | null;
+        twitter: string | null;
+        telephone: string | null;
+        description: string | null;
+        website: string | null;
+        position: string | null;
+        birthday: string | null;
+        username: string | null;
+        avatar: number | null;
+      }
+
+      const updateData: UpdateDataType = {
         universityName: userData.university || null,
         universityDepartment: userData.department || null,
-        universityClass: userData.universityClass || 'hazirlik', // Boş değer kontrolü
+        universityClass: userData.universityClass || 'hazırlık',
         linkedin: userData.linkedin || null,
         twitter: userData.twitter || null,
         telephone: userData.phone || null,
@@ -118,18 +147,16 @@ const ProfilePage: FC = () => {
         website: userData.website || null,
         position: userData.position || null,
         birthday: userData.birthDate || null,
-        username: userData.username || null
+        username: userData.username || null,
+        avatar: avatarId
       };
 
-      // Debug için gönderilen veriyi kontrol et
-      console.log('Gönderilecek veriler:', JSON.stringify(updateData, null, 2));
-
-      // FormData yerine direkt JSON gönder
       const updatedUser = await userService.updateProfile(user.id, updateData, token);
-      console.log('Backend yanıtı:', updatedUser);
-      
+      console.log('Strapi yanıtı:', updatedUser);
+
       // Profili yeniden yükle
       const updatedProfile = await userService.getProfile(user.id, token);
+      console.log('Güncellenmiş profil:', updatedProfile);
       
       setUserData(prevData => ({
         ...prevData,
@@ -148,7 +175,11 @@ const ProfilePage: FC = () => {
       }));
       
       if (updatedProfile.avatar?.url) {
-        setAvatarPreview(updatedProfile.avatar.url);
+        const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+        const fullAvatarUrl = updatedProfile.avatar.url.startsWith('http') 
+          ? updatedProfile.avatar.url 
+          : `${STRAPI_URL}${updatedProfile.avatar.url}`;
+        setAvatarPreview(fullAvatarUrl);
       }
       
       toast.success('Profil başarıyla güncellendi');
@@ -185,6 +216,9 @@ const ProfilePage: FC = () => {
       // Önizleme için URL oluştur
       const imageUrl = URL.createObjectURL(file);
       setAvatarPreview(imageUrl);
+
+      // Component unmount olduğunda URL'i temizle
+      return () => URL.revokeObjectURL(imageUrl);
     }
   };
 
@@ -193,13 +227,46 @@ const ProfilePage: FC = () => {
   };
 
   // Avatar görüntüleme komponenti
-  const AvatarDisplay = () => (
-    <img 
-      src={avatarPreview || '/flex-ui-assets/images/dashboard/navigations/avatar.png'} // Önizleme URL'i veya varsayılan avatar
-      alt="Profil" 
-      className="w-20 h-20 rounded-full object-cover"
-    />
-  );
+  const AvatarDisplay = () => {
+    const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+    
+    const getImageUrl = (avatarUrl: string) => {
+      if (!avatarUrl) return '/flex-ui-assets/images/dashboard/navigations/avatar.png';
+      // Eğer URL bir Blob URL ise (yeni yüklenen dosya için)
+      if (avatarUrl.startsWith('blob:')) return avatarUrl;
+      // Eğer tam URL ise
+      if (avatarUrl.startsWith('http')) return avatarUrl;
+      // Strapi URL'i ile birleştir
+      return `${STRAPI_URL}${avatarUrl}`;
+    };
+
+    return (
+      <div className="relative">
+        <img 
+          src={getImageUrl(avatarPreview)}
+          alt="Profil" 
+          className="w-20 h-20 rounded-full object-cover"
+        />
+        {isEditing && (
+          <div className="absolute bottom-0 right-0 bg-primary-500 rounded-full p-1 cursor-pointer">
+            <svg 
+              className="w-4 h-4 text-white"
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" 
+              />
+            </svg>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   const getYearText = (year: string) => {
     switch (year) {
