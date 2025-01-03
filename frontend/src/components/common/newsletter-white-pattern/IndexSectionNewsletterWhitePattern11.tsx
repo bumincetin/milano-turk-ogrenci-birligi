@@ -2,20 +2,25 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { newsletterService } from '@/services/newsletterService'
 
 export default function IndexSectionNewsletterWhitePattern11() {
     const [email, setEmail] = useState('')
     const [showSuccess, setShowSuccess] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        setError(null)
+        
         try {
-            // API çağrısı burada
+            await newsletterService.subscribe(email)
             setShowSuccess(true)
             setEmail('')
             setTimeout(() => setShowSuccess(false), 3000)
-        } catch (error) {
+        } catch (error: any) {
             console.error(error)
+            setError(error?.response?.data?.error?.message || 'Bir hata oluştu. Lütfen tekrar deneyin.')
         }
     }
 
@@ -78,7 +83,13 @@ export default function IndexSectionNewsletterWhitePattern11() {
                             </div>
                         </form>
 
-                        {/* Başarı mesajını buraya ekleyin */}
+                        {/* Hata mesajını form'dan sonra ekleyin */}
+                        {error && (
+                            <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg">
+                                {error}
+                            </div>
+                        )}
+
                         {showSuccess && (
                             <div className="mt-4 p-4 bg-primary-100 text-primary-700 rounded-lg">
                                 Bülten kaydınız başarıyla tamamlandı!

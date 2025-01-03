@@ -1,6 +1,6 @@
 'use client'
 
-import { subscribeToNewsletter } from '@/services/newsletterService'
+import { newsletterService } from '@/services/newsletterService'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -71,23 +71,16 @@ export default function IndexSectionFootersWhitePattern14() {
         setStatus({ message: '', type: null })
 
         try {
-            const response = await subscribeToNewsletter(email)
+            await newsletterService.subscribe(email)
             
-            if (response.success) {
-                setStatus({
-                    message: response.message,
-                    type: 'success'
-                })
-                setEmail('')
-            } else {
-                setStatus({
-                    message: response.message,
-                    type: 'error'
-                })
-            }
-        } catch (error) {
             setStatus({
-                message: 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
+                message: 'Bültene başarıyla abone oldunuz!',
+                type: 'success'
+            })
+            setEmail('')
+        } catch (error: any) {
+            setStatus({
+                message: error.message || 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
                 type: 'error'
             })
         } finally {

@@ -25,7 +25,7 @@ export default function Home() {
         const IndexSectionBlogWhitePattern7 = (await import('@/components/common/blog-white-pattern/IndexSectionBlogWhitePattern7')).default;
         const IndexSectionFaqsWhitePattern8 = (await import('@/components/common/faqs-white-pattern/IndexSectionFaqsWhitePattern8')).default;
         const IndexSectionTeamWhitePattern9 = (await import('@/components/common/team-white-pattern/IndexSectionTeamWhitePattern9')).default;
-        const IndexSectionCareersWhitePattern10 = (await import('@/components/common/careers-white-pattern/IndexSectionCareersWhitePattern10')).default;
+        //const IndexSectionCareersWhitePattern10 = (await import('@/components/common/careers-white-pattern/IndexSectionCareersWhitePattern10')).default;
         const IndexSectionNumbersWhitePattern12 = (await import('@/components/common/numbers-white-pattern/IndexSectionNumbersWhitePattern12')).default;
         const IndexSectionCookiesWhite13 = (await import('@/components/common/cookies-white/IndexSectionCookiesWhite13')).default;
         const IndexSectionNewsletterWhitePattern11 = (await import('@/components/common/newsletter-white-pattern/IndexSectionNewsletterWhitePattern11')).default;
@@ -43,7 +43,7 @@ export default function Home() {
           { Component: IndexSectionBlogWhitePattern7, key: 'blog' },
           { Component: IndexSectionFaqsWhitePattern8, key: 'faqs' },
           { Component: IndexSectionTeamWhitePattern9, key: 'team' },
-          { Component: IndexSectionCareersWhitePattern10, key: 'careers' },
+          //{ Component: IndexSectionCareersWhitePattern10, key: 'careers' },
           { Component: IndexSectionNumbersWhitePattern12, key: 'numbers' },
           { Component: IndexSectionCookiesWhite13, key: 'cookies' },
           { Component: IndexSectionNewsletterWhitePattern11, key: 'newsletter' },
