@@ -4,19 +4,60 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { motion, AnimatePresence } from 'framer-motion'
+import { User } from '@/types/user'
+import { userService } from '@/services/userService'
+import Cookies from 'js-cookie'
+import { jwtDecode, JwtPayload } from 'jwt-decode'
+
+interface AuthContextType {
+  user: User | null;
+  logout: () => void;
+}
 
 interface NavLink {
     text: string
     href: string
 }
 
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
+
+// JWT için özel tip tanımlama
+interface CustomJwtPayload extends JwtPayload {
+  id: string;
+  email?: string;
+}
+
+const getImageUrl = (avatar: User['avatar']) => {
+  if (!avatar?.url) return "/flex-ui-assets/images/profile/avatar.jpg";
+  if (avatar.url.startsWith('http')) return avatar.url;
+  return `${STRAPI_URL}${avatar.url}`;
+};
+
 export default function IndexSectionHeadersWhitePattern2() {
+    const { user, logout } = useAuth() as AuthContextType
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const { user, logout } = useAuth()
+    const [userData, setUserData] = useState<any>(null)
 
     useEffect(() => {
-        console.log('Current user:', user)
-    }, [user])
+        const fetchUserData = async () => {
+            try {
+                const token = Cookies.get(COOKIE_NAME)
+                if (token) {
+                    const decodedUser = jwtDecode<CustomJwtPayload>(token)
+                    if (decodedUser.id) {
+                        const data = await userService.getProfile(decodedUser.id, token)
+                        console.log('Header için kullanıcı verileri yüklendi:', data)
+                        setUserData(data)
+                    }
+                }
+            } catch (error) {
+                console.error('Kullanıcı bilgileri yüklenirken hata:', error)
+            }
+        }
+
+        fetchUserData()
+    }, [])
 
     const navLinks: NavLink[] = [
         { text: "Anasayfa", href: "/" },
@@ -33,7 +74,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                     <Link href="/dashboard/profile" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
                         <div className="h-10 w-10 rounded-full overflow-hidden">
                             <Image 
-                                src={user.profileImage || "/flex-ui-assets/images/profile/avatar.jpg"}
+                                src={getImageUrl(userData?.avatar)}
                                 alt="Profil Fotoğrafı"
                                 width={40}
                                 height={40}
@@ -41,8 +82,12 @@ export default function IndexSectionHeadersWhitePattern2() {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-gray-700 font-medium">{user.name} {user.lastname}</span>
-                            <span className="text-gray-700 text-sm">{user.email}</span>
+                            <span className="text-gray-700 font-medium">
+                                {userData?.name} {userData?.lastname}
+                            </span>
+                            <span className="text-gray-700 text-sm">
+                                {userData?.email}
+                            </span>
                         </div>
                     </Link>
                     <button 
@@ -139,7 +184,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                                 <span className="text-gray-700 font-medium">{user.name}</span>
                                                 <div className="h-10 w-10 rounded-full overflow-hidden">
                                                     <Image 
-                                                        src={user.profileImage || "/flex-ui-assets/images/dashboard/navigations/avatar.png"}
+                                                        src={getImageUrl(user.avatar)}
                                                         alt="Profil Fotoğrafı"
                                                         width={40}
                                                         height={40}
