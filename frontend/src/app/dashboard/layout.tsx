@@ -12,7 +12,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   
   const getPageTitle = () => {
-    const path = pathname.split('/').pop() || 'Dashboard';
+    const path = pathname?.split('/').pop() || 'Dashboard';
     return path.charAt(0).toUpperCase() + path.slice(1);
   };
 

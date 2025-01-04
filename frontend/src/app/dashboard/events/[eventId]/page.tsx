@@ -46,11 +46,11 @@ const EventDetailPage: FC = () => {
     if (user) {
       checkEnrollmentStatus();
     }
-  }, [params.eventId, user]);
+  }, [params?.eventId, user]);
 
   const fetchEvent = async () => {
     try {
-      const data = await EventsAPI.getById(Number(params.eventId));
+      const data = await EventsAPI.getById(Number(params?.eventId));
       setEvent(data.data);
     } catch (error) {
       console.error('Error fetching event:', error);
@@ -61,7 +61,7 @@ const EventDetailPage: FC = () => {
 
   const checkEnrollmentStatus = async () => {
     try {
-      const status = await EventsAPI.checkEnrollmentStatus(Number(params.eventId));
+      const status = await EventsAPI.checkEnrollmentStatus(Number(params?.eventId));
       setIsEnrolled(status.isEnrolled);
     } catch (error) {
       console.error('Kayıt durumu kontrol hatası:', error);
@@ -99,7 +99,7 @@ const EventDetailPage: FC = () => {
       }
 
       // Etkinliğe kayıt ol
-      await EventsAPI.enrollEvent(Number(params.eventId));
+      await EventsAPI.enrollEvent(Number(params?.eventId));
       
       toast.success('Etkinliğe başarıyla kayıt oldunuz!');
       setIsEnrolled(true);
@@ -120,8 +120,8 @@ const EventDetailPage: FC = () => {
 
   const handleCancelEnrollment = async () => {
     try {
-      setEnrollingEventId(Number(params.eventId));
-      await EventsAPI.cancelEnrollment(Number(params.eventId));
+      setEnrollingEventId(Number(params?.eventId));
+      await EventsAPI.cancelEnrollment(Number(params?.eventId));
       toast.success('Etkinlik kaydınız iptal edildi');
       setIsEnrolled(false);
       fetchEvent(); // Etkinlik bilgilerini güncelle
