@@ -3,56 +3,66 @@ import { useEffect, useState } from 'react';
 
 const LanguageSwitcher = () => {
   const [isClient, setIsClient] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
     
-    // Google Translate API'sinin yüklenmesini bekle
-    const checkGoogleTranslate = setInterval(() => {
-      if (window.google?.translate) {
-        setIsLoaded(true);
-        clearInterval(checkGoogleTranslate);
-      }
-    }, 100);
+    if (!document.getElementById('google-translate-script')) {
+      const script = document.createElement('script');
+      script.id = 'google-translate-script';
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+    }
 
-    return () => clearInterval(checkGoogleTranslate);
+    window.googleTranslateElementInit = () => {
+      if (
+        typeof window.google !== 'undefined' &&
+        typeof window.google.translate !== 'undefined' &&
+        typeof window.google.translate.TranslateElement !== 'undefined'
+      ) {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'tr',
+            includedLanguages: 'en,tr,de,fr',
+            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          'google_translate_element'
+        );
+
+        // Style ekleme
+        const styleGoogleTranslate = () => {
+          // Gereksiz elementleri gizle
+          const elements = document.querySelectorAll('.goog-te-gadget span, .goog-te-gadget img, .goog-te-gadget br, .goog-te-gadget-simple img, .goog-te-gadget-simple span:not(.text)');
+          elements.forEach((element) => {
+            if (element instanceof HTMLElement) {
+              element.style.display = 'none';
+            }
+          });
+
+          // Dropdown'ı özelleştir
+          const combobox = document.querySelector('.goog-te-combo') as HTMLSelectElement;
+          if (combobox) {
+            combobox.className = 'block w-24 px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white';
+          }
+        };
+
+        // Google Translate yüklendikten sonra stilleri uygula
+        setTimeout(styleGoogleTranslate, 1000);
+      }
+    };
   }, []);
 
-  const changeLanguage = (languageCode: string) => {
-    const iframe = document.querySelector('.goog-te-menu-frame') as HTMLIFrameElement;
-    if (!iframe) return;
-
-    const wrapper = document.getElementById('google_translate_element');
-    if (!wrapper) return;
-
-    // Google Translate dropdown'ını programatik olarak değiştir
-    const selectElement = wrapper.querySelector('.goog-te-combo') as HTMLSelectElement;
-    if (selectElement) {
-      selectElement.value = languageCode;
-      selectElement.dispatchEvent(new Event('change'));
-    }
-  };
-
-  if (!isClient || !isLoaded) return null;
+  if (!isClient) {
+    return null;
+  }
 
   return (
-    <div className="flex gap-2">
-      {window.__GOOGLE_TRANSLATE_CONFIG__?.languages.map((lang) => (
-        <button
-          key={lang.code}
-          onClick={() => changeLanguage(lang.code)}
-          className="flex items-center gap-2 px-3 py-2 bg-white hover:bg-gray-100 rounded-md shadow-sm transition-colors"
-        >
-          <img 
-            src={lang.flag} 
-            alt={lang.name} 
-            className="w-5 h-5 object-cover rounded-sm" 
-          />
-          <span>{lang.name}</span>
-        </button>
-      ))}
-      <div id="google_translate_element" className="hidden" />
+    <div className="relative inline-block">
+      <div 
+        id="google_translate_element" 
+        className="min-w-[120px] h-10 flex items-center justify-center"
+      />
     </div>
   );
 };
