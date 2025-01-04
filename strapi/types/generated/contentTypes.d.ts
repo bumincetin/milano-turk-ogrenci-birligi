@@ -797,6 +797,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::event.event'
     >;
     isTeam: Attribute.Boolean & Attribute.DefaultTo<false>;
+    uyeliktipi: Attribute.Enumeration<
+      ['seviye-0', 'seviye-1', 'seviye-2', 'seviye-3']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

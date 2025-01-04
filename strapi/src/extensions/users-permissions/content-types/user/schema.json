@@ -133,6 +133,15 @@
     "isTeam": {
       "type": "boolean",
       "default": false
+    },
+    "uyeliktipi": {
+      "type": "enumeration",
+      "enum": [
+        "seviye-0",
+        "seviye-1",
+        "seviye-2",
+        "seviye-3"
+      ]
     }
   }
 }
