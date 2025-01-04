@@ -26,6 +26,7 @@ interface UserData {
   website?: string;
   position?: string;
   username?: string;
+  uyeliktipi?: 'seviye-0' | 'seviye-1' | 'seviye-2' | 'seviye-3';
 }
 
 const ProfilePage: FC = () => {
@@ -48,6 +49,34 @@ const ProfilePage: FC = () => {
     bio: ''
   });
   const router = useRouter();
+
+  const getMembershipLevelText = (level?: string) => {
+    switch (level) {
+      case 'seviye-1':
+        return 'Bronz Üye';
+      case 'seviye-2':
+        return 'Gümüş Üye';
+      case 'seviye-3':
+        return 'Altın Üye';
+      case 'seviye-0':
+      default:
+        return 'Üye Değil';
+    }
+  };
+
+  const getMembershipLevelColor = (level?: string) => {
+    switch (level) {
+      case 'seviye-1':
+        return 'text-amber-700 bg-amber-100';
+      case 'seviye-2':
+        return 'text-gray-700 bg-gray-100';
+      case 'seviye-3':
+        return 'text-yellow-700 bg-yellow-100';
+      case 'seviye-0':
+      default:
+        return 'text-red-700 bg-red-100';
+    }
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -75,7 +104,8 @@ const ProfilePage: FC = () => {
             phone: data.phone || '',
             website: data.website || '',
             position: data.position || '',
-            username: data.username || ''
+            username: data.username || '',
+            uyeliktipi: data.uyeliktipi || 'seviye-0'
           });
 
           // Avatar URL'ini ayarla
@@ -378,17 +408,11 @@ const ProfilePage: FC = () => {
                 <div className="w-full md:flex-1 p-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      {userData.role === 'member' ? (
-                        <span className="px-3 py-1 text-sm text-green-700 bg-green-100 rounded-full">
-                          Üye
-                        </span>
-                      ) : (
-                        <span className="px-3 py-1 text-sm text-red-700 bg-red-100 rounded-full">
-                          Üye Değil
-                        </span>
-                      )}
+                      <span className={`px-3 py-1 text-sm rounded-full ${getMembershipLevelColor(userData.uyeliktipi)}`}>
+                        {getMembershipLevelText(userData.uyeliktipi)}
+                      </span>
                     </div>
-                    {userData.role !== 'member' && (
+                    {userData.uyeliktipi === 'seviye-0' && (
                       <button 
                         className="px-4 py-1 text-sm text-white bg-primary-500 hover:bg-primary-600 rounded-md shadow-button"
                         onClick={handleMembershipClick}

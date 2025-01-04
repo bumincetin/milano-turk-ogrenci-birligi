@@ -44,13 +44,13 @@ export default function ContactSectionCtaWhitePattern5() {
 
                             <div className="flex flex-wrap items-center">
                                 <Link 
-                                    href="/etkinlikler" 
+                                    href="/hakkimizda" 
                                     className="inline-flex items-center justify-center px-7 py-3 h-14 w-full md:w-auto mb-2 md:mb-0 md:mr-4 text-lg leading-7 text-black-800 bg-white hover:bg-black-100 font-medium focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
                                 >
                                     Daha Fazla Bilgi
                                 </Link>
                                 <Link 
-                                    href="/uyelik" 
+                                    href="/kayit" 
                                     className="inline-flex items-center justify-center px-7 py-3 h-14 w-full md:w-auto text-lg leading-7 text-primary-50 bg-primary-500 hover:bg-primary-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-transparent rounded-md shadow-sm"
                                 >
                                     Üye Olun

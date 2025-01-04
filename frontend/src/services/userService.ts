@@ -74,7 +74,8 @@ export const userService = {
         birthday: userData.birthday || '',
         username: userData.username || '',
         avatar: userData.avatar || '',
-        role: userData.role || ''
+        role: userData.role || '',
+        uyeliktipi: userData.uyeliktipi || 'seviye-0',
       };
     } catch (error) {
       console.error('Profil getirme hatası:', error);
