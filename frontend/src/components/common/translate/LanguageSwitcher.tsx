@@ -1,6 +1,7 @@
 'use client'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Globe } from 'lucide-react';
+import './google-translate.css'; // CSS dosyasını dahil et
 
 interface Language {
   code: string;
@@ -30,34 +31,13 @@ const LanguageSwitcher = () => {
       const div = document.createElement('div');
       div.id = 'google_translate_element';
       div.style.position = 'absolute';
-      div.style.top = '0';
+      div.style.top = '1';
       div.style.left = '0';
       div.style.opacity = '0';  // Tamamen görünmez yap
       div.style.height = '0';   // Yüksekliği sıfırla
       div.style.overflow = 'hidden'; // Taşan içeriği gizle
       div.style.pointerEvents = 'none';
       document.body.appendChild(div);
-
-      // Google Translate widget stillerini özelleştir
-      const styleSheet = document.createElement('style');
-      styleSheet.textContent = `
-        .goog-te-banner-frame { 
-          display: none !important;
-        }
-        .goog-te-gadget {
-          font-size: 0 !important;
-        }
-        .goog-te-gadget span {
-          display: none !important;
-        }
-        .goog-te-gadget div {
-          display: inline !important;
-        }
-        .goog-te-combo {
-          display: none !important;
-        }
-      `;
-      document.head.appendChild(styleSheet);
     };
 
     // Script yükleme

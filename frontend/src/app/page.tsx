@@ -30,7 +30,6 @@ export default function Home() {
         const IndexSectionCookiesWhite13 = (await import('@/components/common/cookies-white/IndexSectionCookiesWhite13')).default;
         const IndexSectionNewsletterWhitePattern11 = (await import('@/components/common/newsletter-white-pattern/IndexSectionNewsletterWhitePattern11')).default;
         const IndexSectionFootersWhitePattern14 = (await import('@/components/common/footers-white-pattern/IndexSectionFootersWhitePattern14')).default;
-        const LanguageSwitcher = (await import('@/components/common/translate/LanguageSwitcher')).default;
         setComponents([
           { Component: IndexSectionNavigationsWhite1, key: 'nav' },
           { Component: IndexSectionHeadersWhitePattern2, key: 'headers' },
@@ -48,7 +47,6 @@ export default function Home() {
           { Component: IndexSectionCookiesWhite13, key: 'cookies' },
           { Component: IndexSectionNewsletterWhitePattern11, key: 'newsletter' },
           { Component: IndexSectionFootersWhitePattern14, key: 'footers' },
-          { Component: LanguageSwitcher, key: 'languageSwitcher' }
         ]);
 
         console.log('Bileşenler başarıyla yüklendi');

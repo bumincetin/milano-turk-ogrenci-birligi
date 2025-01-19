@@ -19,6 +19,7 @@ const GoogleTranslate: React.FC = () => {
     return (
         <div className="fixed bottom-8 right-8">
             <div className="relative">
+                <label className="absolute -top-6 left-0 text-xs text-gray-400">Çeviri</label>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded-full"

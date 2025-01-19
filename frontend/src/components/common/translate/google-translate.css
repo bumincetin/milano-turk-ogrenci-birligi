@@ -1,0 +1,37 @@
+/* google-translate.css */
+.goog-te-banner-frame { 
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 14px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.goog-te-gadget span {
+  display: none !important;
+}
+
+.goog-te-gadget div {
+  display: inline !important;
+}
+
+.goog-te-combo {
+  display: inline-block !important;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+.goog-te-combo:hover {
+  border-color: #007bff;
+}
+
+.goog-te-combo:focus {
+  outline: none;
+  border-color: #007bff;
+} 
