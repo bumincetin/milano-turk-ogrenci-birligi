@@ -6,6 +6,7 @@ interface Window {
           pageLanguage: string;
           includedLanguages: string;
           layout: any;
+          autoDisplay: boolean;
         }, element: string): any;
         InlineLayout: {
           SIMPLE: any;

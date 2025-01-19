@@ -40,7 +40,7 @@ export const EventsSlider: FC = () => {
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold">Yaklaşan Etkinlikler</h2>
           <Link 
-            href="/events" 
+            href="/etkinlikler" 
             className="text-primary-600 hover:text-primary-700 font-medium"
           >
             Tüm Etkinlikler →

@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "@/app/globals.css";
 import Providers from '@/providers/Providers'
 import { Toaster } from 'sonner';
-import GoogleTranslate from '@/components/common/translate/GoogleTranslate';
 import Script from 'next/script'
 
 const geistSans = localFont({
@@ -30,21 +29,23 @@ export default function RootLayout({
           type="text/css"
           href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.26tY-h6gH9w.L.W.O/am=CAM/d=0/rs=AN8SPfpIXxhebB2A47D9J-MACsXmFF6Vew/m=el_main_css"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.__GOOGLE_TRANSLATE_CONFIG__ = {
+                defaultLanguage: 'tr',
+                languages: [
+                  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+                  { code: 'en', name: 'English', flag: '🇬🇧' },
+                  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+                  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+                ]
+              };
+            `,
+          }}
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans h-full bg-black-50`}>
-        <Script
-          src="https://translate.google.com/translate_a/element.js?cb=TranslateInit"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/lang-config.ts"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="/assets/translations.ts"
-          strategy="afterInteractive"
-        />
-        
         <Providers>
           {children}
           <Toaster 
@@ -53,8 +54,15 @@ export default function RootLayout({
             richColors
             closeButton
           />
-          <div id="google_translate_element" className="hidden" />
+          <div 
+            id="google_translate_element" 
+            className="fixed bottom-14 right-8 z-50" 
+          />
         </Providers>
+        <Script
+          src="/assets/translations.ts"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

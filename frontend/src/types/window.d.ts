@@ -1,29 +1,38 @@
-interface LanguageConfig {
-  code: string;
-  name: string;
-  flag: string;
-}
-
-interface GoogleTranslateConfig {
-  languages: LanguageConfig[];
-  defaultLanguage: string;
+declare namespace google.translate {
+  namespace TranslateElement {
+    enum InlineLayout {
+      SIMPLE,
+      HORIZONTAL,
+      VERTICAL
+    }
+  }
 }
 
 declare global {
   function googleTranslateElementInit(): void;
   interface Window {
     googleTranslateElementInit: () => void;
-    __GOOGLE_TRANSLATE_CONFIG__: GoogleTranslateConfig;
+    __GOOGLE_TRANSLATE_CONFIG__: {
+      languages: Array<{
+        code: string;
+        name: string;
+        flag: string;
+      }>;
+      defaultLanguage: string;
+    };
     google: {
       translate: {
         TranslateElement: {
           new (options: {
             pageLanguage: string;
             includedLanguages: string;
-            layout: any;
+            layout: google.translate.TranslateElement.InlineLayout;
+            autoDisplay: boolean;
           }, element: string): void;
           InlineLayout: {
-            SIMPLE: any;
+            SIMPLE: number;
+            HORIZONTAL: number;
+            VERTICAL: number;
           };
         };
       };
