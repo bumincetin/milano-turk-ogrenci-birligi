@@ -34,8 +34,41 @@ export const EventsSlider: FC = () => {
 
   if (loading) return <div className="p-4">Yükleniyor...</div>;
 
+  if (events.length === 0) {
+    return (
+      <div className="py-12 px-4"
+        style={{
+          backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', 
+          backgroundPosition: 'center'
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center mb-8 text-center">
+            <h1 className="mb-4 text-3xl text-gray-700 md:text-4xl leading-tight font-bold tracking-tighter text-center">
+              Yaklaşan Etkinlikler
+            </h1>
+            <Link 
+              href="/etkinlikler" 
+              className="text-primary-600 hover:text-primary-700 font-medium"
+            >
+              Tüm Etkinlikler →
+            </Link>
+          </div>
+          <div className="text-center py-8 text-gray-500">
+            Henüz aktif bir etkinlik bulunmamaktadır.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="py-12 px-4">
+    <div className="py-12 px-4"
+      style={{
+        backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', 
+        backgroundPosition: 'center'
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold">Yaklaşan Etkinlikler</h2>
@@ -47,11 +80,11 @@ export const EventsSlider: FC = () => {
           </Link>
         </div>
 
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x">
+        <div className="flex gap-6 pb-4 snap-x">
           {events.map((event) => (
             <div 
               key={event.id}
-              className="min-w-[300px] max-w-[300px] snap-start"
+              className="min-w-[300px] max-w-[300px] snap-start transition-transform duration-300 hover:scale-105"
             >
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="h-32 relative">
@@ -76,7 +109,7 @@ export const EventsSlider: FC = () => {
                   
                   <div className="text-sm text-gray-600 space-y-1">
                     <p className="flex items-center gap-1">
-                      <span>��</span>
+                      <span>🕒</span>
                       {new Date(event.attributes.event_time).toLocaleDateString('tr-TR')}
                     </p>
                     <p className="flex items-center gap-1">

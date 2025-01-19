@@ -59,10 +59,7 @@ export default function RootLayout({
             className="fixed bottom-14 right-8 z-50" 
           />
         </Providers>
-        <Script
-          src="/assets/translations.ts"
-          strategy="afterInteractive"
-        />
+
       </body>
     </html>
   )

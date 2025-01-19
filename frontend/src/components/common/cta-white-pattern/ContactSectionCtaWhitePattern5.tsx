@@ -2,12 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function ContactSectionCtaWhitePattern5() {
-    const features = [
-        "Mauris pellentesque congue libero nec",
-        "Suspendisse mollis tincidunt",
-        "Praesent varius justo vel justo pulvinar"
-    ]
-
+    
     return (
         <section 
             className="py-24 bg-white overflow-hidden" 
@@ -17,31 +12,13 @@ export default function ContactSectionCtaWhitePattern5() {
             }}
         >
             <div className="container px-4 mx-auto">
-                <div className="flex flex-wrap -mx-4">
+                <div className="flex flex-wrap -mx-4 items-center">
                     {/* Sol Taraf */}
                     <div className="w-full md:w-1/2 px-4 mb-20 lg:mb-0">
                         <div className="max-w-md mx-auto">
                             <h2 className="mb-8 text-4xl md:text-5xl font-heading font-bold text-black-900 md:leading-15">
                                 Milano'da Türk Öğrencilerle Tanışın ve Birlikte Güçlenin
                             </h2>
-                            
-                            <ul className="mb-8">
-                                {features.map((feature, index) => (
-                                    <li key={index} className="flex items-center mb-4 last:mb-0">
-                                        <Image 
-                                            className="mr-3"
-                                            src="/flex-ui-assets/elements/cta/checkbox-green.svg"
-                                            alt="Checkbox"
-                                            width={20}
-                                            height={20}
-                                        />
-                                        <span className="text-lg md:text-xl font-heading text-gray-500">
-                                            {feature}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-
                             <div className="flex flex-wrap items-center">
                                 <Link 
                                     href="/hakkimizda" 

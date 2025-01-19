@@ -138,11 +138,11 @@ const LanguageSwitcher = () => {
   if (!isClient) return null;
 
   return (
-    <div className="relative">
+    <div className="fixed bottom-4 right-4 z-50">
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center space-x-2 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
+          className="flex items-center space-x-2 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors bg-white"
         >
           <span>{currentLang.flag}</span>
           <span className="text-sm font-medium">{currentLang.code.toUpperCase()}</span>
@@ -150,13 +150,13 @@ const LanguageSwitcher = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute bottom-full mb-1 w-48 rounded-lg border border-gray-200 bg-white shadow-lg py-1 z-50">
+          <div className="absolute bottom-full mb-1 w-48 rounded-lg border border-gray-200 bg-white shadow-lg py-1">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => changeLang(lang)}
                 className={`w-full px-4 py-2 text-left flex items-center space-x-3 hover:bg-gray-50 transition-colors
-                  ${currentLang.code === lang.code ? 'bg-gray-50' : ''}`}
+                  ${currentLang.code === lang.code ? 'bg-blue-50' : ''}`}
               >
                 <span>{lang.flag}</span>
                 <span className="text-sm">{lang.name}</span>

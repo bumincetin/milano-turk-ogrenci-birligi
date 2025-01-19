@@ -61,7 +61,7 @@ export default function IndexSectionFeaturesWhitePattern3() {
                         Değerlerimiz
                     </span>
                     <h1 className="mb-4 text-3xl text-gray-700 md:text-4xl leading-tight font-bold tracking-tighter">
-                        Milano Türk Öğrenci Birliği'nin Sağladığı Fırsatlar
+                        Milano Türk Öğrenci Birliği&apos;nin Sağladığı Fırsatlar
                     </h1>
                     <p className="text-lg md:text-xl text-gray-500 font-medium">
                         Milano’da öğrenim gören Türk öğrenciler olarak, birbirimize destek olma, yeni arkadaşlıklar kurma ve ortak hedeflere ulaşma yolunda birlikte ilerliyoruz.

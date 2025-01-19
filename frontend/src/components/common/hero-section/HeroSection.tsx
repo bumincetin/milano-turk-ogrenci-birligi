@@ -18,26 +18,26 @@ export default function HeroSection() {
                             Milano'da öğrenim gören tüm Türk öğrencilerin dayanışmasını sağlamak amacıyla kurulmuş bir topluluktur.
                         </p>
                         <div className="flex flex-wrap">
-                            <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
+                            <div className="w-full md:w-full lg:w-1/3 xl:w-1/3 px-2 mb-2">
                                 <Link 
                                     href="https://chat.whatsapp.com/GABp3SSF9QH6KWMWVJ5Jgp"
-                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-primary-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-primary-500 rounded-md shadow-sm"
+                                    className="inline-block py-4 px-6 w-full text-base md:text-lg leading-4 text-primary-50 font-medium text-center bg-primary-500 hover:bg-primary-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 border border-primary-500 rounded-md shadow-sm"
                                 >
                                     WhatsApp
                                 </Link>
                             </div>
-                            <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
+                            <div className="w-full md:w-full lg:w-1/3 xl:w-1/3 px-2 mb-2">
                                 <Link 
                                     href="https://www.instagram.com/milanoturkogrencibirligi/"
-                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-black-800 font-medium text-center bg-white hover:bg-black-100 focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
+                                    className="inline-block py-4 px-6 w-full text-base md:text-lg leading-4 text-black-800 font-medium text-center bg-white hover:bg-black-100 focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
                                 >
                                     Instagram
                                 </Link>
                             </div>
-                            <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
+                            <div className="w-full md:w-full lg:w-1/3 xl:w-1/3 px-2 mb-2">
                                 <Link 
                                     href="https://linkedin.com/company/milano-türk-öğrenci-birliği"
-                                    className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-black-800 font-medium text-center bg-white hover:bg-black-100 focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
+                                    className="inline-block py-4 px-6 w-full text-base md:text-lg leading-4 text-black-800 font-medium text-center bg-white hover:bg-black-100 focus:ring-2 focus:ring-black-200 focus:ring-opacity-50 border border-black-200 rounded-md shadow-sm"
                                 >
                                     LinkedIn
                                 </Link>

@@ -22,28 +22,46 @@ const AboutComponent: React.FC = () => {
       expanded: true,
       type: 'person',
       data: {
-        name: 'Yönetim Kurulu Başkanı',
-        role: 'Başkan',
-        image: '/flex-ui-assets/images/blog/avatar.png'
+        name: 'Başkan',
+        role: 'Mustafa Şandırlı',
+        image: '/mtob-team/Mustafa_Sandirli.jpg'
       },
       children: [
         {
           expanded: true,
           type: 'person',
           data: {
-            name: 'Genel Sekreter',
-            role: 'Sekreter',
-            image: '/flex-ui-assets/images/blog/avatar.png'
+            name: 'Başkan Yardımcısı',
+            role: 'Muhammet Talha Çoğalmış',
+            image: '/mtob-team/Muhammet_Talha_Cogalmis.jpg'
           },
           children: [
             {
               expanded: true,
               type: 'person',
               data: {
-                name: 'İdari İşler Sorumlusu',
-                role: 'Yönetici',
-                image: '/flex-ui-assets/images/blog/avatar.png'
+                name: 'Sayman',
+                role: 'Mali İşler Sorumlusu',
               }
+            },
+            {
+              expanded: true,
+              type: 'person',
+              data: {
+                name: 'Tanıtım ve Sosyal Medya',
+                role: 'Alize Ataç',
+                image: '/mtob-team/Alize_Atac.jpg'
+              },
+              children: [
+                {
+                  expanded: true,
+                  type: 'person',
+                  data: {
+                    name: 'Grafik Komitesi',
+                    role: 'Tasarım Ekibi'
+                  }
+                }
+              ]
             }
           ]
         },
@@ -51,28 +69,48 @@ const AboutComponent: React.FC = () => {
           expanded: true,
           type: 'person',
           data: {
-            name: 'Etkinlik Koordinatörü',
-            role: 'Koordinatör',
-            image: '/flex-ui-assets/images/blog/avatar.png'
+            name: 'Genel Sekreter',
+            role: 'Bumin Kağan Çetin',
+            image: '/mtob-team/Bumin_Kagan.jpg'
           },
           children: [
             {
               expanded: true,
               type: 'person',
               data: {
-                name: 'Sosyal Medya Sorumlusu',
-                role: 'Yönetici',
-                image: '/flex-ui-assets/images/blog/avatar.png'
-              }
+                name: 'Akademik ve Öğrenci İşleri',
+                role: 'Pınar Ürün',
+                image: '/mtob-team/Pinar_Urun.jpg'
+              },
+              children: [
+                {
+                  expanded: true,
+                  type: 'person',
+                  data: {
+                    name: 'Mentoring-Tutoring Komitesi',
+                    role: 'Mentorluk Ekibi'
+                  }
+                }
+              ]
             },
             {
               expanded: true,
               type: 'person',
               data: {
-                name: 'Etkinlik Organizatörü',
-                role: 'Yönetici',
-                image: '/flex-ui-assets/images/blog/avatar.png'
-              }
+                name: 'Etkinlik ve Organizasyon',
+                role: 'Aleyna Şenol',
+                image: '/mtob-team/Aleyna_Senol.jpg'
+              },
+              children: [
+                {
+                  expanded: true,
+                  type: 'person',
+                  data: {
+                    name: 'Etkinlik Gönüllü Komitesi',
+                    role: 'Organizasyon Ekibi'
+                  }
+                }
+              ]
             }
           ]
         }
@@ -82,10 +120,10 @@ const AboutComponent: React.FC = () => {
 
   const nodeTemplate = (node: OrgNode) => {
     return (
-      <div className="p-4 border-2 border-gray-200 rounded-xl bg-white shadow-lg min-w-[220px] transition-all duration-300 hover:shadow-xl hover:border-blue-400">
+      <div className="p-4 border-2 border-gray-200 rounded-xl bg-white shadow-lg min-w-[220px] transition-all duration-300 hover:shadow-xl hover:border-blue-400 hover:-translate-y-1">
         <div className="flex flex-col items-center gap-3">
-          {node.data.image && (
-            <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-gray-100 shadow-inner">
+          {node.data.image ? (
+            <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-50 shadow-inner transform transition-transform hover:scale-105">
               <Image
                 src={node.data.image}
                 alt={node.data.name}
@@ -94,10 +132,16 @@ const AboutComponent: React.FC = () => {
                 className="object-cover w-full h-full"
               />
             </div>
+          ) : (
+            <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center">
+              <svg className="w-8 h-8 text-blue-500" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor" />
+              </svg>
+            </div>
           )}
           <div className="text-center">
             <div className="font-bold text-lg text-gray-800">{node.data.name}</div>
-            <div className="text-sm text-gray-600 font-medium">{node.data.role}</div>
+            <div className="text-sm text-blue-600 font-medium">{node.data.role}</div>
           </div>
         </div>
       </div>
@@ -106,8 +150,7 @@ const AboutComponent: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-5xl mx-auto space-y-8">
-        
+      <div className="max-w-7xl mx-auto space-y-8">
         <section>
           <h2 className="text-2xl font-bold mb-4">Biz Kimiz?</h2>
           <p className="text-gray-700">
@@ -140,15 +183,14 @@ const AboutComponent: React.FC = () => {
 
         <section>
           <h2 className="text-2xl font-bold mb-4">Yönetim Yapımız</h2>
-          <div className="bg-gray-50 p-8 rounded-xl">
+          <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl">
             <OrganizationChart
               value={orgData}
               nodeTemplate={nodeTemplate}
-              className="w-full [&_.p-organizationchart]:flex [&_.p-organizationchart]:justify-center [&_.p-organizationchart-table]:w-auto [&_.p-organizationchart-line-down]:border-2 [&_.p-organizationchart-line-down]:border-gray-300"
+              className="w-full [&_.p-organizationchart]:flex [&_.p-organizationchart]:justify-center [&_.p-organizationchart-table]:w-auto"
             />
           </div>
         </section>
-
       </div>
     </div>
   );

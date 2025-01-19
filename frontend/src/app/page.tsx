@@ -78,14 +78,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="fixed bottom-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-lg">
-        {components
-          .filter(({ key }) => key === 'languageSwitcher')
-          .map(({ Component, key }) => (
-            <Component key={key} />
-          ))}
-      </div>
-
       {components.slice(0, 2).map(({ Component, key }) => (
         <Component key={key} />
       ))}
