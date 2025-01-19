@@ -32,9 +32,32 @@ const LanguageSwitcher = () => {
       div.style.position = 'absolute';
       div.style.top = '0';
       div.style.left = '0';
-      div.style.opacity = '0.01';
+      div.style.opacity = '0';  // Tamamen görünmez yap
+      div.style.height = '0';   // Yüksekliği sıfırla
+      div.style.overflow = 'hidden'; // Taşan içeriği gizle
       div.style.pointerEvents = 'none';
       document.body.appendChild(div);
+
+      // Google Translate widget stillerini özelleştir
+      const styleSheet = document.createElement('style');
+      styleSheet.textContent = `
+        .goog-te-banner-frame { 
+          display: none !important;
+        }
+        .goog-te-gadget {
+          font-size: 0 !important;
+        }
+        .goog-te-gadget span {
+          display: none !important;
+        }
+        .goog-te-gadget div {
+          display: inline !important;
+        }
+        .goog-te-combo {
+          display: none !important;
+        }
+      `;
+      document.head.appendChild(styleSheet);
     };
 
     // Script yükleme

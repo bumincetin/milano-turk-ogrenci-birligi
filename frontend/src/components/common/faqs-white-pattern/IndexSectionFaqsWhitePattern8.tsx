@@ -38,7 +38,7 @@ export default function IndexSectionFaqsWhitePattern8() {
 
     return (
         <section 
-            className="min-h-screen bg-white"
+            className="min-h-[50vh] bg-white"
             style={{
                 backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', 
                 backgroundPosition: 'center',
@@ -46,10 +46,10 @@ export default function IndexSectionFaqsWhitePattern8() {
                 backgroundRepeat: 'repeat'
             }}
         >
-            <div className="container px-4 mx-auto py-24">
+            <div className="container px-4 mx-auto py-12">
                 <div className="flex flex-wrap -mx-4">
                     {/* Sol Taraf - Başlık */}
-                    <div className="w-full md:w-1/2 px-4 mb-20 md:mb-0">
+                    <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
                         <div className="max-w-md">
                             <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium rounded-full shadow-sm">
                                 SSS
@@ -68,7 +68,7 @@ export default function IndexSectionFaqsWhitePattern8() {
                         {faqs.map((faq: FAQ, index: number) => (
                             <div 
                                 key={index}
-                                className="flex flex-wrap w-full mb-10 text-left cursor-pointer"
+                                className="flex flex-wrap w-full mb-8 text-left cursor-pointer"
                                 onClick={() => toggleFAQ(index)}
                             >
                                 <div className="flex items-center justify-between w-full pb-4">

@@ -23,18 +23,18 @@ export default function IndexSectionFootersWhitePattern14() {
                 { text: "Hakkımızda", href: "/hakkimizda" },
                 { text: "Etkinlikler", href: "/etkinlikler" },
                 { text: "Üyelik", href: "/kayit" },
-                { text: "İletişim", href: "/iletisim" },
-                { text: "Sıkça Sorulan Sorular", href: "/sss" }
+                { text: "İletişim", href: "/iletisim" }
             ]
         },
         {
             title: "Kaynaklar",
             links: [
                 { text: "Blog", href: "/blog" },
-                { text: "Duyurular", href: "/duyurular" },
-                { text: "Yardım Merkezi", href: "/yardim" },
-                { text: "Gönüllü Olun", href: "/gonullu" },
-                { text: "Destek", href: "/destek" }
+                { text: "Sıkça Sorulan Sorular", href: "/sss" }
+                // { text: "Duyurular", href: "/duyurular" },
+                // { text: "Yardım Merkezi", href: "/yardim" },
+                // { text: "Gönüllü Olun", href: "/gonullu" },
+                // { text: "Destek", href: "/destek" }
             ]
         }
     ]

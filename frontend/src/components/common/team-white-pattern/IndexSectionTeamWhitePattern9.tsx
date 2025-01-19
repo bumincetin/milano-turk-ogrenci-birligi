@@ -6,45 +6,59 @@ interface TeamMember {
     title: string
     quote: string
     avatar: string
+    linkedin: string
+    instagram: string
 }
 
 export default function IndexSectionTeamWhitePattern9() {
     const teamMembers: TeamMember[] = [
         {
-            name: "Ahmet Yılmaz",
+            name: "Mustafa Şandırlı",
             title: "Başkan",
-            quote: "Dayanışma, Milano'daki tüm Türk öğrencilerin en büyük gücüdür.",
-            avatar: "/flex-ui-assets/images/teams/avatar1.png"
+            quote: "Kültürümüzle Milano'da birleşiyor, dayanışmayla güçleniyoruz.",
+            avatar: "/mtob-team/Mustafa_Sandirli.jpg",
+            linkedin: "https://www.linkedin.com/in/mustafa-%C5%9Fand%C4%B1rl%C4%B1-38b94919b/",
+            instagram: "https://www.instagram.com/msandirli/"
         },
         {
-            name: "Mehmet Demir",
+            name: "Muhammet Talha Çoğalmış",
+            title: "Başkan Yardımcısı",
+            quote: "Hep birlikte Milano'da  güçlü bir öğrenci topluluğu inşa etmek için burdayız.",
+            avatar: "/mtob-team/Muhammet_Talha_Cogalmis.jpg",
+            linkedin: "https://www.linkedin.com/in/muhammed-talha-%C3%A7o%C4%9Fall%C4%B1%C5%9F-1ba09b1b1/",
+            instagram: "https://www.instagram.com/talhacogalmis/"
+        },
+        {
+            name: "Bumin Kağan Çetin",
+            title: "Genel Sekreter",
+            quote: "Gelenekten Geleceğe, Birlikte İlham Veriyoruz!",
+            avatar: "/mtob-team/Bumin_Kagan.jpg",
+            linkedin: "https://www.linkedin.com/in/buminkcetin/",
+            instagram: "https://www.instagram.com/boomincetin/"
+        },
+        {
+            name: "Aleyna Şenol",
             title: "Etkinlik Koordinatörü",
-            quote: "Birlikte güzel anılar biriktirmek için buradayız.",
-            avatar: "/flex-ui-assets/images/teams/avatar2.png"
+            quote: "Kültürlerarası köprüler kuruyor, geleceğe birlikte yürüyoruz.",
+            avatar: "/mtob-team/Aleyna_Senol.jpg",
+            linkedin: "https://www.linkedin.com/in/aleyna-%C5%9Fenol-a53315256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            instagram: "https://www.instagram.com/alleynasnll/"
         },
         {
-            name: "Ayşe Kaya",
-            title: "İletişim Sorumlusu",
-            quote: "MTÖB olarak, her zaman yanınızdayız.",
-            avatar: "/flex-ui-assets/images/teams/avatar3.png"
+            name: "Alize Ataç",
+            title: "Tanıtım ve Sosyal Medya Koordinatörü",
+            quote: "Gücümüz birbirimize verdiğimiz destekten gelir, çünkü birlikte her şey mümkün.",
+            avatar: "/mtob-team/Alize_Atac.jpg",
+            linkedin: "https://www.linkedin.com/in/alize-atac-18621918a/",
+            instagram: "https://www.instagram.com/alize.atac/"
         },
         {
-            name: "Zeynep Aydın",
-            title: "Akademik Danışman",
-            quote: "Akademik başarı, dayanışmayla daha anlamlı hale gelir.",
-            avatar: "/flex-ui-assets/images/teams/avatar4.png"
-        },
-        {
-            name: "Elif Yıldız",
-            title: "Kariyer Danışmanı",
-            quote: "Geleceğinizi şekillendirirken yanınızdayız.",
-            avatar: "/flex-ui-assets/images/teams/avatar5.png"
-        },
-        {
-            name: "Selin Öztürk",
-            title: "Sosyal Medya Uzmanı",
-            quote: "MTÖB'nin sesini her platformda duyurmak için buradayız.",
-            avatar: "/flex-ui-assets/images/teams/avatar6.png"
+            name: "Pınar Ürün",
+            title: "Akademik ve Öğrenci İşleri Koordinatörü",
+            quote: "Akademik Başarıdan Toplumsal Dayanışmaya, Her Alanda Birlikteyiz!",
+            avatar: "/mtob-team/Pinar_Urun.jpg",
+            linkedin: "https://www.linkedin.com/in/p%C4%B1nar-%C3%BCr%C3%BCn-412668168/",
+            instagram: "https://www.instagram.com/pinar.urn/"
         }
     ]
 
@@ -75,9 +89,9 @@ export default function IndexSectionTeamWhitePattern9() {
                     {teamMembers.map((member, index) => (
                         <div 
                             key={index} 
-                            className="w-full md:w-1/2 lg:w-1/3 px-4 mb-10 lg:mb-0"
+                            className="w-full md:w-1/2 lg:w-1/3 px-4 mb-10 lg:mb-3"
                         >
-                            <div className="h-full py-8 px-10 bg-black-50 rounded-md text-center">
+                            <div className="h-full py-8 px-10 bg-black-50 rounded-md text-center flex flex-col">
                                 <Image 
                                     className="w-24 h-24 mx-auto mb-6 rounded-full"
                                     src={member.avatar}
@@ -85,18 +99,18 @@ export default function IndexSectionTeamWhitePattern9() {
                                     width={96}
                                     height={96}
                                 />
-                                <h3 className="mb-2 text-2xl md:text-3xl leading-tight font-semibold">
+                                <h3 className="text-2xl md:text-3xl leading-tight font-semibold min-h-[4rem] flex items-center justify-center">
                                     {member.name}
                                 </h3>
-                                <span className="inline-block mb-6 text-lg font-medium text-primary-500">
+                                <span className="inline-block mb-3 text-lg font-medium text-primary-500 min-h-[3.5rem] flex items-center justify-center">
                                     {member.title}
                                 </span>
-                                <p className="mb-8 text-gray-500 font-medium">
+                                <p className="mb-4 text-gray-500 font-medium line-clamp-4 min-h-[6rem]">
                                     {member.quote}
                                 </p>
-                                <div className="flex items-center justify-center">
+                                <div className="flex items-center justify-center mt-auto">
                                     <Link 
-                                        href="#" 
+                                        href={member.instagram} 
                                         className="inline-block mr-6 hover:opacity-80"
                                     >
                                         <Image 
@@ -107,7 +121,7 @@ export default function IndexSectionTeamWhitePattern9() {
                                         />
                                     </Link>
                                     <Link 
-                                        href="#" 
+                                        href={member.linkedin} 
                                         className="inline-block hover:opacity-80"
                                     >
                                         <Image 

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import React from 'react'
-import ContactSectionNavigationsWhite2 from '@/components/common/navigations-white/ContactSectionNavigationsWhite2'
 import ContactSectionContactsWhitePattern1 from '@/components/common/contacts-white-pattern/ContactSectionContactsWhitePattern1'
 import ContactSectionContactsWhitePattern3 from '@/components/common/contacts-white-pattern/ContactSectionContactsWhitePattern3'
 import ContactSectionCtaWhitePattern5 from '@/components/common/cta-white-pattern/ContactSectionCtaWhitePattern5'
