@@ -21,11 +21,11 @@ export default function IndexSectionTeamWhitePattern9() {
             instagram: "https://www.instagram.com/msandirli/"
         },
         {
-            name: "Muhammet Talha Çoğalmış",
+            name: "Muhammed Talha Çoğalmış",
             title: "Başkan Yardımcısı",
             quote: "Hep birlikte Milano'da  güçlü bir öğrenci topluluğu inşa etmek için burdayız.",
             avatar: "/mtob-team/Muhammet_Talha_Cogalmis.jpg",
-            linkedin: "https://www.linkedin.com/in/muhammed-talha-%C3%A7o%C4%9Fall%C4%B1%C5%9F-1ba09b1b1/",
+            linkedin: "https://www.linkedin.com/in/muhammed-talha-çoğalmış-1ba09b1b1",
             instagram: "https://www.instagram.com/talhacogalmis/"
         },
         {
