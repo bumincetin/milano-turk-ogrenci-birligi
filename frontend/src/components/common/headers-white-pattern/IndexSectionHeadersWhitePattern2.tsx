@@ -64,7 +64,8 @@ export default function IndexSectionHeadersWhitePattern2() {
         { text: "Etkinlikler", href: "/etkinlikler" },
         { text: "SSS", href: "/sss" },
         { text: "İletişim", href: "/iletisim" },
-        { text: "Hakkımızda", href: "/hakkimizda"}
+        { text: "Hakkımızda", href: "/hakkimizda"},
+        { text: "Neden Üye Olmalıyım?", href: "/mtob"}
     ]
 
     const renderAuthSection = () => {
@@ -244,7 +245,7 @@ export default function IndexSectionHeadersWhitePattern2() {
             <nav className="flex justify-between p-6 px-4">
                 <div className="flex justify-between items-center w-full">
                     {/* Logo */}
-                    <div className="w-1/2 xl:w-1/3">
+                    <div className="w-1/2 xl:w-1/4">
                         <Link href="/" className="block max-w-max">
                             <Image 
                                 className="h-16"
@@ -257,13 +258,13 @@ export default function IndexSectionHeadersWhitePattern2() {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="w-1/2 xl:w-1/3">
-                        <ul className="hidden xl:flex xl:justify-center">
+                    <div className="w-1/2 xl:w-3/5">
+                        <ul className="hidden xl:flex xl:justify-center whitespace-nowrap">
                             {navLinks.map((link, index) => (
                                 <li key={index} className={index !== navLinks.length - 1 ? "mr-12" : ""}>
                                     <Link 
                                         href={link.href}
-                                        className="text-gray-700 hover:text-gray-700 font-medium"
+                                        className="text-gray-700 hover:text-gray-700 font-medium text-sm"
                                     >
                                         {link.text}
                                     </Link>
@@ -273,7 +274,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                     </div>
 
                     {/* Auth Buttons */}
-                    <div className="w-1/2 xl:w-1/3">
+                    <div className="w-1/2 xl:w-1/4">
                         <div className="hidden xl:flex items-center justify-end">
                             {renderAuthSection()}
                         </div>

@@ -23,7 +23,6 @@ interface Testimonial {
     quote: string
     author: string
     title: string
-    avatar: string
 }
 
 interface PrivacyPolicy {
@@ -56,7 +55,6 @@ export default function RegisterSectionSignUpWhitePattern1() {
         quote: "Milano'da Türk öğrencilerle bir araya gelerek sosyal, kültürel ve akademik açıdan kendimi geliştirdim. MTÖB sayesinde harika dostluklar kurdum!",
         author: "Ali Omay",
         title: "MTÖB Üyesi",
-        avatar: "/mtob-images/aliomayimage.jpeg"
     }
 
     const [error, setError] = useState<string | null>(null);
@@ -232,7 +230,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
             }}
         >
             {/* Sol Taraf - Kayıt Formu */}
-            <div className="container px-4 mx-auto mb-16 md:mb-0">
+            <div className="container px-2 mx-auto mb-16 md:mb-0">
                 <div className="w-full md:w-7/12 md:pr-4">
                     <div className="max-w-xl mx-auto">
                         {/* Logo ve Başlık */}
@@ -481,7 +479,7 @@ export default function RegisterSectionSignUpWhitePattern1() {
 
             {/* Sağ Taraf - Referans */}
             <div className="md:absolute md:top-0 md:right-0 md:w-1/2 md:h-full md:pl-4">
-                <div className="flex items-center justify-center h-full px-8 py-14 bg-black-50">
+                <div className="flex items-center justify-center h-full px-0 py-14 bg-black-50">
                     <div className="md:max-w-xl mx-auto text-center">
                         <span className="relative z-10 inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">
                             Referanslar
@@ -506,13 +504,6 @@ export default function RegisterSectionSignUpWhitePattern1() {
                             </h3>
                         </div>
                         <div className="relative text-center">
-                            <Image 
-                                className="w-[130px] h-[130px] mb-6 mx-auto rounded-full"
-                                src={testimonial.avatar}
-                                alt={testimonial.author}
-                                width={100}
-                                height={100}
-                            />
                             <h4 className="mb-2 text-lg text-black-800 font-semibold">
                                 {testimonial.author}
                             </h4>
