@@ -83,14 +83,15 @@ export default function Home() {
       {components.slice(2).map(({ Component, key }) => (
         <motion.div
           key={key}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ 
             once: true,
-            amount: 0.3
+            amount: 0.1,
+            margin: "100px"
           }}
           transition={{ 
-            duration: 0.8,
+            duration: 0.5,
             ease: "easeOut"
           }}
         >
