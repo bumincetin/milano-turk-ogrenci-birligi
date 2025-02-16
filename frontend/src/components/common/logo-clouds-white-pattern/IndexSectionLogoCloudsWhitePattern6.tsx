@@ -8,33 +8,20 @@ interface Partner {
 export default function IndexSectionLogoCloudsWhitePattern6() {
     const partners: Partner[] = [
         {
-            name: "Jiggle",
-            logo: "/flex-ui-assets/brands/logo-clouds/jiggle-logo.svg"
+            name: "Turkish Airlines",
+            logo: "/mtob-images/turkish-airlines-logo.jpeg"
         },
         {
-            name: "Symtric",
-            logo: "/flex-ui-assets/brands/logo-clouds/symtric-logo.svg"
-        },
-        {
-            name: "Wishelp",
-            logo: "/flex-ui-assets/brands/logo-clouds/wishelp-logo.svg"
-        },
-        {
-            name: "Resecurb",
-            logo: "/flex-ui-assets/brands/logo-clouds/resecurb-logo.svg"
-        },
-        {
-            name: "Welytics",
-            logo: "/flex-ui-assets/brands/logo-clouds/welytics-logo.svg"
+            name: "Hanedan",
+            logo: "/mtob-images/hanedan-logo.jpeg"
         }
     ]
 
     return (
 
-        <div></div>
+        <div>
 
-        
-        /*  <section 
+         <section 
             className="py-20 xl:pt-24 bg-white" 
             style={{
                 backgroundImage: 'url("/flex-ui-assets/elements/pattern-white.svg")', 
@@ -48,11 +35,8 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
                         İş Birliklerimiz
                     </span>
                     <h3 className="mb-4 text-4xl md:text-5xl text-black-900 font-bold tracking-tighter">
-                        Güçlü iş ortaklarımızla hedeflerimize ulaşmayı destekliyoruz
+                        İş Birliklerimiz ve Bize Destek Olan Kurumlar
                     </h3>
-                    <p className="text-lg md:text-xl text-gray-500 font-medium">
-                        Milano'da öğrenim gören Türk öğrenciler olarak eğitim ve kültürel alanlarda destek alıyoruz.
-                    </p>
                 </div>
 
                 
@@ -62,7 +46,7 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
                             key={index} 
                             className="w-1/2 md:w-1/3 lg:w-1/5 px-4 mb-8 lg:mb-0"
                         >
-                            <div className="flex items-center h-32 md:h-36 px-4 md:px-8 rounded-md bg-black-50 shadow-md">
+                            <div className="flex items-center h-40 md:h-48 px-4 md:px-8 rounded-md bg-black-50 shadow-md">
                                 <Image 
                                     className="mx-auto"
                                     src={partner.logo}
@@ -75,6 +59,7 @@ export default function IndexSectionLogoCloudsWhitePattern6() {
                     ))}
                 </div>
             </div>
-        </section>  */
+        </section>
+        </div>
     )
 } 

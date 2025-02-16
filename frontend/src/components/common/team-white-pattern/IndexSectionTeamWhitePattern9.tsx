@@ -59,6 +59,14 @@ export default function IndexSectionTeamWhitePattern9() {
             avatar: "/mtob-team/Pinar_Urun.jpg",
             linkedin: "https://www.linkedin.com/in/p%C4%B1nar-%C3%BCr%C3%BCn-412668168/",
             instagram: "https://www.instagram.com/pinar.urn/"
+        },
+        {
+            name: "Berkay Öztürk",
+            title: "Sayman",
+            quote: "Dayanışma bizim gücümüz, birlik bizim pusulamız!",
+            avatar: "/mtob-team/Berkay_Ozturk.jpg",
+            linkedin: "https://www.linkedin.com/in/berkay-%C3%B6zt%C3%BCrk-897989305/",
+            instagram: "https://www.instagram.com/berkayyoozturk/"
         }
     ]
 
