@@ -250,7 +250,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                             <Image 
                                 className="h-16"
                                 src="/flex-ui-assets/logos/Milano-Turk-Ogrenci-Birligi-Logo.png"
-                                alt="Milano Türk Öğrenci Birliği Logo"
+                                alt="Milano Türk Öğrenci Birliği"
                                 width={64}
                                 height={64}
                             />

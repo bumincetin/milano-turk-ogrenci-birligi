@@ -141,13 +141,52 @@ const AboutComponent: React.FC = () => {
 
         <section>
           <h2 className="text-2xl font-bold mb-4">Yönetim Yapımız</h2>
-          <div className="bg-gradient-to-br from-blue-50 to-white p-2 sm:p-4 md:p-6 rounded-xl overflow-x-auto">
-            <div className="min-w-fit">
-              <OrganizationChart
-                value={orgData}
-                nodeTemplate={nodeTemplate}
-                className="w-full [&_.p-organizationchart]:flex [&_.p-organizationchart]:justify-center [&_.p-organizationchart-table]:w-auto [&_.p-organizationchart-lines]:hidden sm:[&_.p-organizationchart-lines]:block"
-              />
+          <div className="relative">
+            {/* Onursal Başkanlar */}
+            <div className="absolute right-0 -top-12 bg-white p-4 rounded-lg shadow-lg border-2 border-gray-200">
+              <h3 className="text-lg font-bold mb-3 text-gray-800">Onursal Başkanlar</h3>
+              <div className="flex gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-50">
+                    <Image
+                      src="/mtob-team/Emre_Burak_Duger.jpg"
+                      alt="Onursal Başkan 1"
+                      width={48}
+                      height={48}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm text-gray-800">Emre Burak Duğer</div>
+                    <div className="text-xs text-blue-600">Onursal Başkan</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-50">
+                    <Image
+                      src="/mtob-team/Merve_Korkmaz.jpg"
+                      alt="Onursal Başkan 2"
+                      width={48}
+                      height={48}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm text-gray-800">Merve Korkmaz</div>
+                    <div className="text-xs text-blue-600">Onursal Başkan</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-blue-50 to-white p-2 sm:p-4 md:p-6 rounded-xl overflow-x-auto">
+              <div className="min-w-fit">
+                <OrganizationChart
+                  value={orgData}
+                  nodeTemplate={nodeTemplate}
+                  className="w-full [&_.p-organizationchart]:flex [&_.p-organizationchart]:justify-center [&_.p-organizationchart-table]:w-auto [&_.p-organizationchart-lines]:hidden sm:[&_.p-organizationchart-lines]:block"
+                />
+              </div>
             </div>
           </div>
         </section>
