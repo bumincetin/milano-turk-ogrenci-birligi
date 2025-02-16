@@ -25,18 +25,6 @@ interface Testimonial {
     title: string
 }
 
-interface PrivacyPolicy {
-    data: {
-        id: number;
-        attributes: {
-            sozlesme: string;
-            createdAt: string;
-            updatedAt: string;
-            publishedAt: string;
-        };
-    };
-}
-
 export default function RegisterSectionSignUpWhitePattern1() {
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -62,8 +50,82 @@ export default function RegisterSectionSignUpWhitePattern1() {
     const { login, login_with_token } = useAuth()
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [showPrivacyModal, setShowPrivacyModal] = useState(false);
-    const [privacyPolicyContent, setPrivacyPolicyContent] = useState<string>('');
-    const [isLoadingPolicy, setIsLoadingPolicy] = useState(false);
+    const privacyPolicyText = `Al tal scopo dichiara:
+a) di condividere le finalità dello Statuto e di voler contribuire, secondo le proprie capacità e disponibilità di
+tempo e mezzi, alla loro realizzazione;
+b) che verserà la quota associativa annuale, secondo le modalità stabilite dal Consiglio Direttivo;
+c) si impegna a non utilizzare il nome dell'Associazione "UNIONE DEGLI STUDENTI TURCHI DI MILANO"
+e il materiale da essa prodotto ai fini associativi, per attività di carattere commerciale, imprenditoriale o, in
+ogni caso, aventi scopo di lucro;
+d) prende atto che l'adesione come Socio Effettivo è subordinata all'accettazione da parte del Consiglio
+Direttivo, come previsto dall'art. 6 dello Statuto;
+e) in qualità di Socio acquisirà i diritti e doveri previsti dagli artt. 15 e 16 dello Statuto.
+Inoltre:
+Informativa ai sensi degli artt. 12 e 13 del Regolamento generale sulla protezione dei dati personali UE
+2016/679
+Ai sensi degli artt. 12 e 13 del Regolamento generale sulla protezione dei dati personali UE 2016/679, in relazione
+ai dati personali di cui l'Associazione "UNIONE DEGLI STUDENTI TURCHI DI MILANO" entrerà in possesso
+nell'ambito delle finalità associative, La informiamo di quanto segue:
+1. Titolare del trattamento.
+Titolare del trattamento è il Presidente dell'Associazione Mustafa Sandirli, nato il 11/01/2001, CF
+SNDMTF01A11Z243E, residente a Via Claudio Treves 41 in Trezzano Sul Naviglio, indirizzo e-mail
+mustafa.sandirli@gmail.com
+2. Finalità del trattamento dei dati.
+Il trattamento è finalizzato unicamente alla corretta gestione delle attività associative, tra cui la gestione dei
+rapporti con i soci, l'organizzazione di eventi, l'invio di comunicazioni istituzionali e l'adempimento delle finalità
+statutarie.
+3. Modalità del trattamento dei dati.
+a) Il trattamento può essere svolto con o senza l'ausilio di strumenti elettronici o comunque automatizzati, inclusi
+software o piattaforme digitali per la gestione delle attività associative;
+b) Il trattamento è svolto dal titolare, dai responsabili e/o da membri dell'associazione espressamente autorizzati.
+4. Conferimento dei dati.
+Il conferimento di dati personali comuni è strettamente necessario ai fini dello svolgimento delle attività
+associative di cui al punto 2.
+5. Rifiuto di conferimento dei dati.
+L'eventuale rifiuto da parte dell'interessato di conferire i dati personali comuni richiesti comporta l'impossibilità
+di adempiere alle attività associative e agli obblighi di cui al punto 2.
+6. Comunicazione dei dati.
+I dati personali possono venire a conoscenza dei membri autorizzati dell'associazione e possono essere
+comunicati, esclusivamente per le finalità associative di cui al punto 2, a:
+- Collaboratori esterni coinvolti nell'organizzazione di attività associative;
+- Fornitori di servizi, quali piattaforme digitali o servizi di comunicazione;
+- Enti pubblici o privati, ove la comunicazione sia obbligatoria per legge o necessaria per il corretto
+svolgimento delle finalità associative.
+Il trattamento dei dati avverrà nel rispetto delle normative vigenti in materia di protezione dei dati personali e
+delle disposizioni di legge applicabili alle associazioni.
+7. Diffusione dei dati.
+I dati personali non sono soggetti a diffusione, ovvero non saranno resi disponibili a soggetti indeterminati, né
+attraverso la loro messa a disposizione o consultazione pubblica, salvo esplicito consenso dell'interessato o in
+caso di obblighi previsti dalla legge.
+8. Trasferimento dei dati all'estero.
+I dati personali possono essere trasferiti verso Paesi dell'Unione Europea e verso Paesi terzi esclusivamente per
+le finalità di cui al punto 2, nel rispetto delle normative vigenti in materia di protezione dei dati personali. Per i
+trasferimenti verso Paesi terzi, tali trasferimenti saranno effettuati solo verso Paesi che garantiscano un livello di
+protezione adeguato ai sensi dell'art. 45 del Regolamento UE 2016/679, oppure previo accordo su clausole
+contrattuali standard o altre garanzie adeguate ai sensi degli artt. 46 e 47 del Regolamento.
+9. Diritti dell'interessato.
+A norma degli artt. 15 (Diritto di accesso), 16 (Diritto di rettifica), 17 (Diritto alla cancellazione), 18 (Diritto di
+limitazione di trattamento), 20 (Diritto alla portabilità dei dati) e 21 (Diritto di opposizione) del Regolamento UE
+2016/679, l'interessato può, in ogni momento, richiedere:
+- l'accesso ai dati personali;
+- la rettifica o la cancellazione degli stessi;
+- la limitazione del trattamento che lo riguarda;
+- di opporsi al loro trattamento;
+- il diritto alla portabilità dei dati.
+Tali richieste possono essere inoltrate mediante comunicazione scritta al Titolare del Trattamento.
+L'interessato ha altresì il diritto di proporre reclamo all'Autorità Garante per la Protezione dei Dati Personali dello
+stato in cui risiede o lavora, qualora ritenga che il trattamento dei dati personali violi le disposizioni del
+Regolamento UE 2016/679.
+10. Consenso al trattamento dei dati
+Ai sensi dell'art. 6, par. 1, lett. a) del Regolamento generale sulla protezione dei dati personali UE n. 2016/679,
+con la sottoscrizione del presente documento, l'interessato manifesta il proprio consenso al trattamento dei dati
+personali per le finalità e con le modalità indicate nella presente informativa, nei limiti in cui il consenso sia
+richiesto dalla Legge.
+In particolare, presto il mio consenso per:
+- l'acquisizione e il trattamento dei miei dati personali;
+- la comunicazione dei miei dati personali a terzi, ove previsto dalla presente informativa.
+Tale consenso rimarrà valido fino a eventuale revoca scritta, da inviare tramite raccomandata con ricevuta di
+ritorno o mediante e-mail al Titolare del Trattamento, come indicato nella presente informativa.`
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -176,49 +238,8 @@ export default function RegisterSectionSignUpWhitePattern1() {
         }
     };
 
-    const fetchPrivacyPolicy = async () => {
-        setIsLoadingPolicy(true);
-        try {
-            const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/gizlilik-sozlesmesi`;
-            console.log('API URL:', apiUrl);
-            
-            const response = await fetch(apiUrl, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const rawData = await response.json();
-            console.log('API yanıtı:', rawData);
-            
-            const data: PrivacyPolicy = rawData;
-            
-            if (!data?.data?.attributes?.sozlesme) {
-                throw new Error('Gizlilik sözleşmesi içeriği bulunamadı');
-            }
-
-            setPrivacyPolicyContent(data.data.attributes.sozlesme);
-        } catch (error) {
-            console.error('Gizlilik sözleşmesi çekilirken hata oluştu:', error);
-            
-            const errorMessage = error instanceof Error 
-                ? error.message 
-                : 'Gizlilik sözleşmesi yüklenirken bir hata oluştu';
-                
-            toast.error(errorMessage);
-            setPrivacyPolicyContent('Gizlilik sözleşmesi şu anda görüntülenemiyor. Lütfen daha sonra tekrar deneyiniz.');
-        } finally {
-            setIsLoadingPolicy(false);
-        }
-    };
-
     const handleOpenPrivacyModal = () => {
         setShowPrivacyModal(true);
-        fetchPrivacyPolicy();
     };
 
     return (
@@ -524,13 +545,11 @@ export default function RegisterSectionSignUpWhitePattern1() {
             {showPrivacyModal && (
                 <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                        {/* Arka plan overlay */}
                         <div 
                             className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
                             onClick={() => setShowPrivacyModal(false)}
                         ></div>
 
-                        {/* Modal içeriği */}
                         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div className="sm:flex sm:items-start">
@@ -539,23 +558,11 @@ export default function RegisterSectionSignUpWhitePattern1() {
                                             Gizlilik Sözleşmesi
                                         </h3>
                                         <div className="mt-2 max-h-96 overflow-y-auto">
-                                            {isLoadingPolicy ? (
-                                                <div className="flex justify-center items-center py-8">
-                                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
-                                                </div>
-                                            ) : (
-                                                <div className="text-sm text-gray-500 prose max-w-none px-4">
-                                                    {privacyPolicyContent ? (
-                                                        <ReactMarkdown>
-                                                            {privacyPolicyContent}
-                                                        </ReactMarkdown>
-                                                    ) : (
-                                                        <p className="text-center text-red-500">
-                                                            Gizlilik sözleşmesi içeriği yüklenemedi.
-                                                        </p>
-                                                    )}
-                                                </div>
-                                            )}
+                                            <div className="text-sm text-gray-500 prose max-w-none px-4">
+                                                <ReactMarkdown>
+                                                    {privacyPolicyText}
+                                                </ReactMarkdown>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
