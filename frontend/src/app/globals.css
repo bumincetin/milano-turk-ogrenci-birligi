@@ -67,3 +67,31 @@ h4:not(article h4) {
 .skiptranslate iframe {
   display: none;
 }
+
+/* Scrollbar'ı gizle - tüm tarayıcılar için */
+* {
+  -ms-overflow-style: none; /* IE ve Edge için */
+  scrollbar-width: none; /* Firefox için */
+}
+
+/* Webkit tabanlı tarayıcılar için (Chrome, Safari, Opera) */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Eğer sadece belirli bir component için scrollbar'ı gizlemek istiyorsanız */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Touch cihazlar için kaydırma davranışını koru */
+@supports (-webkit-touch-callout: none) {
+  .overflow-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+}

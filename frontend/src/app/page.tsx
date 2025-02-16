@@ -76,11 +76,13 @@ export default function Home() {
 
   return (
     <>
-      {components.slice(0, 2).map(({ Component, key }) => (
+      {/* İlk 3 komponenti (navigation, header ve hero) animasyonsuz yükle */}
+      {components.slice(0, 3).map(({ Component, key }) => (
         <Component key={key} />
       ))}
 
-      {components.slice(2).map(({ Component, key }) => (
+      {/* Geri kalan komponentleri animasyonlu yükle */}
+      {components.slice(3).map(({ Component, key }) => (
         <motion.div
           key={key}
           initial={{ opacity: 0, y: 20 }}

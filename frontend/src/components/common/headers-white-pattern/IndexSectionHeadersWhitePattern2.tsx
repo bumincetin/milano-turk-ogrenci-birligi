@@ -65,7 +65,7 @@ export default function IndexSectionHeadersWhitePattern2() {
         { text: "SSS", href: "/sss" },
         { text: "İletişim", href: "/iletisim" },
         { text: "Hakkımızda", href: "/hakkimizda"},
-        { text: "Neden Üye Olmalıyım?", href: "/mtob"}
+        { text: "Neden Üye Olmalıyım?", href: "#"}
     ]
 
     const renderAuthSection = () => {
@@ -108,13 +108,13 @@ export default function IndexSectionHeadersWhitePattern2() {
             <>
                 <Link 
                     href="/giris" 
-                    className="inline-block py-2 px-4 mr-2 leading-5 text-gray-700 hover:text-gray-700 bg-transparent font-medium rounded-md"
+                    className="inline-block py-2 px-4 mr-2 leading-5 text-gray-700 hover:text-gray-700 bg-transparent font-medium rounded-md cursor-pointer hover:bg-gray-100 transition-all duration-300"
                 >
                     Giriş Yap
                 </Link>
                 <Link 
                     href="/kayit" 
-                    className="inline-block py-2 px-4 text-sm leading-5 text-primary-50 bg-primary-500 hover:bg-primary-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
+                    className="inline-block py-2 px-4 text-sm leading-5 text-primary-50 bg-primary-500 hover:bg-primary-600 font-medium focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md cursor-pointer transition-all duration-300"
                 >
                     Kayıt Ol
                 </Link>
@@ -155,7 +155,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                         transition={{ type: "spring", bounce: 0, duration: 0.4 }}
                         className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-white z-50"
                     >
-                        <nav className="relative p-6 h-full overflow-y-auto">
+                        <nav className="relative p-6 h-full overflow-y-auto hide-scrollbar">
                             <div className="flex flex-col justify-between h-full">
                                 <Link href="/" className="inline-block">
                                     <Image 
@@ -264,7 +264,7 @@ export default function IndexSectionHeadersWhitePattern2() {
                                 <li key={index} className={index !== navLinks.length - 1 ? "mr-12" : ""}>
                                     <Link 
                                         href={link.href}
-                                        className="text-gray-700 hover:text-gray-700 font-medium text-sm"
+                                        className="text-gray-700 hover:text-gray-700 font-medium text-sm cursor-pointer hover:opacity-80 transition-all duration-300"
                                     >
                                         {link.text}
                                     </Link>
