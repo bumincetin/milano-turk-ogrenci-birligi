@@ -47,8 +47,12 @@ export default function IndexSectionHeadersWhitePattern2() {
                     const decodedUser = jwtDecode<CustomJwtPayload>(token)
                     if (decodedUser.id) {
                         const data = await userService.getProfile(decodedUser.id, token)
-                        console.log('Header için kullanıcı verileri yüklendi:', data)
-                        setUserData(data)
+                        console.log('Header için kullanıcı verileri:', data)
+                        if (data) {
+                            setUserData(data)
+                        } else {
+                            console.error('Kullanıcı verileri beklenen formatta değil:', data)
+                        }
                     }
                 }
             } catch (error) {
@@ -65,14 +69,14 @@ export default function IndexSectionHeadersWhitePattern2() {
         { text: "SSS", href: "/sss" },
         { text: "İletişim", href: "/iletisim" },
         { text: "Hakkımızda", href: "/hakkimizda"},
-        { text: "Neden Üye Olmalıyım?", href: "#"}
+        { text: "Neden Üye Olmalıyım?", href: "/neden-uye"}
     ]
 
     const renderAuthSection = () => {
         if (user) {
             return (
                 <div className="flex items-center space-x-4">
-                    <Link href="/dashboard/profile" className="flex items-center space-x-4 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+                    <Link href="/dashboard/profile" className="flex items-center space-x-3 hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
                         <div className="h-10 w-10 rounded-full overflow-hidden">
                             <Image 
                                 src={getImageUrl(userData?.avatar)}
@@ -82,14 +86,9 @@ export default function IndexSectionHeadersWhitePattern2() {
                                 className="h-full w-full object-cover"
                             />
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-gray-700 font-medium">
-                                {userData?.name} {userData?.lastname}
-                            </span>
-                            <span className="text-gray-700 text-sm">
-                                {userData?.email}
-                            </span>
-                        </div>
+                        <span className="text-gray-700 font-medium">
+                            {userData?.firstName} {userData?.lastName}
+                        </span>
                     </Link>
                     <button 
                         onClick={() => {
