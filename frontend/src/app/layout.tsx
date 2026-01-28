@@ -1,9 +1,9 @@
-'use client'
 import localFont from "next/font/local";
 import "@/app/globals.css";
 import Providers from '@/providers/Providers'
 import { Toaster } from 'sonner';
 import Script from 'next/script'
+export const runtime = 'edge';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -48,15 +48,15 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans h-full bg-black-50`}>
         <Providers>
           {children}
-          <Toaster 
+          <Toaster
             position="top-right"
             expand={false}
             richColors
             closeButton
           />
-          <div 
-            id="google_translate_element" 
-            className="fixed bottom-14 right-8 z-50" 
+          <div
+            id="google_translate_element"
+            className="fixed bottom-14 right-8 z-50"
           />
         </Providers>
 
