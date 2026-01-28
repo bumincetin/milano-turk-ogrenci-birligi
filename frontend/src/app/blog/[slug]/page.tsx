@@ -1,4 +1,5 @@
 'use client';
+export const runtime = 'edge';
 import React, { useEffect, useState, Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -37,7 +38,7 @@ function BlogContent({ slug }: { slug: string }) {
     if (!imageData?.data?.attributes?.url) {
       return "/flex-ui-assets/images/blog/default.jpg";
     }
-    
+
     // In static mode, images are served from public folder
     return imageData.data.attributes.url;
   };
@@ -82,8 +83,8 @@ function BlogContent({ slug }: { slug: string }) {
         case 'heading':
           const HeadingTag = `h${block.level}` as keyof JSX.IntrinsicElements;
           return (
-            <HeadingTag 
-              key={index} 
+            <HeadingTag
+              key={index}
               className="text-2xl font-bold mb-4 mt-6"
             >
               {block.children[0].text}
@@ -92,8 +93,8 @@ function BlogContent({ slug }: { slug: string }) {
 
         case 'paragraph':
           return (
-            <p 
-              key={index} 
+            <p
+              key={index}
               className="mb-4 text-base leading-relaxed"
             >
               {block.children[0].text}
@@ -103,8 +104,8 @@ function BlogContent({ slug }: { slug: string }) {
         case 'list':
           const ListTag = block.format === 'ordered' ? 'ol' : 'ul';
           return (
-            <ListTag 
-              key={index} 
+            <ListTag
+              key={index}
               className={`mb-4 ml-4 ${block.format === 'ordered' ? 'list-decimal' : 'list-disc'}`}
             >
               {block.children.map((item: any, itemIndex: number) => (
@@ -117,7 +118,7 @@ function BlogContent({ slug }: { slug: string }) {
 
         case 'link':
           return (
-            <a 
+            <a
               key={index}
               href={block.url}
               target="_blank"
@@ -148,7 +149,7 @@ function BlogContent({ slug }: { slug: string }) {
 
         case 'quote':
           return (
-            <blockquote 
+            <blockquote
               key={index}
               className="border-l-4 border-primary-500 pl-4 my-4 italic"
             >
@@ -158,7 +159,7 @@ function BlogContent({ slug }: { slug: string }) {
 
         case 'code':
           return (
-            <pre 
+            <pre
               key={index}
               className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4"
             >

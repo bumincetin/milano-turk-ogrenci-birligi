@@ -1,4 +1,5 @@
 'use client'
+export const runtime = 'edge';
 import { FC, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -94,7 +95,7 @@ const EventDetailPage: FC = () => {
       toast.success('Etkinliğe başarıyla kayıt oldunuz!');
       setIsEnrolled(true);
       fetchEvent();
-      
+
     } catch (error: any) {
       toast.error(error.message || 'Kayıt işlemi sırasında bir hata oluştu');
     }
@@ -103,7 +104,7 @@ const EventDetailPage: FC = () => {
   const handleCancelEnrollment = async () => {
     try {
       setEnrollingEventId(Number(params?.eventId));
-      
+
       if (isStaticMode) {
         toast.info('Bu özellik şu anda aktif değil.');
         setEnrollingEventId(null);
@@ -147,8 +148,8 @@ const EventDetailPage: FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8">
-      <Link 
-        href="/dashboard/events" 
+      <Link
+        href="/dashboard/events"
         className="text-blue-600 hover:text-blue-800 mb-6 inline-block"
       >
         ← Etkinliklere Dön
@@ -225,44 +226,42 @@ const EventDetailPage: FC = () => {
                 🔔 Etkinliklere kayıt için lütfen sosyal medya hesaplarımızdan bizimle iletişime geçin.
               </div>
             )}
-            
+
             {isEnrolled ? (
-              <button 
+              <button
                 onClick={handleCancelEnrollment}
                 disabled={enrollingEventId === event?.id}
-                className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${
-                  enrollingEventId === event?.id
+                className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${enrollingEventId === event?.id
                     ? 'bg-red-400 cursor-wait'
                     : 'bg-red-500 hover:bg-red-600'
-                }`}
+                  }`}
               >
                 {enrollingEventId === event?.id ? 'İptal Ediliyor...' : 'Kaydı İptal Et'}
               </button>
             ) : (
-              <button 
+              <button
                 onClick={handleEnroll}
                 disabled={
                   event.attributes.current_person_count === event.attributes.person_limit ||
                   enrollingEventId === event.id ||
                   isEnrollmentClosed(event.attributes.last_enroll_time)
                 }
-                className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${
-                  event.attributes.current_person_count === event.attributes.person_limit 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : isEnrollmentClosed(event.attributes.last_enroll_time)
+                className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${event.attributes.current_person_count === event.attributes.person_limit
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : enrollingEventId === event.id
-                    ? 'bg-primary-400 cursor-wait'
-                    : 'bg-primary-500 hover:bg-primary-600'
-                }`}
+                    : isEnrollmentClosed(event.attributes.last_enroll_time)
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : enrollingEventId === event.id
+                        ? 'bg-primary-400 cursor-wait'
+                        : 'bg-primary-500 hover:bg-primary-600'
+                  }`}
               >
-                {event.attributes.current_person_count === event.attributes.person_limit 
-                  ? 'Kontenjan Doldu' 
+                {event.attributes.current_person_count === event.attributes.person_limit
+                  ? 'Kontenjan Doldu'
                   : isEnrollmentClosed(event.attributes.last_enroll_time)
-                  ? 'Kayıt Süresi Doldu'
-                  : enrollingEventId === event.id
-                  ? 'Kaydediliyor...'
-                  : 'Kayıt Ol'}
+                    ? 'Kayıt Süresi Doldu'
+                    : enrollingEventId === event.id
+                      ? 'Kaydediliyor...'
+                      : 'Kayıt Ol'}
               </button>
             )}
 
