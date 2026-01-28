@@ -1,11 +1,18 @@
 'use client';
-export const runtime = 'edge';
 import React, { useEffect, useState, Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import IndexSectionHeadersWhitePattern2 from '@/components/common/headers-white-pattern/IndexSectionHeadersWhitePattern2';
 import IndexSectionFootersWhitePattern14 from '@/components/common/footers-white-pattern/IndexSectionFootersWhitePattern14';
 import { blogService } from '@/services/blogService';
+import blogsData from '@/data/blogs.json';
+
+// Generate static params for all blog slugs at build time
+export async function generateStaticParams() {
+  return blogsData.data.map((blog) => ({
+    slug: blog.attributes.slug,
+  }));
+}
 
 function BlogContent({ slug }: { slug: string }) {
   const [blog, setBlog] = useState<any>(null);

@@ -1,11 +1,18 @@
 'use client'
-export const runtime = 'edge';
 import { FC, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { EventsAPI } from '@/services/eventService';
 import { toast } from 'sonner';
 import { useAuth } from '@/contexts/AuthContext';
+import eventsData from '@/data/events.json';
+
+// Generate static params for all event IDs at build time
+export async function generateStaticParams() {
+  return eventsData.data.map((event) => ({
+    eventId: String(event.id),
+  }));
+}
 
 // Event interface
 interface Event {
