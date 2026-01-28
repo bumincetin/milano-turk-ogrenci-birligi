@@ -3,7 +3,6 @@ import "@/app/globals.css";
 import Providers from '@/providers/Providers'
 import { Toaster } from 'sonner';
 import Script from 'next/script'
-export const runtime = 'edge';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
