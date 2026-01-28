@@ -2,7 +2,6 @@
 export const runtime = 'edge';
 import { FC, useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { EventsAPI } from '@/services/eventService';
 import { toast } from 'sonner';
@@ -232,8 +231,8 @@ const EventDetailPage: FC = () => {
                 onClick={handleCancelEnrollment}
                 disabled={enrollingEventId === event?.id}
                 className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${enrollingEventId === event?.id
-                    ? 'bg-red-400 cursor-wait'
-                    : 'bg-red-500 hover:bg-red-600'
+                  ? 'bg-red-400 cursor-wait'
+                  : 'bg-red-500 hover:bg-red-600'
                   }`}
               >
                 {enrollingEventId === event?.id ? 'İptal Ediliyor...' : 'Kaydı İptal Et'}
@@ -247,12 +246,12 @@ const EventDetailPage: FC = () => {
                   isEnrollmentClosed(event.attributes.last_enroll_time)
                 }
                 className={`w-full py-3 rounded-lg text-white text-lg font-semibold ${event.attributes.current_person_count === event.attributes.person_limit
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : isEnrollmentClosed(event.attributes.last_enroll_time)
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : isEnrollmentClosed(event.attributes.last_enroll_time)
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : enrollingEventId === event.id
-                        ? 'bg-primary-400 cursor-wait'
-                        : 'bg-primary-500 hover:bg-primary-600'
+                    : enrollingEventId === event.id
+                      ? 'bg-primary-400 cursor-wait'
+                      : 'bg-primary-500 hover:bg-primary-600'
                   }`}
               >
                 {event.attributes.current_person_count === event.attributes.person_limit
