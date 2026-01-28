@@ -1,0 +1,26 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Elif Yılmaz",
+      "role": "Politecnico di Milano, Mimarlık",
+      "content": "MTÖB sayesinde Milano'ya geldiğim ilk hafta bile yalnız hissetmedim. Etkinlikler harika ve topluluk çok sıcak!",
+      "avatar": "/flex-ui-assets/images/testimonials/avatar-1.png"
+    },
+    {
+      "id": 2,
+      "name": "Ahmet Demir",
+      "role": "Bocconi Üniversitesi, MBA",
+      "content": "Kariyer etkinlikleri sayesinde İtalya'da staj buldum. Network oluşturmak için mükemmel bir platform.",
+      "avatar": "/flex-ui-assets/images/testimonials/avatar-2.png"
+    },
+    {
+      "id": 3,
+      "name": "Zeynep Kaya",
+      "role": "Milano Üniversitesi, Hukuk",
+      "content": "Türk kahvaltısı etkinlikleri ev hasretimi gideriyor. MTÖB gerçekten bir aile gibi.",
+      "avatar": "/flex-ui-assets/images/testimonials/avatar-3.jpeg"
+    }
+  ]
+}
+

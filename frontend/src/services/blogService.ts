@@ -1,69 +1,43 @@
-import axios from 'axios';
-
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+import blogsData from '@/data/blogs.json';
 
 export const blogService = {
   async getBlogs(page = 1) {
-    try {
-      const pageSize = 6;
-      const queryParams = {
-        'pagination[page]': page,
-        'pagination[pageSize]': pageSize,
-        'populate': '*',
-        'sort': 'published:desc',
-        'publicationState': 'live'
-      };
-
-      const response = await axios.get(
-        `${API_URL}/api/blog-posts`,
-        { 
-          params: queryParams,
-          headers: {
-            'Content-Type': 'application/json'
-          }
+    // Simulate async behavior for consistency
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    const pageSize = 6;
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedData = blogsData.data.slice(startIndex, endIndex);
+    
+    return {
+      data: paginatedData,
+      meta: {
+        pagination: {
+          page,
+          pageSize,
+          pageCount: Math.ceil(blogsData.data.length / pageSize),
+          total: blogsData.data.length
         }
-      );
-      
-      return {
-        data: response.data.data,
-        meta: response.data.meta
-      };
-    } catch (error: any) {
-      console.error('Blog verileri alınırken hata detayı:', error.response?.data || error);
-      throw error;
-    }
+      }
+    };
   },
 
   async getBlogBySlug(slug: string) {
-    try {
-      const queryParams = {
-        'filters[slug][$eq]': slug,
-        'populate': '*',
-        'publicationState': 'live'
-      };
+    // Simulate async behavior
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    const blog = blogsData.data.find(
+      (b) => b.attributes.slug === slug
+    );
 
-      const response = await axios.get(
-        `${API_URL}/api/blog-posts`,
-        {
-          params: queryParams,
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-
-      if (!response.data.data || response.data.data.length === 0) {
-        throw new Error('Blog yazısı bulunamadı');
-      }
-
-      return {
-        data: response.data.data,
-        meta: response.data.meta
-      };
-      
-    } catch (error: any) {
-      console.error('Blog detayı alınırken hata:', error.response?.data || error);
-      throw error;
+    if (!blog) {
+      throw new Error('Blog yazısı bulunamadı');
     }
+
+    return {
+      data: [blog],
+      meta: blogsData.meta
+    };
   }
-}; 
+};

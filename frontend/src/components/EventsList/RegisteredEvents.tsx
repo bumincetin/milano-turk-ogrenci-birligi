@@ -3,12 +3,10 @@
 import { FC, useEffect, useState } from 'react';
 import { Card, Typography, List, ListItem, Button, CircularProgress, Box, Grid } from '@mui/material';
 import { EventsAPI } from '@/services/eventService';
-import Cookies from 'js-cookie';
-const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
-import { jwtDecode, JwtPayload } from 'jwt-decode';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { CalendarToday, LocationOn, Timer, People } from '@mui/icons-material';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Event {
   id: number;
@@ -27,52 +25,25 @@ interface Event {
   location?: string | null;
 }
 
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  provider: string;
-  confirmed: boolean;
-  blocked: boolean;
-  name: string;
-  lastname?: string | null;
-  description?: string | null;
-  birthday?: string | null;
-  position?: string | null;
-  twitter?: string | null;
-  linkedin?: string | null;
-  website?: string | null;
-  createdAt: string;
-  updatedAt: string;
-  telephone?: string | null;
-  universityName: string;
-  universityDepartment: string;
-  universityClass: string;
-  isTeam: boolean;
-  avatar?: string | null;
-  blog_posts: any[];
-  events: Event[];
-}
-
-// JWT için özel tip tanımlaması
-interface JwtUser extends JwtPayload {
-  id: number;
-  email: string;
-  username: string;
-}
-
 const DashboardRegisteredEvents: FC = () => {
   const [myEvents, setMyEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [cancelingEventId, setCancelingEventId] = useState<number | null>(null);
+  const { user, isStaticMode } = useAuth();
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const token = Cookies.get(COOKIE_NAME);
         
-        if (!token) {
+        if (isStaticMode) {
+          // In static mode, show empty state or demo data
+          setMyEvents([]);
+          return;
+        }
+
+        // In production mode with real auth
+        if (!user) {
           toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
           setTimeout(() => {
             window.location.href = '/giris';
@@ -80,25 +51,6 @@ const DashboardRegisteredEvents: FC = () => {
           return;
         }
 
-        try {
-          const user = jwtDecode<JwtUser>(token);
-          if (!user?.id) {
-            throw new Error('Geçersiz kullanıcı bilgisi');
-          }
-
-          const data: User = await EventsAPI.getUsersEvents(user.id, '?populate=events');
-          if (data?.events) {
-            const sortedEvents = data.events.sort((a, b) => 
-              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-            );
-            setMyEvents(sortedEvents);
-          }
-        } catch (tokenError) {
-          toast.error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
-          setTimeout(() => {
-            window.location.href = '/giris';
-          }, 1500);
-        }
       } catch (err) {
         console.error('Etkinlikler alınırken hata oluştu:', err);
       } finally {
@@ -107,9 +59,14 @@ const DashboardRegisteredEvents: FC = () => {
     };
 
     fetchEvents();
-  }, []);
+  }, [user, isStaticMode]);
 
   const handleCancelRegistration = async (eventId: number) => {
+    if (isStaticMode) {
+      toast.info('Bu özellik demo modunda aktif değil.');
+      return;
+    }
+
     if (!confirm('Bu etkinlik kaydını iptal etmek istediğinizden emin misiniz?')) {
       return;
     }
@@ -123,12 +80,6 @@ const DashboardRegisteredEvents: FC = () => {
     } catch (error: any) {
       console.error('Kayıt iptal hatası:', error);
       toast.error(error.message || 'Kayıt iptal edilirken bir hata oluştu');
-      
-      if (error.message.includes('Oturum süreniz dolmuş')) {
-        setTimeout(() => {
-          window.location.href = '/giris';
-        }, 1500);
-      }
     } finally {
       setCancelingEventId(null);
     }
@@ -139,6 +90,14 @@ const DashboardRegisteredEvents: FC = () => {
       <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
         Kayıtlı Olduğunuz Etkinlikler
       </Typography>
+
+      {isStaticMode && (
+        <Box sx={{ mb: 2, p: 2, bgcolor: 'warning.light', borderRadius: 1 }}>
+          <Typography variant="body2" color="warning.dark">
+            🔔 Demo modu aktif. Kayıtlı etkinlikler gösterilmiyor.
+          </Typography>
+        </Box>
+      )}
 
       {loading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>

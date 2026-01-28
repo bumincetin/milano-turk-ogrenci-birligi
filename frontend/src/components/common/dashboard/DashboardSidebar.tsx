@@ -2,42 +2,22 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from 'next-auth/react'
 import { userService } from '@/services/userService'
-import Cookies from 'js-cookie'
-import {jwtDecode, JwtPayload} from 'jwt-decode';
 import { useAuth } from '@/contexts/AuthContext'
 
-const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME || 'mtob_user'
-
-// Custom interface tanımlıyoruz
-interface CustomJwtPayload extends JwtPayload {
-  id: string;
-  // JWT token'ınızda bulunan diğer özel alanları da ekleyebilirsiniz
-  email?: string;
-  role?: string;
-}
-
 const Sidebar: React.FC = () => {
-  const { data: session } = useSession()
+  const { user, logout, isStaticMode } = useAuth()
   const [userData, setUserData] = useState<any>(null)
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isPagesOpen, setIsPagesOpen] = useState(false);
-  const { logout } = useAuth()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = Cookies.get(COOKIE_NAME);
-        if (token) {
-          const decodedUser = jwtDecode<CustomJwtPayload>(token);
-          if (decodedUser.id) {
-            const data = await userService.getProfile(decodedUser.id, token);
-            console.log('Kullanıcı verileri yüklendi:', data);
-            setUserData(data);
-          }
-        }
+        // In static mode, use demo data
+        const data = await userService.getProfile('demo', 'demo-token');
+        setUserData(data);
       } catch (error) {
         console.error('Kullanıcı bilgileri yüklenirken hata:', error);
       }
@@ -46,12 +26,10 @@ const Sidebar: React.FC = () => {
     fetchUserData();
   }, []);
 
-  const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
-
   const getImageUrl = (avatar: any) => {
     if (!avatar?.url) return "/flex-ui-assets/images/dashboard/navigations/avatar.png";
     if (avatar.url.startsWith('http')) return avatar.url;
-    return `${STRAPI_URL}${avatar.url}`;
+    return avatar.url;
   };
 
   return (
@@ -93,6 +71,13 @@ const Sidebar: React.FC = () => {
           </Link>
         </div>
 
+        {/* Static Mode Banner */}
+        {isStaticMode && (
+          <div className="mx-4 mb-4 p-2 bg-yellow-600 text-white text-xs rounded text-center">
+            Demo Modu
+          </div>
+        )}
+
         {/* Ana Menü */}
         <div className="mt-2">
           <p className="px-8 mb-2 text-xs font-medium text-gray-500 uppercase">Ana Menü</p>
@@ -107,45 +92,8 @@ const Sidebar: React.FC = () => {
                   <Image src="/flex-ui-assets/elements/dashboard/icons/dashboard-icon.svg" alt="Dashboard" width={24} height={24} />
                   <p className="text-white font-medium text-base ml-2">Dashboard</p>
                 </div>
-                {/* <svg className={`w-4 h-4 transition-transform ${isDashboardOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>  overview alanı kaldırıldı  */}
               </button>
-              {/* {isDashboardOpen && (
-                <ul className="ml-8 mt-2 space-y-2">
-                  <li><Link href="/dashboard/overview" className="text-gray-400 hover:text-primary-500 block py-2">İçerik</Link></li>
-                  
-                </ul>
-              )}   overview alanı kaldırıld*/}
             </li>
-            {/* <li>
-              <Link href="/dashboard/projects" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
-                <div className="flex items-center">
-                  <Image 
-                    src="/flex-ui-assets/elements/dashboard/icons/layer-icon.svg" 
-                    alt="Projects" 
-                    width={24} 
-                    height={24} 
-                    className="mr-2"
-                  />
-                  <p className="text-white font-medium text-base">Projects</p>
-                </div>
-              </Link>
-            </li> */}
-            {/* <li>
-              <Link href="/dashboard/tasks" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
-                <div className="flex items-center">
-                  <Image 
-                    src="/flex-ui-assets/elements/dashboard/icons/check-box.svg" 
-                    alt="Tasks" 
-                    width={24} 
-                    height={24} 
-                    className="mr-2"
-                  />
-                  <p className="text-white font-medium text-base">Tasks</p>
-                </div>
-              </Link>
-            </li> */}
           </ul>
 
           {/* Çalışma Alanı */}
@@ -194,48 +142,7 @@ const Sidebar: React.FC = () => {
                   <p className="text-white font-medium text-base">Üyelik</p>
                 </div>
               </Link>
-            </li>π
-            {/* Pages Dropdown */}
-            {/* <li>
-              <button 
-                onClick={() => setIsPagesOpen(!isPagesOpen)}
-                className="w-full p-3 py-4 flex items-center justify-between text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md"
-              >
-                <div className="flex items-center">
-                  <Image 
-                    src="/flex-ui-assets/elements/dashboard/icons/pages-icon.svg" 
-                    alt="Pages" 
-                    width={24} 
-                    height={24} 
-                    className="mr-2"
-                  />
-                  <p className="text-white font-medium text-base">Sayfalar</p>
-                </div>
-                <svg className={`w-4 h-4 transition-transform ${isPagesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isPagesOpen && (
-                <ul className="ml-8 mt-2 space-y-2">
-                  <li><Link href="/dashboard/pages/page1" className="text-gray-400 hover:text-primary-500 block py-2">Page 1</Link></li>
-                  <li><Link href="/dashboard/pages/page2" className="text-gray-400 hover:text-primary-500 block py-2">Page 2</Link></li>
-                </ul>
-              )}
-            </li> */}
-            {/* <li>
-              <Link href="/dashboard/analytics" className="p-3 py-4 flex items-center text-gray-600 hover:text-primary-500 hover:bg-gray-800 rounded-md">
-                <div className="flex items-center">
-                  <Image 
-                    src="/flex-ui-assets/elements/dashboard/icons/analytics-icon.svg" 
-                    alt="Analytics" 
-                    width={24} 
-                    height={24} 
-                    className="mr-2"
-                  />
-                  <p className="text-white font-medium text-base">Analytics</p>
-                </div>
-              </Link>
-            </li> */}
+            </li>
           </ul>
 
           {/* Ayarlar */}
@@ -284,10 +191,10 @@ const Sidebar: React.FC = () => {
             />
             <div className="ml-3">
               <p className="text-sm font-semibold text-white">
-                {userData ? `${userData.firstName} ${userData.lastName}` : 'Yükleniyor...'}
+                {userData ? `${userData.firstName} ${userData.lastName}` : 'Demo Kullanıcı'}
               </p>
               <p className="text-xs text-gray-500">
-                {userData?.email}
+                {userData?.email || 'demo@mtob.org'}
               </p>
             </div>
             <button className="ml-auto text-gray-600 hover:text-gray-400">

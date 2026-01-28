@@ -1,108 +1,46 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
-
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+// Static mode user service - no actual backend calls
 
 export const userService = {
   async updateProfile(userId: string, userData: any, token: string) {
-    try {
-      console.log('Token:', token);
-      
-      // FormData kontrolü yap
-      if (userData instanceof FormData) {
-        const response = await axios.put(
-          `${API_URL}/api/users/${userId}`,
-          userData,
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              // Content-Type header'ı FormData için otomatik ayarlanacak
-            }
-          }
-        );
-        console.log('Strapi yanıtı:', response.data);
-        return response.data;
-      } else {
-        // Eski JSON formatında gönderim için
-        const response = await axios.put(
-          `${API_URL}/api/users/${userId}`,
-          userData,
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            }
-          }
-        );
-        console.log('Strapi yanıtı:', response.data);
-        return response.data;
-      }
-    } catch (error: any) {
-      console.error('Güncelleme hatası detayı:', error.response?.data || error);
-      throw error;
-    }
+    // In static mode, simulate success
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    console.log('Static mode: Profile update simulated');
+    return {
+      success: true,
+      message: 'Profil güncelleme özelliği şu anda aktif değil.'
+    };
   },
 
   async getProfile(userId: string, token: string) {
-    try {
-      console.log("GET USER PROFILE",token)
-
-      const response = await axios.get(
-        `${API_URL}/api/users/${userId}?populate=*`,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
-      );
-      
-      const userData = response.data;
-      
-      return {
-        firstName: userData.name || '',
-        lastName: userData.lastname || '',
-        email: userData.email || '',
-        university: userData.universityName || '',
-        department: userData.universityDepartment || '',
-        universityClass: userData.universityClass || '',
-        linkedin: userData.linkedin || '',
-        twitter: userData.twitter || '',
-        phone: userData.telephone || '',
-        description: userData.description || '',
-        website: userData.website || '',
-        position: userData.position || '',
-        birthday: userData.birthday || '',
-        username: userData.username || '',
-        avatar: userData.avatar || '',
-        role: userData.role || '',
-        uyeliktipi: userData.uyeliktipi || 'seviye-0',
-      };
-    } catch (error) {
-      console.error('Profil getirme hatası:', error);
-      throw error;
-    }
+    // Return mock profile data
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    return {
+      firstName: 'Demo',
+      lastName: 'Kullanıcı',
+      email: 'demo@example.com',
+      university: 'Politecnico di Milano',
+      department: 'Bilgisayar Mühendisliği',
+      universityClass: '3',
+      linkedin: '',
+      twitter: '',
+      phone: '',
+      description: 'Demo kullanıcı profili',
+      website: '',
+      position: 'Öğrenci',
+      birthday: '',
+      username: 'demo_user',
+      avatar: '',
+      role: { name: 'user' },
+      uyeliktipi: 'seviye-0',
+    };
   },
 
   async uploadAvatar(file: File, token: string) {
-    try {
-      const formData = new FormData();
-      formData.append('files', file);
-
-      const response = await axios.post(
-        `${API_URL}/api/upload`,
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        }
-      );
-
-      console.log('Medya yükleme yanıtı:', response.data);
-      return response.data[0]?.id || null;
-    } catch (error) {
-      console.error('Avatar yükleme hatası:', error);
-      throw error;
-    }
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    console.log('Static mode: Avatar upload simulated');
+    return null;
   }
-}; 
+};

@@ -6,8 +6,6 @@ import IndexSectionHeadersWhitePattern2 from '@/components/common/headers-white-
 import IndexSectionFootersWhitePattern14 from '@/components/common/footers-white-pattern/IndexSectionFootersWhitePattern14';
 import { blogService } from '@/services/blogService';
 
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-
 function BlogContent({ slug }: { slug: string }) {
   const [blog, setBlog] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -40,10 +38,8 @@ function BlogContent({ slug }: { slug: string }) {
       return "/flex-ui-assets/images/blog/default.jpg";
     }
     
-    const imageUrl = imageData.data.attributes.url;
-    return imageUrl.startsWith('http') 
-      ? imageUrl 
-      : `${API_URL}${imageUrl}`;
+    // In static mode, images are served from public folder
+    return imageData.data.attributes.url;
   };
 
   const formatDate = (dateString: string) => {
@@ -54,7 +50,31 @@ function BlogContent({ slug }: { slug: string }) {
     });
   };
 
-  function renderContent(content: any[]) {
+  function renderContent(content: any[] | string) {
+    // If content is a string (markdown), render it simply
+    if (typeof content === 'string') {
+      return (
+        <div className="prose prose-lg max-w-none">
+          {content.split('\n').map((paragraph, index) => {
+            if (paragraph.startsWith('# ')) {
+              return <h1 key={index} className="text-3xl font-bold mb-4 mt-6">{paragraph.slice(2)}</h1>;
+            }
+            if (paragraph.startsWith('## ')) {
+              return <h2 key={index} className="text-2xl font-bold mb-4 mt-6">{paragraph.slice(3)}</h2>;
+            }
+            if (paragraph.startsWith('### ')) {
+              return <h3 key={index} className="text-xl font-bold mb-3 mt-4">{paragraph.slice(4)}</h3>;
+            }
+            if (paragraph.trim() === '') {
+              return null;
+            }
+            return <p key={index} className="mb-4 text-base leading-relaxed">{paragraph}</p>;
+          })}
+        </div>
+      );
+    }
+
+    // If content is an array (Strapi blocks format)
     if (!Array.isArray(content)) return null;
 
     return content.map((block, index) => {
@@ -146,38 +166,6 @@ function BlogContent({ slug }: { slug: string }) {
             </pre>
           );
 
-        case 'table':
-          return (
-            <div key={index} className="overflow-x-auto my-6">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  {block.children[0].children.map((cell: any, cellIndex: number) => (
-                    <th 
-                      key={cellIndex}
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      {cell.children[0].text}
-                    </th>
-                  ))}
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {block.children.slice(1).map((row: any, rowIndex: number) => (
-                    <tr key={rowIndex}>
-                      {row.children.map((cell: any, cellIndex: number) => (
-                        <td 
-                          key={cellIndex}
-                          className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                        >
-                          {cell.children[0].text}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          );
-
         default:
           console.warn(`Bilinmeyen blok tipi: ${block.type}`);
           return null;
@@ -199,19 +187,17 @@ function BlogContent({ slug }: { slug: string }) {
           {blog.attributes.title}
         </h1>
         <div className="mb-6 text-gray-500">
-          <time>{formatDate(blog.attributes.publishedAt)}</time>
+          <time>{formatDate(blog.attributes.published || blog.attributes.publishedAt)}</time>
         </div>
       </div>
 
       {blog.attributes.cover?.data?.attributes?.url ? (
         <div className="mb-8 rounded-lg overflow-hidden">
           <img
-            src={`${API_URL}${blog.attributes.cover.data.attributes.url}`}
+            src={getImageUrl(blog.attributes.cover)}
             alt={blog.attributes.title}
-            style={{ objectFit: 'cover' }}
-            className="object-cover"
-            width={1200}
-            height={600}
+            style={{ objectFit: 'cover', width: '100%', maxHeight: '500px' }}
+            className="object-cover rounded-lg"
           />
         </div>
       ) : null}
@@ -235,4 +221,4 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
       <IndexSectionFootersWhitePattern14 />
     </div>
   );
-} 
+}

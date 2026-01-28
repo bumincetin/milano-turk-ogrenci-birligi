@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "attributes": {
+        "title": "Milano'da Öğrenci Yaşamı: İlk Günler",
+        "slug": "milanoda-ogrenci-yasami-ilk-gunler",
+        "summary": "Milano'ya yeni gelen öğrenciler için şehre alışma süreci, ulaşım, konaklama ve günlük yaşam hakkında pratik bilgiler.",
+        "content": "# Milano'da Öğrenci Yaşamı: İlk Günler\n\nMilano, İtalya'nın moda ve finans başkenti olarak bilinse de, aynı zamanda dünya çapında ünlü üniversitelere ev sahipliği yapan bir eğitim merkezidir.\n\n## Ulaşım\n\nMilano'da toplu taşıma sistemi oldukça gelişmiştir. ATM (Azienda Trasporti Milanesi) metro, tramvay ve otobüs hatlarını işletmektedir.\n\n## Konaklama\n\nÖğrenci yurtları, paylaşımlı daireler ve stüdyo daireler en popüler seçenekler arasındadır.\n\n## Günlük Yaşam\n\nSüpermarketler, kafeler ve restoranlar şehrin her yerinde bulunabilir. Öğrenci indirimleri birçok mekanda geçerlidir.",
+        "published": "2024-12-01T10:00:00.000Z",
+        "cover": {
+          "data": {
+            "attributes": {
+              "url": "/mtob-images/milano-turk-ogrenci-birligi-kahvalti.jpg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
+        "title": "İtalyanca Öğrenmenin Püf Noktaları",
+        "slug": "italyanca-ogrenmenin-puf-noktalari",
+        "summary": "İtalya'da yaşarken İtalyanca öğrenmeyi kolaylaştıracak ipuçları ve kaynaklar.",
+        "content": "# İtalyanca Öğrenmenin Püf Noktaları\n\nİtalya'da yaşamak, dili öğrenmek için harika bir fırsat sunar.\n\n## Günlük Pratik\n\nHer gün en az 30 dakika İtalyanca pratik yapın. Dükkanlarla, komşularla konuşun.\n\n## Dil Kursları\n\nÜniversiteler ve özel kurumlar tarafından sunulan dil kurslarından faydalanabilirsiniz.\n\n## Uygulamalar\n\nDuolingo, Babbel ve Tandem gibi uygulamalar günlük pratiğinizi destekleyebilir.",
+        "published": "2024-11-15T14:30:00.000Z",
+        "cover": {
+          "data": {
+            "attributes": {
+              "url": "/mtob-images/firsatlarimage.png"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "attributes": {
+        "title": "Milano'daki En İyi Türk Restoranları",
+        "slug": "milanodaki-en-iyi-turk-restoranlari",
+        "summary": "Ev yemeklerini özleyenler için Milano'nun en iyi Türk restoranları rehberi.",
+        "content": "# Milano'daki En İyi Türk Restoranları\n\nMilano'da Türk mutfağını özleyenler için önerilerimiz.\n\n## Hanedan Restaurant\n\nOtantik Türk kebapları ve mezeler.\n\n## Ali Ocakbaşı\n\nGeleneksel ocakbaşı deneyimi.\n\n## Istanbul Cafe\n\nTürk kahvaltısı ve ev yapımı tatlar.",
+        "published": "2024-11-01T09:00:00.000Z",
+        "cover": {
+          "data": {
+            "attributes": {
+              "url": "/mtob-images/hanedan-logo.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "attributes": {
+        "title": "Erasmus ve Değişim Programları Hakkında",
+        "slug": "erasmus-ve-degisim-programlari",
+        "summary": "Avrupa'da eğitim fırsatları ve değişim programlarına nasıl başvurabileceğiniz hakkında detaylı bilgi.",
+        "content": "# Erasmus ve Değişim Programları\n\nErasmus+ programı, Avrupa'da eğitim almanın en popüler yollarından biridir.\n\n## Başvuru Süreci\n\nÜniversitenizin uluslararası ofisi ile iletişime geçin.\n\n## Burs İmkanları\n\nErasmus+ kapsamında aylık burs desteği alabilirsiniz.\n\n## Deneyim Paylaşımları\n\nDaha önce Erasmus yapmış öğrencilerle görüşün.",
+        "published": "2024-10-20T11:00:00.000Z",
+        "cover": {
+          "data": {
+            "attributes": {
+              "url": "/mtob-images/aliomayimage.jpeg"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 6,
+      "pageCount": 1,
+      "total": 4
+    }
+  }
+}
+

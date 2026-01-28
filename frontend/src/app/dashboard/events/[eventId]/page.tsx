@@ -5,29 +5,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { EventsAPI } from '@/services/eventService';
 import { toast } from 'sonner';
-import Cookies from 'js-cookie';
 import { useAuth } from '@/contexts/AuthContext';
-const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME as string || "mtob_user";
 
-// Event interface'i ekleyelim
+// Event interface
 interface Event {
   id: number;
   attributes: {
     title: string;
     event_time: string;
     last_enroll_time: string;
-    summary: string;
-    details: any; // veya daha spesifik bir tip
+    summary?: string;
+    description?: string;
+    details?: any;
     person_limit: number;
     current_person_count: number;
     location: string;
-    category: 'City Tour' | 'Workshop' | 'Cultural' | 'Food' | 'Sport' | 'Meeting';
+    category?: 'City Tour' | 'Workshop' | 'Cultural' | 'Food' | 'Sport' | 'Meeting';
     cover: {
       data: {
         attributes: {
           url: string;
         };
-      };
+      } | null;
     };
   };
 }
@@ -39,7 +38,7 @@ const EventDetailPage: FC = () => {
   const [loading, setLoading] = useState(true);
   const [enrollingEventId, setEnrollingEventId] = useState<number | null>(null);
   const [isEnrolled, setIsEnrolled] = useState(false);
-  const { user, logout } = useAuth()
+  const { user, isStaticMode } = useAuth();
 
   useEffect(() => {
     fetchEvent();
@@ -68,63 +67,53 @@ const EventDetailPage: FC = () => {
     }
   };
 
+  const getImageUrl = (coverData: any) => {
+    if (!coverData?.data?.attributes?.url) {
+      return null;
+    }
+    // In static mode, images are served from public folder
+    return coverData.data.attributes.url;
+  };
+
   const handleEnroll = async () => {
     try {
-      // Oturum kontrolü
-      const isAuthenticated = user !== null;
-      
-      if (!isAuthenticated) {
+      if (!user) {
         toast.error('Kayıt olmak için giriş yapmanız gerekmektedir.');
-        
-        // 2 saniye bekle ve sonra yönlendir
         setTimeout(() => {
           router.push('/giris');
         }, 1500);
-        
         return;
       }
 
-      // Cookie token kontrolü
-      const token = Cookies.get(COOKIE_NAME);
-      if (!token) {
-        toast.error('Oturum bilgileriniz bulunamadı. Lütfen tekrar giriş yapın.');
-        
-        // 2 saniye bekle ve sonra yönlendir
-        setTimeout(() => {
-          logout();
-          router.push('/giris');
-        }, 1500);
-        
+      if (isStaticMode) {
+        toast.info('Etkinlik kaydı için lütfen bizimle iletişime geçin.');
         return;
       }
 
-      // Etkinliğe kayıt ol
       await EventsAPI.enrollEvent(Number(params?.eventId));
-      
       toast.success('Etkinliğe başarıyla kayıt oldunuz!');
       setIsEnrolled(true);
       fetchEvent();
       
     } catch (error: any) {
       toast.error(error.message || 'Kayıt işlemi sırasında bir hata oluştu');
-      
-      if (error.message.includes('Oturum süreniz dolmuş')) {
-        // 2 saniye bekle ve sonra yönlendir
-        setTimeout(() => {
-          logout();
-          router.push('/giris');
-        }, 1500);
-      }
     }
   };
 
   const handleCancelEnrollment = async () => {
     try {
       setEnrollingEventId(Number(params?.eventId));
+      
+      if (isStaticMode) {
+        toast.info('Bu özellik şu anda aktif değil.');
+        setEnrollingEventId(null);
+        return;
+      }
+
       await EventsAPI.cancelEnrollment(Number(params?.eventId));
       toast.success('Etkinlik kaydınız iptal edildi');
       setIsEnrolled(false);
-      fetchEvent(); // Etkinlik bilgilerini güncelle
+      fetchEvent();
     } catch (error: any) {
       toast.error(error.message || 'Kayıt iptal işlemi sırasında bir hata oluştu');
     } finally {
@@ -132,12 +121,10 @@ const EventDetailPage: FC = () => {
     }
   };
 
-  // Son kayıt tarihi kontrolü için yardımcı fonksiyon
   const isEnrollmentClosed = (lastEnrollTime: string) => {
     return new Date(lastEnrollTime) < new Date();
   };
 
-  // Yükleme durumunda loading göster
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96">
@@ -146,7 +133,6 @@ const EventDetailPage: FC = () => {
     );
   }
 
-  // Etkinlik bulunamadığında hata mesajı göster
   if (!event) {
     return (
       <div className="max-w-4xl mx-auto p-8">
@@ -156,6 +142,8 @@ const EventDetailPage: FC = () => {
       </div>
     );
   }
+
+  const imageUrl = getImageUrl(event.attributes.cover);
 
   return (
     <div className="max-w-4xl mx-auto p-8">
@@ -168,12 +156,11 @@ const EventDetailPage: FC = () => {
 
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="relative h-96">
-          {event.attributes.cover?.data?.attributes?.url ? (
-            <Image
-              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${event.attributes.cover.data.attributes.url}`}
+          {imageUrl ? (
+            <img
+              src={imageUrl}
               alt={event.attributes.title}
-              fill
-              className="object-cover"
+              className="w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -186,9 +173,11 @@ const EventDetailPage: FC = () => {
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-3xl font-bold mb-2">{event.attributes.title}</h1>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                {event.attributes.category}
-              </span>
+              {event.attributes.category && (
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  {event.attributes.category}
+                </span>
+              )}
             </div>
             <div className="text-right">
               <div className="bg-gray-100 p-4 rounded-lg">
@@ -221,27 +210,22 @@ const EventDetailPage: FC = () => {
 
             <div>
               <h2 className="text-xl font-semibold mb-2">Etkinlik Detayları</h2>
-              <p className="text-gray-600">{event.attributes.summary}</p>
+              <p className="text-gray-600">{event.attributes.description || event.attributes.summary}</p>
             </div>
 
             <div>
               <h2 className="text-xl font-semibold mb-2">Buluşma Noktası</h2>
               <p className="text-gray-600">{event.attributes.location}</p>
             </div>
-
-            {/* Detaylar kısmını Strapi'den gelen details alanına göre render edelim */}
-            {event.attributes.details && (
-              <div>
-                <h2 className="text-xl font-semibold mb-2">Detaylı Bilgi</h2>
-                <div className="text-gray-600">
-                  {/* Strapi blocks içeriğini render etmek için özel bir component kullanabilirsiniz */}
-                  {/* <pre>{JSON.stringify(event.attributes.details, null, 2)}</pre> */}
-                </div>
-              </div>
-            )}
           </div>
 
           <div className="mt-8">
+            {isStaticMode && (
+              <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 text-sm text-center">
+                🔔 Etkinliklere kayıt için lütfen sosyal medya hesaplarımızdan bizimle iletişime geçin.
+              </div>
+            )}
+            
             {isEnrolled ? (
               <button 
                 onClick={handleCancelEnrollment}
@@ -282,7 +266,6 @@ const EventDetailPage: FC = () => {
               </button>
             )}
 
-            {/* Son kayıt tarihi bilgisi */}
             <p className="text-sm text-gray-500 text-center mt-2">
               Son Kayıt Tarihi: {new Date(event.attributes.last_enroll_time).toLocaleDateString('tr-TR')}
             </p>
@@ -293,4 +276,4 @@ const EventDetailPage: FC = () => {
   );
 };
 
-export default EventDetailPage; 
+export default EventDetailPage;

@@ -7,23 +7,37 @@ interface User {
     profileImage: string
 }
 
-export function useAuth() {
-    const [user, setUser] = useState<User | null>(() => {
-        if (typeof window !== 'undefined') {
-            const userCookie = Cookies.get('user')
-            return userCookie ? JSON.parse(userCookie) : null
-        }
-        return null
-    })
+const DEMO_USER: User = {
+    name: 'Demo Kullanıcı',
+    profileImage: ''
+}
 
-    const login = (userData: User) => {
-        Cookies.set('user', JSON.stringify(userData), { expires: 7 })
-        setUser(userData)
+export function useAuth() {
+    const [user, setUser] = useState<User | null>(null)
+
+    useEffect(() => {
+        // Check for existing session cookie
+        if (typeof window !== 'undefined') {
+            const userCookie = Cookies.get('mtob_demo_user')
+            if (userCookie) {
+                try {
+                    setUser(JSON.parse(userCookie))
+                } catch {
+                    setUser(null)
+                }
+            }
+        }
+    }, [])
+
+    const login = (userData?: User) => {
+        const userToSet = userData || DEMO_USER
+        Cookies.set('mtob_demo_user', JSON.stringify(userToSet), { expires: 7 })
+        setUser(userToSet)
     }
 
     const logout = () => {
         try {
-            Cookies.remove('user')
+            Cookies.remove('mtob_demo_user')
             setUser(null)
             console.log('Çıkış yapıldı')
         } catch (error) {
@@ -31,19 +45,5 @@ export function useAuth() {
         }
     }
 
-    useEffect(() => {
-        const checkCookie = () => {
-            const userCookie = Cookies.get('user')
-            if (!userCookie) {
-                setUser(null)
-            } else if (userCookie && !user) {
-                setUser(JSON.parse(userCookie))
-            }
-        }
-
-        window.addEventListener('storage', checkCookie)
-        return () => window.removeEventListener('storage', checkCookie)
-    }, [user])
-
-    return { user, login, logout }
-} 
+    return { user, login, logout, isStaticMode: true }
+}

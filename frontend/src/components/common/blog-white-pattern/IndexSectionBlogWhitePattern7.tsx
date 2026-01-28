@@ -1,10 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { blogService } from '@/services/blogService';
-
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+import { motion } from 'framer-motion';
 
 export default function IndexSectionBlogWhitePattern7() {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -39,104 +37,179 @@ export default function IndexSectionBlogWhitePattern7() {
 
   const getImageUrl = (imageData: any) => {
     if (!imageData?.data?.attributes?.url) {
-      return null;
+      return '/mtob-images/firsatlarimage.png';
     }
-    
-    const imageUrl = imageData.data.attributes.url;
-    return imageUrl.startsWith('http') 
-      ? imageUrl 
-      : `${API_URL}${imageUrl}`;
+    return imageData.data.attributes.url;
   };
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container px-4 mx-auto">
-        {/* Başlık kısmı */}
-        <div className="mb-8 md:mb-16 md:max-w-5xl">
-          <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-primary-500 bg-primary-100 font-medium uppercase rounded-full shadow-sm">Blog</span>
-          <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-black-900 font-bold tracking-tighter">Amacımız, öğrenci deneyimlerini ve kültürel paylaşımları erişilebilir kılmak.</h3>
-          <p className="text-lg md:text-xl text-gray-500 font-medium">Milano'da yaşayan Türk öğrencilerin tecrübeleri ve etkinliklerinden haberdar olun.</p>
-        </div>
+    <section className="section-padding bg-white relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-20 right-0 w-72 h-72 bg-primary-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl" />
+      
+      <div className="container-custom relative">
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-12 md:mb-16"
+        >
+          <span className="badge-primary mb-4">Blog</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 text-balance">
+            Öğrenci Deneyimleri ve{' '}
+            <span className="gradient-text">Kültürel Paylaşımlar</span>
+          </h2>
+          <p className="text-lg text-slate-600">
+            Milano'da yaşayan Türk öğrencilerin tecrübeleri, tavsiyeleri ve etkinliklerinden haberdar olun.
+          </p>
+        </motion.div>
 
-        {/* Blog gönderileri */}
+        {/* Blog posts */}
         {error ? (
-          <div className="text-center py-8 text-red-500">{error}</div>
+          <div className="text-center py-16 bg-red-50 rounded-2xl">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
+              <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <p className="text-red-600 font-medium">{error}</p>
+          </div>
         ) : loading ? (
-          <div className="text-center py-8">Yükleniyor...</div>
+          <div className="flex items-center justify-center py-20">
+            <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin" />
+          </div>
         ) : blogs.length === 0 ? (
-          <div className="text-center py-8">Henüz blog yazısı bulunmuyor.</div>
+          <div className="text-center py-16 bg-slate-50 rounded-2xl">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
+              <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+            </div>
+            <p className="text-slate-500 font-medium">Henüz blog yazısı bulunmuyor.</p>
+            <p className="text-sm text-slate-400 mt-1">Yeni içerikler için bizi takip edin!</p>
+          </div>
         ) : (
-          <div className="flex flex-wrap items-center -mx-4 mb-12 md:mb-16">
-            {blogs.map((blog) => (
-              <div key={blog.id} className="flex flex-wrap items-center w-full xl:w-1/2 px-4 mb-8 md:-mx-4">
-                <div className="w-full md:w-auto md:px-4">
-                  <Link href={`/blog/${blog.attributes.slug}`} className="inline-block mb-6 md:mb-0 overflow-hidden rounded-md">
-                    {blog.attributes.cover?.data?.attributes?.url && (
-                      <img
-                        src={getImageUrl(blog.attributes.cover)}
-                        alt={blog.attributes.title}
-                        style={{ objectFit: 'cover', width: '256px', height: '256px' }}
-                        className="object-cover rounded-md"
-                      />
-                    )}
-                  </Link>
-                </div>
-                <div className="w-full md:flex-1 md:px-4">
-                  <Link href={`/blog/${blog.attributes.slug}`} className="inline-block mb-4 text-2xl leading-tight text-black-800 hover:text-black-900 font-bold hover:underline">
-                    {blog.attributes.title}
-                  </Link>
-                  <p className="mb-4 text-sm text-gray-500">
-                    {new Date(blog.attributes.published).toLocaleDateString('tr-TR')}
-                  </p>
-                  <p className="mb-7 text-base md:text-lg text-gray-500 font-medium">
-                    {blog.attributes.summary}
-                  </p>
-                  <Link href={`/blog/${blog.attributes.slug}`} className="inline-flex items-center text-base md:text-lg text-primary-500 hover:text-primary-600 font-semibold">
-                    <span className="mr-3">Yazıyı Oku</span>
-                    <svg width={8} height={10} viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.94667 4.74665C7.91494 4.66481 7.86736 4.59005 7.80666 4.52665L4.47333 1.19331C4.41117 1.13116 4.33738 1.08185 4.25617 1.04821C4.17495 1.01457 4.08791 0.997253 4 0.997253C3.82246 0.997253 3.6522 1.06778 3.52667 1.19331C3.46451 1.25547 3.4152 1.32927 3.38156 1.41048C3.34792 1.4917 3.33061 1.57874 3.33061 1.66665C3.33061 1.84418 3.40113 2.01445 3.52667 2.13998L5.72667 4.33331H0.666667C0.489856 4.33331 0.320286 4.40355 0.195262 4.52858C0.070238 4.6536 0 4.82317 0 4.99998C0 5.17679 0.070238 5.34636 0.195262 5.47138C0.320286 5.59641 0.489856 5.66665 0.666667 5.66665H5.72667L3.52667 7.85998C3.46418 7.92196 3.41458 7.99569 3.38074 8.07693C3.34689 8.15817 3.32947 8.24531 3.32947 8.33331C3.32947 8.42132 3.34689 8.50846 3.38074 8.5897C3.41458 8.67094 3.46418 8.74467 3.52667 8.80665C3.58864 8.86913 3.66238 8.91873 3.74361 8.95257C3.82485 8.98642 3.91199 9.00385 4 9.00385C4.08801 9.00385 4.17514 8.98642 4.25638 8.95257C4.33762 8.91873 4.41136 8.86913 4.47333 8.80665L7.80666 5.47331C7.86736 5.40991 7.91494 5.33515 7.94667 5.25331C8.01334 5.09101 8.01334 4.90895 7.94667 4.74665Z" fill="currentColor" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Sayfalama */}
-        {totalPages > 1 && (
-          <div className="flex justify-center mx-auto max-w-max bg-white border border-black-100 rounded-md shadow-lg">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="inline-flex items-center justify-center w-11 h-11 text-black-300 hover:text-gray-500 font-medium border-r border-black-100 disabled:opacity-50"
-            >
-              <svg width={8} height={12} viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform rotate-180">
-                <path d="M4.71006 6.00005L1.17006 9.54005C0.983805 9.72741 0.879264 9.98087 0.879264 10.2451C0.879264 10.5092 0.983805 10.7627 1.17006 10.9501C1.26302 11.0438 1.37362 11.1182 1.49548 11.1689C1.61734 11.2197 1.74804 11.2459 1.88006 11.2459C2.01207 11.2459 2.14277 11.2197 2.26463 11.1689C2.38649 11.1182 2.49709 11.0438 2.59006 10.9501L6.83006 6.71005C6.92378 6.61709 6.99818 6.50649 7.04895 6.38463C7.09972 6.26277 7.12585 6.13206 7.12585 6.00005C7.12585 5.86804 7.09972 5.73733 7.04895 5.61547C6.99818 5.49362 6.92378 5.38301 6.83006 5.29005L2.59006 1.00005C2.49662 0.907371 2.3858 0.834046 2.26396 0.784281C2.14212 0.734517 2.01166 0.70929 1.88006 0.710051C1.74845 0.70929 1.61799 0.734517 1.49615 0.784281C1.37431 0.834046 1.2635 0.907371 1.17006 1.00005C0.983804 1.18741 0.879263 1.44087 0.879263 1.70505C0.879263 1.96924 0.983804 2.22269 1.17006 2.41005L4.71006 6.00005Z" fill="currentColor"/>
-              </svg>
-            </button>
-            
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                className={`inline-flex items-center justify-center w-11 h-11 font-medium border-r border-black-100 ${currentPage === page ? 'text-primary-500 bg-primary-50' : 'text-black-300 hover:text-primary-500'}`}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogs.map((blog, index) => (
+              <motion.article
+                key={blog.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {page}
-              </button>
-            ))}
+                <Link href={`/blog/${blog.attributes.slug}`} className="group block card-hover h-full">
+                  {/* Image */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={getImageUrl(blog.attributes.cover)}
+                      alt={blog.attributes.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
 
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="inline-flex items-center justify-center w-11 h-11 text-black-300 hover:text-gray-500 font-medium disabled:opacity-50"
-            >
-              <svg width={8} height={12} viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.71006 6.00005L1.17006 9.54005C0.983805 9.72741 0.879264 9.98087 0.879264 10.2451C0.879264 10.5092 0.983805 10.7627 1.17006 10.9501C1.26302 11.0438 1.37362 11.1182 1.49548 11.1689C1.61734 11.2197 1.74804 11.2459 1.88006 11.2459C2.01207 11.2459 2.14277 11.2197 2.26463 11.1689C2.38649 11.1182 2.49709 11.0438 2.59006 10.9501L6.83006 6.71005C6.92378 6.61709 6.99818 6.50649 7.04895 6.38463C7.09972 6.26277 7.12585 6.13206 7.12585 6.00005C7.12585 5.86804 7.09972 5.73733 7.04895 5.61547C6.99818 5.49362 6.92378 5.38301 6.83006 5.29005L2.59006 1.00005C2.49662 0.907371 2.3858 0.834046 2.26396 0.784281C2.14212 0.734517 2.01166 0.70929 1.88006 0.710051C1.74845 0.70929 1.61799 0.734517 1.49615 0.784281C1.37431 0.834046 1.2635 0.907371 1.17006 1.00005C0.983804 1.18741 0.879263 1.44087 0.879263 1.70505C0.879263 1.96924 0.983804 2.22269 1.17006 2.41005L4.71006 6.00005Z" fill="currentColor"/>
-              </svg>
-            </button>
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Date */}
+                    <div className="flex items-center gap-2 text-sm text-slate-400 mb-3">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <time>{new Date(blog.attributes.published).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
+                      {blog.attributes.title}
+                    </h3>
+
+                    {/* Summary */}
+                    <p className="text-slate-500 line-clamp-3 mb-4">
+                      {blog.attributes.summary}
+                    </p>
+
+                    {/* Read more */}
+                    <span className="inline-flex items-center text-sm font-semibold text-primary-600 group-hover:text-primary-700">
+                      <span>Devamını Oku</span>
+                      <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
           </div>
         )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mt-12"
+          >
+            <div className="inline-flex items-center gap-2 bg-slate-100 rounded-xl p-1.5">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                aria-label="Önceki sayfa"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center font-semibold text-sm transition-all ${
+                    currentPage === page 
+                      ? 'bg-primary-500 text-white shadow-md' 
+                      : 'text-slate-600 hover:bg-white hover:text-primary-600'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                aria-label="Sonraki sayfa"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {/* View All Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-12"
+        >
+          <Link href="/blog" className="btn-secondary">
+            <span>Tüm Blog Yazıları</span>
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

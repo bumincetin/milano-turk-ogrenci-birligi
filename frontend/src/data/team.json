@@ -1,0 +1,77 @@
+{
+  "members": [
+    {
+      "id": 1,
+      "name": "Bumin Kağan",
+      "role": "Kurucu & Başkan",
+      "image": "/mtob-team/Bumin_Kagan.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Milano Türk Öğrenci Birliği'nin kurucusu ve başkanı."
+    },
+    {
+      "id": 2,
+      "name": "Aleyna Şenol",
+      "role": "Başkan Yardımcısı",
+      "image": "/mtob-team/Aleyna_Senol.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Etkinlik organizasyonu ve üye ilişkileri koordinatörü."
+    },
+    {
+      "id": 3,
+      "name": "Berkay Öztürk",
+      "role": "Genel Sekreter",
+      "image": "/mtob-team/Berkay_Ozturk.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "İdari işler ve iletişim sorumlusu."
+    },
+    {
+      "id": 4,
+      "name": "Merve Korkmaz",
+      "role": "Sosyal Medya Sorumlusu",
+      "image": "/mtob-team/Merve_Korkmaz.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Dijital pazarlama ve sosyal medya yönetimi."
+    },
+    {
+      "id": 5,
+      "name": "Emre Burak Düger",
+      "role": "Etkinlik Koordinatörü",
+      "image": "/mtob-team/Emre_Burak_Duger.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Etkinlik planlama ve organizasyon."
+    },
+    {
+      "id": 6,
+      "name": "Alize Ataç",
+      "role": "İletişim Sorumlusu",
+      "image": "/mtob-team/Alize_Atac.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Üye iletişimi ve destek."
+    },
+    {
+      "id": 7,
+      "name": "Mustafa Şandırlı",
+      "role": "Teknik Ekip",
+      "image": "/mtob-team/Mustafa_Sandirli.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Web sitesi ve teknik altyapı."
+    },
+    {
+      "id": 8,
+      "name": "Muhammet Talha Çoğalmış",
+      "role": "Üye İlişkileri",
+      "image": "/mtob-team/Muhammet_Talha_Cogalmis.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Yeni üye karşılama ve entegrasyon."
+    },
+    {
+      "id": 9,
+      "name": "Pınar Ürun",
+      "role": "Etkinlik Ekibi",
+      "image": "/mtob-team/Pinar_Urun.jpg",
+      "linkedin": "https://linkedin.com",
+      "description": "Etkinlik lojistiği ve organizasyon desteği."
+    }
+  ]
+}
+

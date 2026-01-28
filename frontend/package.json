@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "mtob-dev": "next dev -p 9911",
-    "mtob-start": "next start -p 9911"
+    "mtob-start": "next start -p 9911",
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -16,16 +17,10 @@
     "@heroicons/react": "^2.2.0",
     "@mui/icons-material": "^6.3.0",
     "@mui/material": "^6.2.1",
-    "@types/jsonwebtoken": "^9.0.7",
-    "axios": "^1.7.7",
-    "framer-motion": "^11.11.17",
+    "framer-motion": "^11.18.2",
     "js-cookie": "^3.0.5",
-    "jsonwebtoken": "^9.0.2",
-    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.469.0",
     "next": "16.0.8",
-    "next-auth": "^4.24.10",
-    "nookies": "^2.5.2",
     "primeicons": "^7.0.0",
     "primereact": "^10.8.5",
     "react": "^18.2.0",
@@ -36,6 +31,7 @@
     "sonner": "^1.7.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18.3.12",

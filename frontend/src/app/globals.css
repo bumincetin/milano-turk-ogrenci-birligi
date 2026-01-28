@@ -2,96 +2,379 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================================
+   CSS Custom Properties (Design Tokens)
+   ================================ */
 :root {
+  /* Colors */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  
+  /* Primary Brand Colors */
+  --primary: #C41E3A;
+  --primary-dark: #9A1428;
+  --primary-light: #fef2f2;
+  
+  /* Accent */
+  --accent: #D4AF37;
+  --accent-dark: #92761F;
+  
+  /* Spacing */
+  --section-padding: 6rem;
+  --container-padding: 1.5rem;
+  
+  /* Typography */
+  --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
+/* Dark mode support (optional) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --muted: #94a3b8;
+    --border: #334155;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* ================================
+   Base Styles
+   ================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply text-slate-800 bg-white;
+    font-family: var(--font-sans);
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    line-height: 1.6;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-slate-900;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  p {
+    @apply text-slate-600 leading-relaxed;
+  }
+  
+  a {
+    @apply transition-colors duration-200;
+  }
+  
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-primary-500/20 text-primary-900;
+  }
 }
 
-article h1{
-  color: #000;
+/* ================================
+   Component Classes
+   ================================ */
+@layer components {
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-white text-slate-800 border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 focus:ring-slate-500;
+  }
+  
+  .btn-accent {
+    @apply btn bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500;
+  }
+  
+  .btn-ghost {
+    @apply btn bg-transparent text-slate-700 hover:bg-slate-100 focus:ring-slate-500;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-slate-100 overflow-hidden transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply card hover:shadow-elevated hover:-translate-y-1;
+  }
+  
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full;
+  }
+  
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-700;
+  }
+  
+  .badge-accent {
+    @apply badge bg-accent-100 text-accent-700;
+  }
+  
+  /* Input fields */
+  .input {
+    @apply w-full px-4 py-3 text-slate-900 bg-white border border-slate-200 rounded-xl transition-all duration-200 placeholder:text-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10;
+  }
+  
+  /* Glass effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent;
+  }
+  
+  /* Decorative elements */
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(196, 30, 58, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .pattern-grid {
+    background-image: 
+      linear-gradient(to right, rgba(0,0,0,0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
 }
 
-article h3{
-  color: #222;
+/* ================================
+   Utility Classes
+   ================================ */
+@layer utilities {
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Smooth underline animation */
+  .hover-underline {
+    @apply relative;
+  }
+  
+  .hover-underline::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300;
+  }
+  
+  .hover-underline:hover::after {
+    @apply w-full;
+  }
+  
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Aspect ratios */
+  .aspect-hero {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .aspect-card {
+    aspect-ratio: 4 / 3;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-gradient-radial {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+  }
+  
+  .bg-hero-gradient {
+    background: linear-gradient(135deg, #fef2f2 0%, #ffffff 50%, #fffbeb 100%);
+  }
+  
+  /* Animated gradient border */
+  .gradient-border {
+    @apply relative;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #C41E3A, #D4AF37) border-box;
+    border: 2px solid transparent;
+  }
 }
 
-article h6{
-  color: #555;
+/* ================================
+   Animation Classes
+   ================================ */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for CTAs */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(196, 30, 58, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* ================================
+   Article Styles (Blog)
+   ================================ */
+article h1 {
+  @apply text-slate-900 mb-6;
 }
 
 article h2 {
-  color: #222;
+  @apply text-slate-800 mt-10 mb-4;
 }
 
-/* Ana sayfa ve diğer sayfalar için genel h3 stili */
-h3:not(article h3) {
-  color: #222;
-}
-
-/* Ana sayfa ve diğer sayfalar için genel h2 stili */
-h2:not(article h2) {
-  color: #222;
+article h3 {
+  @apply text-slate-800 mt-8 mb-3;
 }
 
 article h4 {
-  color: #222
+  @apply text-slate-700 mt-6 mb-2;
 }
 
-h4:not(article h4) {
-  color: #222
+article p {
+  @apply text-slate-600 mb-4 leading-relaxed;
 }
 
-/* Google Translate dropdown'ını özelleştirmek için */
-.goog-te-combo {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  width: 100%;
-  outline: none;
+article a {
+  @apply text-primary-600 hover:text-primary-700 underline underline-offset-2;
 }
 
-/* Gereksiz Google Translate elementlerini gizle */
-.skiptranslate iframe {
-  display: none;
+article ul, article ol {
+  @apply mb-4 pl-6 text-slate-600;
 }
 
-/* Scrollbar'ı gizle - tüm tarayıcılar için */
-* {
-  -ms-overflow-style: none; /* IE ve Edge için */
-  scrollbar-width: none; /* Firefox için */
+article li {
+  @apply mb-2;
 }
 
-/* Webkit tabanlı tarayıcılar için (Chrome, Safari, Opera) */
-*::-webkit-scrollbar {
-  display: none;
+article blockquote {
+  @apply border-l-4 border-primary-500 pl-4 italic text-slate-600 my-6;
 }
 
-/* Eğer sadece belirli bir component için scrollbar'ı gizlemek istiyorsanız */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+article code {
+  @apply bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-primary-700;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+article pre {
+  @apply bg-slate-900 text-slate-100 p-4 rounded-xl overflow-x-auto my-6;
 }
 
-/* Touch cihazlar için kaydırma davranışını koru */
+article pre code {
+  @apply bg-transparent p-0;
+}
+
+/* ================================
+   Responsive Helpers
+   ================================ */
+@media (max-width: 640px) {
+  .section-padding {
+    @apply py-12;
+  }
+}
+
+/* Touch device optimizations */
 @supports (-webkit-touch-callout: none) {
   .overflow-scroll {
     -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
   }
 }

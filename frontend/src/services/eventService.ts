@@ -1,266 +1,57 @@
-import Cookies from 'js-cookie';
+import eventsData from '@/data/events.json';
 
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-const COOKIE_NAME = process.env.NEXT_PUBLIC_USER_COOKIE_NAME as string || "mtob_user";
 export const EventsAPI = {
   getAll: async () => {
-    try {
-      if (!API_URL) {
-        throw new Error('API URL tanımlanmamış');
-      }
-
-      const queryParams = new URLSearchParams({
-        'populate': '*',
-        'filters[blocked][$eq]': 'false',
-        'publicationState': 'live'
-      }).toString();
-      
-      const response = await fetch(`${API_URL}/api/events?${queryParams}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        console.error('API Error:', {
-          status: response.status,
-          statusText: response.statusText,
-          errorData,
-          url: response.url
-        });
-        throw new Error(`API Hatası: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      return data;
-
-    } catch (error) {
-      console.error('Fetch Error:', error);
-      throw error;
-    }
+    // Simulate async behavior
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    return {
+      data: eventsData.data.filter(event => !event.attributes.blocked)
+    };
   },
 
-
-  getUsersEvents : async (userId: number, query: string = '') => {
-    try {
-      if (!API_URL) {
-        throw new Error('API URL tanımlanmamış');
-      }
-
-      const token = Cookies.get(COOKIE_NAME);
-      if (!token) {
-        throw new Error('Oturum bilgisi bulunamadı');
-      }
-
-      const response = await fetch(`${API_URL}/api/users/${userId}${query}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error?.message || 'API isteği başarısız oldu');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Kullanıcı etkinlikleri alınırken hata:', error);
-      throw error;
-    }
+  getUsersEvents: async (userId: number, query: string = '') => {
+    // In static mode, return empty array as there's no user session
+    await new Promise(resolve => setTimeout(resolve, 100));
+    return { events: [] };
   },
-
-
-
 
   getById: async (id: number) => {
-    try {
-      if (!API_URL) {
-        throw new Error('API URL tanımlanmamış');
-      }
-
-      const queryParams = new URLSearchParams({
-        'populate': '*',
-        'publicationState': 'live'
-      }).toString();
-
-      const response = await fetch(`${API_URL}/api/events/${id}?${queryParams}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error?.message || 'API isteği başarısız oldu');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Event detayı alınırken hata:', error);
-      throw error;
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    const event = eventsData.data.find(e => e.id === id);
+    
+    if (!event) {
+      throw new Error('Etkinlik bulunamadı');
     }
+
+    return { data: event };
   },
 
   enrollEvent: async (eventId: number) => {
-    try {
-      if (!API_URL) {
-        throw new Error('API URL tanımlanmamış');
-      }
-
-      const token = Cookies.get(COOKIE_NAME);
-      if (!token) {
-        throw new Error('Oturum bilgisi bulunamadı. Lütfen tekrar giriş yapın.');
-      }
-
-      // Önce etkinlik detaylarını kontrol et
-      const event = await EventsAPI.getById(eventId);
-      
-      if (event.data.attributes.blocked) {
-        throw new Error('Bu etkinliğe kayıt alınmamaktadır.');
-      }
-
-      if (event.data.attributes.current_person_count >= event.data.attributes.person_limit) {
-        throw new Error('Etkinlik kontenjanı dolmuştur.');
-      }
-
-      if (new Date(event.data.attributes.last_enroll_time) < new Date()) {
-        throw new Error('Etkinlik kayıt süresi dolmuştur.');
-      }
-
-      // Debug için
-      console.log('JWT Token:', token);
-
-      if (!token) {
-        throw new Error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
-      }
-
-      const response = await fetch(`${API_URL}/api/events/${eventId}/enroll`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      // Debug için
-      console.log('Enroll Response:', {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries())
-      });
-
-      if (!response.ok) {
-        let errorMessage = 'Kayıt işlemi sırasında bir hata oluştu';
-        
-        try {
-          const errorData = await response.json();
-          console.log('Error Data:', errorData); // Debug için
-          errorMessage = errorData.error?.message || errorData.message || errorMessage;
-        } catch (e) {
-          console.log('Error Parse Failed:', e); // Debug için
-        }
-
-        switch (response.status) {
-          case 401:
-            throw new Error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
-          case 403:
-            throw new Error('Bu işlem için yetkiniz bulunmuyor.');
-          case 400:
-            throw new Error(errorMessage);
-          default:
-            throw new Error('Kayıt işlemi sırasında bir hata oluştu');
-        }
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error: any) {
-      console.error('Kayıt Hatası:', error);
-      throw error;
-    }
+    // In static mode, show a message instead of actual enrollment
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Simulate success response
+    return {
+      success: true,
+      message: 'Bu özellik şu anda aktif değil. Etkinliklere kayıt için lütfen bizimle iletişime geçin.'
+    };
   },
 
   cancelEnrollment: async (eventId: number) => {
-    try {
-      if (!API_URL) {
-        throw new Error('API URL tanımlanmamış');
-      }
-
-      const token = Cookies.get(COOKIE_NAME);
-      if (!token) {
-        throw new Error('Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.');
-      }
-
-      const response = await fetch(`${API_URL}/api/events/${eventId}/cancel-enrollment`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Kayıt iptal edilemedi');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Kayıt iptal hatası:', error);
-      throw error;
-    }
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    return {
+      success: true,
+      message: 'Bu özellik şu anda aktif değil.'
+    };
   },
 
   checkEnrollmentStatus: async (eventId: number) => {
-    try {
-      if (!API_URL) {
-        throw new Error('API URL tanımlanmamış');
-      }
-
-      const token = Cookies.get(COOKIE_NAME);
-      if (!token) {
-        throw new Error('Oturum süreniz dolmuş');
-      }
-
-      const response = await fetch(`${API_URL}/api/events/${eventId}?populate=users`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Kayıt durumu kontrol edilemedi');
-      }
-
-      const data = await response.json();
-      console.log('API Yanıtı:', data); // API'den gelen veriyi kontrol et
-
-      // JWT'den kullanıcı ID'sini al
-      const userToken = JSON.parse(atob(token.split('.')[1]));
-      const userId = userToken.id;
-      console.log('Mevcut Kullanıcı ID:', userId); // Kullanıcı ID'sini kontrol et
-
-      // Kayıtlı kullanıcıları kontrol et
-      console.log('Kayıtlı Kullanıcılar:', data.data.attributes.users?.data); // Kayıtlı kullanıcıları kontrol et
-
-      const isEnrolled = data.data.attributes.users?.data?.some(
-        (user: any) => user.id === userId
-      );
-      
-      console.log('Kayıt Durumu:', isEnrolled); // Final durumu kontrol et
-
-      return { isEnrolled };
-    } catch (error) {
-      console.error('Kayıt durumu kontrol hatası:', error);
-      throw error;
-    }
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // In static mode, user is never enrolled
+    return { isEnrolled: false };
   },
-
-
-}; 
+};
