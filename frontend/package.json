@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "mtob-dev": "next dev -p 9911",
-    "mtob-start": "next start -p 9911",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "mtob-start": "next start -p 9911"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -31,7 +30,6 @@
     "sonner": "^1.7.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.16",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18.3.12",
