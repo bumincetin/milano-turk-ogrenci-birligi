@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Enable static export for Cloudflare Pages (Reverted due to Windows build issues)
-  output: 'export',
+  // output: 'export',
 
   // Disable image optimization for static export (use regular img tags)
   images: {
